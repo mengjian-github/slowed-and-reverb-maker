@@ -75,13 +75,13 @@ export function Hero({
               </button>
             ))}
           </div>
+          {figure}
         </div>
         {consoleSlot ? (
           <div className="console-wrap rise" id="console">
             {consoleSlot}
           </div>
         ) : null}
-        {figure}
       </div>
     </>
   );
@@ -93,6 +93,19 @@ export function StudioShell({ children }: { children: React.ReactNode }) {
     <div className={`${chivo.className} studio-page`}>
       <main className="shell">{children}</main>
     </div>
+  );
+}
+
+/** Answers carry the same single [label](href) link as bodies. */
+function RichText({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        return m ? <a key={i} href={m[2]}>{m[1]}</a> : part;
+      })}
+    </>
   );
 }
 
@@ -232,7 +245,7 @@ export function FaqSection({ faq, title, body }: { faq: NonNullable<PageContent[
                 <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               </svg>
             </summary>
-            <p>{item.answer}</p>
+            <RichText text={item.answer} />
           </details>
         ))}
       </div>

@@ -85,10 +85,9 @@ export async function encodeMp3(buffer: AudioBuffer, onStage?: (stage: string) =
       leftSamples[i - offset] = Math.max(-32768, Math.min(32767, Math.round(left[i] * 0x7fff)));
       rightSamples[i - offset] = Math.max(-32768, Math.min(32767, Math.round(right[i] * 0x7fff)));
     }
+    const encodeBuffer = encoder.encodeBuffer as (l: Int16Array, r?: Int16Array) => Int8Array;
     const encoded =
-      channels > 1
-        ? encoder.encodeBuffer(leftSamples, rightSamples as unknown as Int16Array)
-        : encoder.encodeBuffer(leftSamples);
+      channels > 1 ? encodeBuffer(leftSamples, rightSamples) : encodeBuffer(leftSamples);
     if (encoded.length) chunks.push(new Int8Array(encoded));
     onStage?.(`Encoding MP3… ${Math.min(100, Math.round((sliceEnd / buffer.length) * 100))}%`);
   }

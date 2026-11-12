@@ -10,7 +10,7 @@ export const recipeStyles: string = `
   --surface: #4d0519;
   --surface-2: #541229;
   --text: #ffe6f4;
-  --text-muted: #d9a9c4;
+  --text-muted: #e5b9d4;
   --accent: #ff99d3;
   --accent-strong: #ffc2e4;
   --secondary: #c77aa0;
@@ -175,6 +175,11 @@ details.mobile-nav { margin-inline-start: auto; position: relative; }
 }
 .footer-brand-row { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
 .footer-brand { font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text); }
+/* the platform stylesheet sets this span at display size (80px dark-on-dark,
+   reads as broken); the brand row is a small baseline row here. */
+.site-footer .footer-brand { font-size: clamp(1rem, 1.6vw, 1.25rem); color: var(--text); }
+.hero-figure svg { display: block; width: 100%; height: auto; }
+.hero-figure .style-ladder text { font-family: inherit; }
 .footer-tagline { color: var(--accent); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; }
 .footer-groups {
   display: grid;
@@ -187,7 +192,7 @@ details.mobile-nav { margin-inline-start: auto; position: relative; }
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: var(--secondary);
+  color: var(--accent);
 }
 .footer-group a { display: block; color: var(--text-muted); text-decoration: none; font-size: 0.9rem; padding: 0.15rem 0; }
 .footer-group a:hover { color: var(--accent); }
@@ -350,7 +355,7 @@ details.mobile-nav { margin-inline-start: auto; position: relative; }
   font-weight: 900;
 }
 .dropzone-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
-.privacy-note { margin: 0; font-size: 0.78rem; color: var(--secondary); text-align: center; }
+.privacy-note { margin: 0; font-size: 0.78rem; color: var(--text-muted); text-align: center; }
 .sr-file { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
 .tool-output { display: grid; gap: 0.8rem; }
 .loader-output .hint, .readout .hint { margin: 0; font-size: 0.8rem; color: var(--text-muted); }

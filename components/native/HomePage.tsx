@@ -3,7 +3,7 @@
 // / — Slowed and Reverb Maker: hero with the console on the first screen,
 // then sections in approved order (tool → how-it-works + formats → faq).
 
-import SiteFooter, { SiteHeader } from "@/components/site/SiteChrome";
+import { SiteFooter, SiteHeader } from "@/components/site/SiteChrome";
 
 import type { NativeRouteProps } from "./registry";
 import AudioStudio from "./AudioStudio";
@@ -62,7 +62,7 @@ export default function HomePage({ content, config }: NativeRouteProps) {
         {content.faq ? <FaqSection faq={content.faq} title={faqSec?.title ?? "FAQ"} body={faqSec?.body} /> : null}
         {faqSec?.image ? <EditorialFigure image={faqSec.image} /> : null}
       </StudioShell>
-      <SiteFooter config={config} />
+      <SiteFooter config={config} currentPath="/" />
       <SchemaScript schema={content.schema} />
     </>
   );

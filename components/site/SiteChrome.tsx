@@ -10,7 +10,7 @@ import type { SiteConfig } from "@/lib/site-config";
 // with .mobile-nav-links, and .footer-groups in the footer.
 
 function samePath(left: string | undefined, right: string | undefined) {
-  const norm = (value: string) => ((value || "/").split(/[?#]/)[0]?.replace(/\/+$/, "") || "/");
+  const norm = (value: string | undefined) => ((value || "/").split(/[?#]/)[0]?.replace(/\/+$/, "") || "/");
   return norm(left) === norm(right) && !!left;
 }
 
@@ -30,7 +30,14 @@ export function BrandMark({ height = 20 }: { height?: number }) {
   );
 }
 
-export function SiteHeader({ config = siteConfig as SiteConfig }: { config?: SiteConfig } = {}) {
+export function SiteHeader({
+  config = siteConfig as SiteConfig,
+  currentPath,
+}: {
+  config?: SiteConfig;
+  currentPath?: string;
+  locales?: unknown[];
+} = {}) {
   const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -105,7 +112,14 @@ export function SiteHeader({ config = siteConfig as SiteConfig }: { config?: Sit
   );
 }
 
-export function SiteFooter({ config = siteConfig as SiteConfig }: { config?: SiteConfig } = {}) {
+export function SiteFooter({
+  config = siteConfig as SiteConfig,
+  currentPath,
+}: {
+  config?: SiteConfig;
+  currentPath?: string;
+  locales?: unknown[];
+} = {}) {
   const groups = config.footerGroups ?? [];
   return (
     <footer data-node="footer" data-chrome="site" className="site-footer">
@@ -113,7 +127,9 @@ export function SiteFooter({ config = siteConfig as SiteConfig }: { config?: Sit
         <div className="footer-brand-row">
           <BrandMark height={16} />
           <span className="footer-brand">{config.brandName ?? "Slowed and Reverb Maker"}</span>
-          <span className="footer-tagline">Let the last chorus drift.</span>
+          <span className="footer-tagline">
+            {currentPath?.startsWith("/nightcore") ? "Faster, higher, brighter." : "Let the last chorus drift."}
+          </span>
         </div>
         {groups.length ? (
           <div className="footer-groups">
