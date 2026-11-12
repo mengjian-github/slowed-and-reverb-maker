@@ -523,9 +523,6 @@ export default function AudioStudio({ defaultPreset = "classic", exportTag = "sl
             if (file) void loadFile(file);
           }}
         >
-          <svg className="dash" aria-hidden="true">
-            <rect rx="18" />
-          </svg>
           <span className="orb" aria-hidden="true">
             <svg viewBox="0 0 28 28">
               <path d="M8.5 20.5H7a5 5 0 0 1-.6-10 7 7 0 0 1 13.4-1.6A5.5 5.5 0 0 1 21 20.5h-1.5M14 13v10M10.5 16.5L14 13l3.5 3.5" />

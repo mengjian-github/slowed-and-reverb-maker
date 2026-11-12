@@ -109,6 +109,19 @@ function RichText({ text }: { text: string }) {
   );
 }
 
+/** Inline markdown link support for item/step bodies rendered inside <p>. */
+function InlineText({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        return m ? <a key={i} href={m[2]}>{m[1]}</a> : <span key={i}>{part}</span>;
+      })}
+    </>
+  );
+}
+
 function Body({ text }: { text: string }) {
   // Approved bodies carry one markdown-style link at most; keep the copy
   // verbatim and turn [label](href) into a real anchor.
@@ -139,7 +152,7 @@ export function ItemsGrid({ section }: { section: PageSection }) {
           {section.items.map((item) => (
             <article key={item.title} className="card">
               <h3>{item.title}</h3>
-              <p>{item.body}</p>
+              <p><InlineText text={item.body} /></p>
             </article>
           ))}
         </div>
@@ -164,7 +177,7 @@ export function StepsColumn({ section, figure }: { section: PageSection; figure?
               </span>
               <div>
                 <h3>{step.title}</h3>
-                <p>{step.body}</p>
+                <p><InlineText text={step.body} /></p>
               </div>
             </li>
           ))}

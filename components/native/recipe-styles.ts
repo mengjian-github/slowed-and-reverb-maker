@@ -338,12 +338,11 @@ details.mobile-nav { margin-inline-start: auto; position: relative; }
   transition: transform 200ms var(--ease), background-color 200ms var(--ease);
 }
 .dropzone.is-over { transform: scale(1.015); background: color-mix(in srgb, var(--accent) 10%, transparent); }
-.dropzone svg.dash { position: absolute; inset: 0; width: 100%; height: 100%; }
-.dropzone svg.dash rect { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 10 8; }
+.dropzone::before { content: ""; position: absolute; inset: 0; border: 2px dashed var(--accent); border-radius: 18px; pointer-events: none; animation: dashPulse 3.2s var(--ease) infinite; }
+.dropzone.is-over::before { border-style: solid; animation: none; }
+@keyframes dashPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
 @media (prefers-reduced-motion: no-preference) {
-  .dropzone svg.dash rect { animation: dashMarch 24s linear infinite; }
 }
-@keyframes dashMarch { to { stroke-dashoffset: -360; } }
 .orb {
   width: 52px;
   height: 52px;
@@ -523,7 +522,8 @@ canvas.wave { width: 100%; height: 96px; display: block; border-radius: 8px; bac
 }
 @keyframes riseIn { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .band .bar, .dropzone svg.dash rect { animation: none !important; }
+  .band .bar, .dropzone::before { animation: none !important; }
   * { transition-duration: 0.01ms !important; }
 }
 `;
+.site-footer .footer-group-title { color: #ff99d3; }
