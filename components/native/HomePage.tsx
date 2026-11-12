@@ -6,8 +6,55 @@
 import { SiteFooter, SiteHeader } from "@/components/site/SiteChrome";
 
 import type { NativeRouteProps } from "./registry";
+import type { PageSection } from "@/lib/content";
 import AudioStudio from "./AudioStudio";
 import { EditorialFigure, FaqSection, Hero, ItemsGrid, SchemaScript, StudioShell } from "./studio-parts";
+
+/** The tool section as one wide strip: a waveform trim sketch carrying the
+ * three explanations as labelled columns, instead of three equal cards. */
+function FeatureStrip({ section }: { section: PageSection }) {
+  return (
+    <section className="sec feature-strip" id={section.id}>
+      <div className="strip-head">
+        <h2>{section.title}</h2>
+        <p>{section.body}</p>
+      </div>
+      <div className="strip-body">
+        <svg className="trim-sketch" viewBox="0 0 560 120" aria-hidden="true" preserveAspectRatio="none">
+          {/* the waveform, with the kept region between the trim markers */}
+          <defs>
+            <clipPath id="trimKeep">
+              <rect x="150" y="0" width="290" height="120" />
+            </clipPath>
+          </defs>
+          <g clipPath="url(#trimKeep)">
+            {Array.from({ length: 56 }, (_, i) => {
+              const h = 8 + Math.abs(Math.sin(i * 0.55) * 34) + (i % 7) * 1.4;
+              return <rect key={i} x={i * 10 + 4} y={60 - h} width="6" height={h * 2} rx="3" fill="var(--accent)" />;
+            })}
+          </g>
+          <g opacity="0.28">
+            {Array.from({ length: 56 }, (_, i) => {
+              const h = 8 + Math.abs(Math.sin(i * 0.55) * 34) + (i % 7) * 1.4;
+              return <rect key={i} x={i * 10 + 4} y={60 - h} width="6" height={h * 2} rx="3" fill="var(--accent)" />;
+            })}
+          </g>
+          <line x1="150" y1="8" x2="150" y2="112" stroke="var(--accent-strong)" strokeWidth="2" />
+          <line x1="440" y1="8" x2="440" y2="112" stroke="var(--accent-strong)" strokeWidth="2" />
+          <rect x="150" y="4" width="290" height="112" fill="none" stroke="var(--line-strong)" strokeDasharray="6 5" />
+        </svg>
+        <div className="strip-cols">
+          {section.items?.map((item) => (
+            <div key={item.title} className="strip-col">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function HomePage({ content, config }: NativeRouteProps) {
   const byId = new Map(content.sections.map((s) => [s.id, s]));
@@ -46,7 +93,7 @@ export default function HomePage({ content, config }: NativeRouteProps) {
           }
         />
 
-        {tool ? <ItemsGrid section={tool} /> : null}
+        {tool ? <FeatureStrip section={tool} /> : null}
 
         <div className="split-row">
           {how ? (

@@ -607,4 +607,77 @@ button.primary:active, .btn-primary:active { transform: translateY(1px); }
 @media (prefers-reduced-motion: reduce) {
   .rise, .band-wrap, .cards .card { animation: none !important; }
 }
+
+/* ---- revision pass 2: hierarchy, sole primary, feature strip -------- */
+/* Brand lockup small; the decided headline takes display scale. */
+.brand-lockup {
+  margin: 0 0 0.6rem;
+  font-size: clamp(0.78rem, 1.4vw, 0.9rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--secondary);
+}
+.hero-type .h-block { box-decoration-break: clone; }
+.voice-display {
+  margin: 0;
+  font-size: clamp(2.4rem, 6.5vw, 4.2rem);
+  line-height: 1.02;
+  font-weight: 800;
+  color: #ffe6f4;
+  text-wrap: balance;
+  letter-spacing: -0.015em;
+}
+@media (max-width: 719.5px) {
+  .voice-display { font-size: clamp(2rem, 10vw, 2.6rem); }
+  .brand-lockup { margin-bottom: 0.4rem; }
+}
+
+/* One filled primary per screen: the dropzone's LOAD & DECODE. The hero
+   copy's CTA becomes an outlined secondary. */
+.hero-copy .ctas .btn-primary {
+  background: transparent;
+  border: 1px solid #c77aa0;
+  color: #ffe6f4;
+}
+.hero-copy .ctas .btn-primary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Feature strip: one wide surface carrying the trim sketch and the three
+   explanations as labelled columns. */
+.feature-strip {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, color-mix(in srgb, #4d0519 94%, transparent), color-mix(in srgb, #4d0519 70%, transparent));
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+  display: grid;
+  gap: clamp(1.4rem, 3vw, 2.2rem);
+  box-shadow: 0 30px 60px -36px rgba(0, 0, 0, 0.85);
+}
+.feature-strip .strip-head { display: grid; gap: 0.5rem; max-width: 68ch; }
+.feature-strip h2 { margin: 0; }
+.feature-strip .strip-head p { margin: 0; color: var(--text-muted); line-height: 1.6; }
+.feature-strip .strip-body { display: grid; gap: clamp(1.2rem, 3vw, 2rem); }
+.trim-sketch { display: block; width: 100%; height: auto; max-height: 130px; }
+.strip-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: clamp(1.2rem, 3vw, 2.4rem); }
+.strip-col { border-top: 1px solid var(--line-strong); padding-top: 0.8rem; }
+.strip-col h3 { margin: 0 0 0.45rem; font-size: 0.95rem; color: var(--accent-strong); }
+.strip-col p { margin: 0; font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+
+/* Console breathing room: the panels differ in rhythm instead of stacking
+   with near-equal padding, and slider rows get air. */
+.sr-root { gap: 1.25rem; }
+.console-wrap .panel { padding: clamp(1.3rem, 3vw, 1.9rem) clamp(1.2rem, 3vw, 1.7rem); }
+.console-wrap .mast { padding: 0.6rem 0.9rem; }
+.field-row { gap: 1.3rem 1.6rem; row-gap: 1.1rem; }
+.field { gap: 0.5rem; }
+.capability-actions.apply-row { margin-top: 0.35rem; align-items: center; }
+
+/* Entrance moves, not just translates, so the sequence reads. */
+@media (prefers-reduced-motion: no-preference) {
+  .rise, .band-wrap, .cards .card { animation-name: riseFade; }
+}
+@keyframes riseFade {
+  from { translate: 0 14px; opacity: 0; }
+  to { translate: 0 0; opacity: 1; }
+}
 `;
