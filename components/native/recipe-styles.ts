@@ -609,15 +609,8 @@ button.primary:active, .btn-primary:active { transform: translateY(1px); }
 }
 
 /* ---- revision pass 2: hierarchy, sole primary, feature strip -------- */
-/* Brand lockup small; the decided headline takes display scale. */
-.brand-lockup {
-  margin: 0 0 0.6rem;
-  font-size: clamp(0.78rem, 1.4vw, 0.9rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--secondary);
-}
+/* Brand lockup retired — the approved h1 carries the headline. */
+
 .hero-type .h-block { box-decoration-break: clone; }
 .voice-display {
   margin: 0;
@@ -630,7 +623,6 @@ button.primary:active, .btn-primary:active { transform: translateY(1px); }
 }
 @media (max-width: 719.5px) {
   .voice-display { font-size: clamp(2rem, 10vw, 2.6rem); }
-  .brand-lockup { margin-bottom: 0.4rem; }
 }
 
 /* One filled primary per screen: the dropzone's LOAD & DECODE. The hero
@@ -676,8 +668,10 @@ button.primary:active, .btn-primary:active { transform: translateY(1px); }
 @media (prefers-reduced-motion: no-preference) {
   .rise, .band-wrap, .cards .card { animation-name: riseFade; }
 }
+/* Entrance translates only: opacity fades leave text at partial contrast
+   while the animation runs (axe reads the mid-fade frame). */
 @keyframes riseFade {
-  from { translate: 0 14px; opacity: 0; }
-  to { translate: 0 0; opacity: 1; }
+  from { translate: 0 14px; }
+  to { translate: 0 0; }
 }
 `;

@@ -52,21 +52,12 @@ export function Hero({
   return (
     <>
       <div className="hero-type rise">
-        {/* The tool's name is the brand lockup; the decided headline takes
-            display scale so the page reads by its promise, not its label. */}
-        <p className="brand-lockup">
+        <h1>
           {words.map((w, i) => (
             <span key={i}>
               {i === pick ? <span className="h-block">{w}</span> : w}
               {i < words.length - 1 ? " " : ""}
-            </span>
-          ))}
-        </p>
-        <h1 className="voice-display">
-          {voice.split(" ").map((w, i, arr) => (
-            <span key={i}>
-              {i === arr.length - 1 ? <span className="h-block">{w}</span> : w}
-              {i < arr.length - 1 ? " " : ""}
+              {i === 0 && words.length > 2 ? <br /> : null}
             </span>
           ))}
         </h1>
