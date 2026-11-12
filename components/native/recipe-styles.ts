@@ -525,5 +525,5 @@ canvas.wave { width: 100%; height: 96px; display: block; border-radius: 8px; bac
   .band .bar, .dropzone::before { animation: none !important; }
   * { transition-duration: 0.01ms !important; }
 }
-`;
 .site-footer .footer-group-title { color: #ff99d3; }
+`;
