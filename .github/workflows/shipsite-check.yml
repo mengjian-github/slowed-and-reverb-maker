@@ -1,0 +1,166 @@
+name: ShipSite Check
+run-name: ShipSite Check ${{ inputs.check_id }}
+
+# ShipSite's build check for a change before it reaches this repository. It
+# downloads the sealed source of the version under check, builds it, runs the
+# accessibility and backend checks and reports the verdict to ShipSite. It
+# runs on this repository's Actions, never deploys and never writes here.
+
+on:
+  workflow_dispatch:
+    inputs:
+      check_id:
+        description: ShipSite build check id
+        required: true
+        type: string
+      version_id:
+        description: ShipSite version under check
+        required: true
+        type: string
+      session:
+        description: Set by ShipSite when its engineer needs a working copy to run commands in
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+  id-token: write
+
+# No concurrency group: GitHub cancels a queued run another one replaces,
+# and a cancelled check never reports its verdict.
+
+jobs:
+  check:
+    name: Build check
+    if: ${{ inputs.session == '' }}
+    runs-on: ${{ vars.SHIPSITE_RUNNER || 'ubuntu-latest' }}
+    # Inside the engine's 16-minute gate window, queue time included.
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      # Only the lockfile, to name the package cache after it. The check
+      # itself builds the sealed source it downloads, not this checkout.
+      - name: Read the lockfile the package cache is keyed on
+        if: ${{ runner.environment == 'github-hosted' }}
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          sparse-checkout: /package-lock.json
+          sparse-checkout-cone-mode: false
+      - name: Restore downloaded packages
+        id: npm-cache
+        if: ${{ runner.environment == 'github-hosted' }}
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.npm
+          key: shipsite-npm-${{ runner.os }}-${{ hashFiles('repo/package-lock.json') }}
+          restore-keys: shipsite-npm-${{ runner.os }}-
+      - name: Restore the checker and its browser
+        id: qa-cache
+        if: ${{ runner.environment == 'github-hosted' }}
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ~/.shipsite/qa
+            ~/.cache/ms-playwright
+          key: shipsite-qa-${{ runner.os }}-${{ runner.arch }}-1.4.20
+      - name: Run the ShipSite build check
+        env:
+          SHIPSITE_CHECK_ID: ${{ inputs.check_id }}
+          SHIPSITE_VERSION_ID: ${{ inputs.version_id }}
+        run: npx -y --package https://shipsite.ai/link/shipsite-link-1.4.20.tgz shipsite-link --ci-check
+      - name: See what is worth keeping
+        id: keep
+        if: ${{ always() && runner.environment == 'github-hosted' }}
+        shell: bash
+        run: |
+          if [ -d ~/.npm/_cacache ]; then echo "npm=1" >> "$GITHUB_OUTPUT"; fi
+          if [ -f ~/.shipsite/qa/qa-runtime/.installed-browser ] && [ -d ~/.cache/ms-playwright ]; then echo "qa=1" >> "$GITHUB_OUTPUT"; fi
+      - name: Keep downloaded packages
+        if: ${{ always() && steps.keep.outputs.npm == '1' && steps.npm-cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.npm
+          key: ${{ steps.npm-cache.outputs.cache-primary-key }}
+      - name: Keep the checker and its browser
+        if: ${{ always() && steps.keep.outputs.qa == '1' && steps.qa-cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.shipsite/qa
+            ~/.cache/ms-playwright
+          key: ${{ steps.qa-cache.outputs.cache-primary-key }}
+
+  # ShipSite's engineer works on this site the way a developer would: it needs
+  # a checkout it can install packages in, build, and open in a browser. This
+  # job is that working copy: a checkout of this repository with the version
+  # being worked on laid over it. It runs the commands the engineer sends and
+  # reports their output, until the engineer is done or ShipSite has been
+  # quiet for five minutes. The engineer works here the way you would with a coding
+  # agent of your own: it can commit and push to a shipsite/ branch of this
+  # repository, and it operates your Cloudflare account with the access you
+  # gave ShipSite (it asks ShipSite for a short-lived token; none is stored
+  # in this repository).
+  session:
+    name: Engineer session
+    if: ${{ inputs.session != '' }}
+    runs-on: ${{ vars.SHIPSITE_RUNNER || 'ubuntu-latest' }}
+    timeout-minutes: 330
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 50
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Restore downloaded packages
+        id: npm-cache
+        if: ${{ runner.environment == 'github-hosted' }}
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.npm
+          key: shipsite-npm-${{ runner.os }}-${{ hashFiles('repo/package-lock.json') }}
+          restore-keys: shipsite-npm-${{ runner.os }}-
+      - name: Restore the checker and its browser
+        id: qa-cache
+        if: ${{ runner.environment == 'github-hosted' }}
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ~/.shipsite/qa
+            ~/.cache/ms-playwright
+          key: shipsite-qa-${{ runner.os }}-${{ runner.arch }}-1.4.20
+      - name: Run the ShipSite engineer session
+        env:
+          SHIPSITE_REPO_DIR: ${{ github.workspace }}/repo
+          SHIPSITE_CHECK_ID: ${{ inputs.check_id }}
+          SHIPSITE_VERSION_ID: ${{ inputs.version_id }}
+        run: npx -y --package https://shipsite.ai/link/shipsite-link-1.4.20.tgz shipsite-link --agent-session
+      - name: See what is worth keeping
+        id: keep
+        if: ${{ always() && runner.environment == 'github-hosted' }}
+        shell: bash
+        run: |
+          if [ -d ~/.npm/_cacache ]; then echo "npm=1" >> "$GITHUB_OUTPUT"; fi
+          if [ -f ~/.shipsite/qa/qa-runtime/.installed-browser ] && [ -d ~/.cache/ms-playwright ]; then echo "qa=1" >> "$GITHUB_OUTPUT"; fi
+      - name: Keep downloaded packages
+        if: ${{ always() && steps.keep.outputs.npm == '1' && steps.npm-cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.npm
+          key: ${{ steps.npm-cache.outputs.cache-primary-key }}
+      - name: Keep the checker and its browser
+        if: ${{ always() && steps.keep.outputs.qa == '1' && steps.qa-cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.shipsite/qa
+            ~/.cache/ms-playwright
+          key: ${{ steps.qa-cache.outputs.cache-primary-key }}
