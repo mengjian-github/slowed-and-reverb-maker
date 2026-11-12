@@ -163,7 +163,9 @@ export default function AudioStudio({ defaultPreset = "classic", exportTag = "sl
     return null;
   }, [speedNum, pitchNum, reverbNum, bassNum, trimVals, duration]);
 
-  const consoleState: ToolState = consoleError ? "error" : buffer ? "success" : "idle";
+  // The readout is the tool's output: it computes as the visitor types, so it
+  // shows success as soon as the settings are valid — no track required.
+  const consoleState: ToolState = consoleError ? "error" : "success";
   const presetLabel = PRESETS[preset]?.label ?? "Custom";
   const trimShownB = trimVals.b > 0 ? trimVals.b : duration > 0 ? duration : 0;
 
@@ -650,6 +652,12 @@ export default function AudioStudio({ defaultPreset = "classic", exportTag = "sl
           </label>
         </div>
         {consoleError ? <p className="msg err">{consoleError}</p> : null}
+        <div className="capability-actions apply-row">
+          <button type="button" className="primary" data-jtbd-action="shape it live" onClick={playPreview}>
+            Apply &amp; hear it
+          </button>
+          <span className="hint">Settings apply live; this restarts the preview with the current shape.</span>
+        </div>
         <div data-tool-output className="tool-output readout" aria-live="polite">
           <dl className="readout-list">
             <div>

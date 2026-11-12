@@ -564,4 +564,45 @@ canvas.wave { width: 100%; height: 96px; display: block; border-radius: 8px; bac
   * { transition-duration: 0.01ms !important; }
 }
 .site-footer .footer-group-title { color: #ff99d3; }
+/* ---- revision pass: selects, sequenced entrance, column fill -------- */
+/* Tool selects as custom controls (preset, export format) */
+.panel select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #4d0519
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23c77aa0' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat right 0.7rem center / 0.65rem 0.5rem;
+  border: 1px solid #c77aa0;
+  border-radius: 8px;
+  color: #ffe6f4;
+  font: 500 0.9rem/1.4 inherit;
+  padding: 0.55rem 2rem 0.55rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 140ms var(--ease), background-color 140ms var(--ease);
+}
+.panel select:hover { border-color: #ff99d3; }
+.panel select:active { background-color: #3d0012; }
+.panel select:focus-visible { outline: 2px solid #ff99d3; outline-offset: 1px; }
+button.primary:active, .btn-primary:active { transform: translateY(1px); }
+
+/* Sequenced entrance: headline → bars → copy → console → cards, ~80ms steps */
+.hero-type.rise { animation-delay: 0ms; }
+.band-wrap { animation: riseIn 480ms var(--ease) 90ms both; }
+.hero-copy.rise { animation-delay: 170ms; }
+.console-wrap.rise { animation-delay: 260ms; }
+.cards .card { animation: riseIn 420ms var(--ease) both; }
+.cards .card:nth-child(1) { animation-delay: 340ms; }
+.cards .card:nth-child(2) { animation-delay: 420ms; }
+.cards .card:nth-child(3) { animation-delay: 500ms; }
+.cards .card:nth-child(4) { animation-delay: 580ms; }
+.cards .card:nth-child(5) { animation-delay: 660ms; }
+.cards .card:nth-child(6) { animation-delay: 740ms; }
+
+/* Left column fills the row beside the console: copy spreads on the same
+ * rhythm, photograph and arc figure settling into the lower space. */
+.hero-copy { display: grid; gap: 1.7rem; align-content: space-between; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise, .band-wrap, .cards .card { animation: none !important; }
+}
 `;
