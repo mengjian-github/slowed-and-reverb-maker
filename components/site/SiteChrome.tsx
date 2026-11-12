@@ -68,7 +68,7 @@ export function SiteHeader({
       <nav data-node="nav" className="topbar">
         <a href="/" className="brand" aria-current={samePath("/", "/") ? "page" : undefined}>
           <BrandMark />
-          {config.brandLogo ? <img className="brand-logo" src={config.brandLogo} alt="" /> : null}
+          {config.brandLogo ? <img className="brand-logo" src={config.brandLogo} alt={`${config.brandName ?? "Slowed and Reverb Maker"} logo`} /> : null}
           <span className="brand-name">
             {config.brandName ?? "Slowed and Reverb Maker"}
           </span>

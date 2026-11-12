@@ -32,7 +32,8 @@ export default function NightcoreMakerPage({ content, config }: NativeRouteProps
           consoleSlot={<AudioStudio defaultPreset="nightcore" exportTag="nightcore" accentNote="no upload" />}
           figure={
             <figure className="hero-figure rise" aria-label="The two numbers behind every style">
-              <svg viewBox="0 0 260 136" role="img" className="style-ladder">
+              <svg viewBox="0 0 260 136" role="img" aria-label="Speed ladder: 0.8x slowed, 1.0x original, 1.25x nightcore" className="style-ladder">
+                <title>Speed ladder: 0.8x slowed, 1.0x original, 1.25x nightcore</title>
                 <line x1="40" y1="90" x2="220" y2="30" stroke="var(--line-strong)" strokeWidth="2" strokeDasharray="5 5" />
                 {[
                   { x: 40, y: 90, label: "0.8×", tag: "Slowed", up: false },

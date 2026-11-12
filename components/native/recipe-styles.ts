@@ -65,6 +65,7 @@ a { color: var(--accent); }
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
+  min-width: 0;
   color: var(--text);
   text-decoration: none;
   font-weight: 900;
@@ -73,7 +74,9 @@ a { color: var(--accent); }
   font-size: 0.95rem;
 }
 .brand-mark { color: var(--accent); flex: none; }
-.brand-name { white-space: nowrap; }
+.brand-logo { height: 1.4rem; width: auto; flex: none; }
+.brand-name { white-space: nowrap; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 359.5px) { .brand-name { display: none; } }
 .nav-links { display: flex; align-items: center; gap: 0.2rem; margin-inline-start: auto; }
 .nav-link {
   color: var(--text-muted);
@@ -202,6 +205,16 @@ details.mobile-nav { margin-inline-start: auto; position: relative; }
 .footer-legal { border-top: 1px solid var(--line); padding-top: 1rem; color: var(--secondary); }
 
 /* ---- studio frame / hero ------------------------------------------ */
+.atmosphere-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.16;
+  filter: saturate(0.7) hue-rotate(-20deg);
+  pointer-events: none;
+}
 .studio-page { position: relative; z-index: 1; }
 .shell {
   max-width: 1200px;
@@ -216,7 +229,7 @@ details.mobile-nav { margin-inline-start: auto; position: relative; }
   text-wrap: balance;
 }
 .h-block {
-  color: #3d0012;
+  color: #26000b;
   background: var(--accent);
   padding: 0 0.14em;
   border-radius: 6px;
@@ -239,10 +252,25 @@ details.mobile-nav { margin-inline-start: auto; position: relative; }
   align-items: start;
 }
 @media (max-width: 1023.5px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
+/* Phone first screen: headline, then the tool. Picture and mast move out of the way. */
+@media (max-width: 719.5px) {
+  .hero-type h1 { font-size: clamp(2.1rem, 9.5vw, 2.8rem); }
+  .band-wrap { margin: 0.6rem 0 1rem; }
+  .band { height: 44px; }
+  .hero-grid { gap: 1.1rem; }
+  .hero-figure { display: none; }
+  .lede { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .voice { font-size: 1rem; }
+  .ctas { margin-top: 0; }
+  .ctas button, .primary, button.primary { padding: 0.7rem 1.1rem; min-height: 44px; }
+  .mast { gap: 0.6rem; padding: 0.55rem 0.8rem; }
+  .mnum { font-size: 1.3rem; }
+  .mast-ticks { display: none; }
+}
 .hero-copy { display: grid; gap: 0.9rem; align-content: start; }
 .voice { margin: 0; font-weight: 900; text-transform: uppercase; font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--accent); letter-spacing: 0.04em; }
 .voice-sub { margin: 0; font-weight: 700; color: var(--text); }
-.lede { margin: 0; color: var(--text-muted); max-width: 68ch; line-height: 1.6; }
+.lede { margin: 0; color: var(--text); max-width: 68ch; line-height: 1.6; }
 .ctas { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 0.4rem; }
 .ctas button, .primary, button.primary {
   cursor: pointer;
@@ -259,7 +287,7 @@ details.mobile-nav { margin-inline-start: auto; position: relative; }
 .ctas .btn-primary, .primary, button.primary {
   background: var(--accent);
   border: 1px solid var(--accent);
-  color: #3d0012;
+  color: #26000b;
 }
 .ctas .btn-ghost, .panel button:not(.primary) {
   background: transparent;
