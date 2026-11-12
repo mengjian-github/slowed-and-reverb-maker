@@ -1,0 +1,12 @@
+{
+  "contract": "shipsite.source-image-normalization.v1",
+  "path": "public/images/about-flow.png",
+  "originalKey": "projects/prj_d2592157-71b/versions/ver_204ebe0e-850/source-image-originals/7f236b69db20bbd63e51afe96cde16fe7b7411642515c53ef8dd14121de4b7a6.png",
+  "originalSha256": "7f236b69db20bbd63e51afe96cde16fe7b7411642515c53ef8dd14121de4b7a6",
+  "normalizedSha256": "2f1450b8c858617eca24dbccb42a90d9653bc2223025637504ce677398e465b0",
+  "originalBytes": 2475228,
+  "normalizedBytes": 244388,
+  "operation": "opaque-photo-to-jpeg",
+  "format": "image/jpeg",
+  "quality": 84
+}

@@ -1,0 +1,30 @@
+{
+  "available": [
+    "/images/about-flow.png",
+    "/images/home-faq.png",
+    "/images/home-formats.png",
+    "/images/slots/home-tool.png",
+    "/images/split-styles.png",
+    "/images/vision-manifest.json",
+    "/images/atmosphere.svg",
+    "/images/entities/fmt-mp3.svg",
+    "/images/entities/fmt-wav.svg",
+    "/images/entities/fmt-input-extra.svg",
+    "/images/entities/style-nightcore.svg",
+    "/images/entities/style-slowed.svg",
+    "/images/entities/style-daycore.svg",
+    "/images/entities/cmp-speed.svg",
+    "/images/entities/cmp-pitch.svg",
+    "/images/entities/cmp-reverb.svg",
+    "/images/entities/cmp-bass.svg",
+    "/images/entities/cmp-mood.svg",
+    "/images/entities/cmp-use.svg",
+    "/images/diversity/0.svg",
+    "/images/diversity/1.svg",
+    "/images/diversity/2.svg",
+    "/images/diversity/3.svg",
+    "/images/diversity/4.svg",
+    "/images/diversity/5.svg"
+  ],
+  "missing": []
+}

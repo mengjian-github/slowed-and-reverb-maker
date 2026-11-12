@@ -1,0 +1,12 @@
+{
+  "contract": "shipsite.source-image-normalization.v1",
+  "path": "public/images/home-faq.png",
+  "originalKey": "projects/prj_d2592157-71b/versions/ver_204ebe0e-850/source-image-originals/2c5f40fbfda773b5a5ff41c077b867748bb0f14d7ce48560afb6cbaea6043da4.png",
+  "originalSha256": "2c5f40fbfda773b5a5ff41c077b867748bb0f14d7ce48560afb6cbaea6043da4",
+  "normalizedSha256": "1eaae57181a8241d3d7b7dc57769cdaf3d8a2c675d060c5e1c7f3940ea189f4b",
+  "originalBytes": 2338971,
+  "normalizedBytes": 271132,
+  "operation": "opaque-photo-to-jpeg",
+  "format": "image/jpeg",
+  "quality": 84
+}

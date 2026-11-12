@@ -1,0 +1,175 @@
+{
+  "title": "Nightcore Maker – Speed Up Any Song Online Free",
+  "description": "Free nightcore maker: turn any song into a nightcore or sped-up version in your browser with speed and pitch presets, then export MP3 or WAV. No signup, files stay on you",
+  "h1": "Nightcore Maker",
+  "heroText": "Turn any song into a nightcore version in your browser: faster, higher-pitched, brighter. Load a file from your device, apply the Nightcore preset or set speed and pitch yourself, hear the change live, and export the result as MP3 or WAV. Free, no signup, no watermark.",
+  "ctas": [
+    {
+      "label": "Speed up my song",
+      "href": "/nightcore-maker/",
+      "primary": true
+    },
+    {
+      "label": "Try the sample audio",
+      "href": "/nightcore-maker/",
+      "primary": false
+    }
+  ],
+  "sections": [
+    {
+      "id": "tool",
+      "title": "The nightcore tool is on this screen",
+      "body": "This page is a working nightcore maker, not a description of one. Load a file and the waveform appears immediately.",
+      "items": [
+        {
+          "title": "Nightcore preset",
+          "body": "One click gives the standard nightcore recipe: about 1.25x speed with the pitch raised to match, so vocals stay natural-sounding instead of chipmunk-deep."
+        },
+        {
+          "title": "Sped up version, your way",
+          "body": "Prefer a mild speed-up for a reel or a heavy 1.5x for an energetic edit? Set any speed and pitch pair and the preview follows instantly."
+        },
+        {
+          "title": "Daycore, the opposite direction",
+          "body": "The same tool slows a track down and lowers its pitch for a daycore or slowed and reverb feel, so both styles come from one workflow."
+        },
+        {
+          "title": "Trim before export",
+          "body": "Cut the intro or keep a single chorus using the waveform trim. The exported file contains exactly the section you kept."
+        }
+      ]
+    },
+    {
+      "id": "how-it-works",
+      "title": "How to make a nightcore track here",
+      "body": "Nightcore is just tempo and pitch raised together, and this tool handles both in real time using the browser's own [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/Audio_API), so nothing is uploaded to a server.",
+      "steps": [
+        {
+          "title": "Load the song",
+          "body": "Drag in an MP3, WAV, M4A, OGG or FLAC file from your device. It decodes on your machine and shows as a playable waveform; a typical song is ready in seconds."
+        },
+        {
+          "title": "Apply the preset or adjust by hand",
+          "body": "Pick the Nightcore preset for the classic 1.25x sound, or move speed and pitch separately to change pitch without changing tempo, or tempo without pitch. Listen while you adjust, and bass boost if the result feels thin."
+        },
+        {
+          "title": "Export MP3 or WAV",
+          "body": "Rendering happens offline in your browser and produces a file identical to the preview. Export wav mp3 downloads straight to your device, ready for your video or playlist."
+        }
+      ]
+    },
+    {
+      "id": "styles",
+      "title": "Nightcore, daycore and slowed and reverb",
+      "body": "All three styles come from the same two numbers: speed and pitch. What changes is the direction and how far you push them.",
+      "items": [
+        {
+          "title": "Which one should you make?",
+          "body": "Nightcore suits upbeat edits and dance clips. Slowed and reverb suits chill and late-night moods. Our [slowed vs nightcore comparison](/slowed-vs-nightcore/) breaks down when each works best."
+        }
+      ],
+      "table": {
+        "caption": "Style recipes you can apply from this page",
+        "columns": [
+          "Style",
+          "Typical speed",
+          "Typical pitch"
+        ],
+        "rows": [
+          {
+            "cells": [
+              "Nightcore (sped up)",
+              "1.2x to 1.3x",
+              "Raised with the tempo"
+            ],
+            "status": "working",
+            "recordKey": "style-nightcore",
+            "evidenceRefs": [
+              "ev_001"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "Slowed and reverb",
+              "0.8x to 0.9x",
+              "Unchanged, with reverb and bass boost"
+            ],
+            "status": "working",
+            "recordKey": "style-slowed",
+            "evidenceRefs": [
+              "ev_002"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "Daycore",
+              "0.75x to 0.85x",
+              "Lowered with the tempo"
+            ],
+            "status": "working",
+            "recordKey": "style-daycore",
+            "evidenceRefs": [
+              "ev_003"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          }
+        ],
+        "lastCheckedAt": "2026-11-12"
+      }
+    },
+    {
+      "id": "faq",
+      "title": "Nightcore FAQ",
+      "body": "Answers to the questions visitors ask before their first sped-up export."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What does a nightcore maker do to a song?",
+      "answer": "It raises the playback speed and the pitch together, which is what defines the nightcore style: the track becomes faster, higher and brighter while staying recognizable. This tool applies both changes live with the Nightcore preset or manual values, then exports the result."
+    },
+    {
+      "question": "Is nightcore the same as a sped up version?",
+      "answer": "A pure sped up version raises tempo without lifting pitch, so vocals deepen less than classic nightcore. This tool can do either: keep pitch locked to speed for nightcore, or adjust speed and pitch independently for a plain sped up version."
+    },
+    {
+      "question": "How much should I speed a song up for nightcore?",
+      "answer": "Most nightcore edits sit between 1.2x and 1.3x, which is what the Nightcore preset applies. Beyond about 1.4x vocals start to sound unrealistic and lyrics get hard to follow. Preview at each step and trust your ears over any fixed number."
+    },
+    {
+      "question": "Does the nightcore maker cost anything or need an account?",
+      "answer": "No. It is free with no signup, no quota and no watermark. All processing happens in your own browser, so there is nothing to install and your audio file never leaves your device. You can export as many MP3 or WAV files as you like."
+    },
+    {
+      "question": "Can I make slowed and reverb or daycore here too?",
+      "answer": "Yes. The same engine slows tracks down, adds reverb and boosts bass, and the Daycore preset lowers both speed and pitch. If you want the full walkthrough of the slowed style, the slowed and reverb guide covers each setting in order."
+    },
+    {
+      "question": "Can I put nightcore edits on YouTube or TikTok?",
+      "answer": "Technically the exported file works on any platform, but publishing a derivative of a commercial recording is a rights decision only you can make. This tool processes your file locally and grants no copyright clearance, so check that you have the rights you need before posting."
+    }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Nightcore Maker",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any (web browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Free browser tool that turns local audio files into nightcore or sped-up versions with live speed and pitch presets, waveform trimming, and WAV or MP3 export."
+      }
+    ],
+    "dateModified": "2026-11-12"
+  }
+}

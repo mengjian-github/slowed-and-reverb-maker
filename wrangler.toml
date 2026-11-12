@@ -1,0 +1,59 @@
+name = "shipsite-site-prj-d2592157-71b-slowed-and-reve"
+main = "worker.mjs"
+compatibility_date = "2026-07-01"
+compatibility_flags = ["nodejs_compat"]
+account_id = "23cc53444237bdfa3f7306b3cef9514b"
+workers_dev = true
+
+[assets]
+directory = "dist"
+binding = "ASSETS"
+run_worker_first = true
+
+[observability]
+enabled = true
+
+[version_metadata]
+binding = "CF_VERSION_METADATA"
+
+[vars]
+NEXT_PUBLIC_SITE_URL = "https://prj-d2592157-71b-slowed-and-reve.shipsite-preview.dev"
+SHIPSITE_ENVIRONMENT = "production"
+
+[env.preview]
+name = "shipsite-site-prj-d2592157-71b-slowed-and-reve-preview"
+workers_dev = true
+
+[env.preview.assets]
+directory = "dist"
+binding = "ASSETS"
+run_worker_first = true
+
+[env.preview.observability]
+enabled = true
+
+[env.preview.version_metadata]
+binding = "CF_VERSION_METADATA"
+
+[env.preview.vars]
+NEXT_PUBLIC_SITE_URL = "https://prj-d2592157-71b-slowed-and-reve.shipsite-preview.dev"
+SHIPSITE_ENVIRONMENT = "preview"
+
+[env.production]
+name = "shipsite-site-prj-d2592157-71b-slowed-and-reve"
+workers_dev = true
+
+[env.production.assets]
+directory = "dist"
+binding = "ASSETS"
+run_worker_first = true
+
+[env.production.observability]
+enabled = true
+
+[env.production.version_metadata]
+binding = "CF_VERSION_METADATA"
+
+[env.production.vars]
+NEXT_PUBLIC_SITE_URL = "https://prj-d2592157-71b-slowed-and-reve.shipsite-preview.dev"
+SHIPSITE_ENVIRONMENT = "production"

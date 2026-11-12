@@ -1,0 +1,1930 @@
+{
+  "title": "Slowed and Reverb Maker – Free Online Tool",
+  "description": "Free online slowed and reverb maker. Upload an audio file, adjust speed, pitch and reverb live in your browser, and export MP3 or WAV. No signup, no watermark, files never leave your device.",
+  "brandName": "Slowed and Reverb Maker",
+  "domain": "slowed-and-reverb-maker.shipsite-preview.dev",
+  "language": "en",
+  "locales": [],
+  "recipeId": "data-calculator-lab",
+  "analytics": null,
+  "analyticsTags": null,
+  "ads": null,
+  "routes": [
+  {
+    "path": "/",
+    "contentKey": "home",
+    "title": "Slowed and Reverb Maker – Free Online Tool",
+    "description": "Free online slowed and reverb maker. Upload an audio file, adjust speed, pitch and reverb live in your browser, and export MP3 or WAV. No signup, no watermark.",
+    "index": true,
+    "canonical": "/",
+    "navLabel": "Slowed and Reverb Maker",
+    "routeArchetype": "home_tool",
+    "indexPolicy": "index",
+    "routeCompositionRequired": true,
+    "compositionIdOrTemplateFamily": "route:/",
+    "coverageMode": "direct_screen",
+    "representativeScreenId": null,
+    "designIrHash": "87a8f025475560313d50b1399a0ba8036be283dbddb4f50eec6fc6ea420b69d2",
+    "requiredStates": [
+      "empty",
+      "selected_or_uploaded",
+      "processing",
+      "success",
+      "validation_error",
+      "runtime_error",
+      "reset"
+    ],
+    "requiredActions": [
+      "select_or_upload",
+      "preview_source",
+      "start_or_confirm_processing",
+      "preview_result",
+      "download",
+      "replace_or_reset"
+    ],
+    "copyContractRef": "copy:c9a8a9b1022244a850f1141c6641878be57bde317ee8ee942b639e70bee22375",
+    "verdict": "not_applicable",
+    "publicExposure": true
+  },
+  {
+    "path": "/nightcore-maker/",
+    "contentKey": "nightcore-maker",
+    "title": "Nightcore Maker – Speed Up Any Song Online Free",
+    "description": "Free nightcore maker: turn any song into a nightcore or sped-up version in your browser with speed and pitch presets, then export MP3 or WAV. No signup, files stay on you",
+    "index": true,
+    "canonical": "/nightcore-maker/",
+    "navLabel": "Nightcore Maker",
+    "routeArchetype": "article_guide",
+    "indexPolicy": "index",
+    "routeCompositionRequired": true,
+    "compositionIdOrTemplateFamily": "route:/nightcore-maker/",
+    "coverageMode": "inherited_template",
+    "representativeScreenId": null,
+    "designIrHash": "1d3ad3d4fb4aca7f73463a122f8124826248026fb9d3293db04e8e7580a2ff3e",
+    "requiredStates": [
+      "ready"
+    ],
+    "requiredActions": [
+      "navigate_context",
+      "follow_contextual_cta"
+    ],
+    "copyContractRef": "copy:d6f3ca569a93b83d20f64a9a21fb6021c0a79eae84ce00a76f678bbb24b60e4d",
+    "verdict": "not_applicable",
+    "publicExposure": true
+  },
+  {
+    "path": "/how-to-make-slowed-and-reverb/",
+    "contentKey": "how-to-make-slowed-and-reverb",
+    "title": "How to Make Slowed and Reverb Songs – Free Guide",
+    "description": "Learn how to make slowed and reverb music free in your browser: load a track, apply speed, reverb and bass, then export a WAV or MP3. No signup, no watermark.",
+    "index": true,
+    "canonical": "/how-to-make-slowed-and-reverb/",
+    "navLabel": "How to Make Slowed and Reverb",
+    "routeArchetype": "article_guide",
+    "indexPolicy": "index",
+    "routeCompositionRequired": true,
+    "compositionIdOrTemplateFamily": "route:/how-to-make-slowed-and-reverb/",
+    "coverageMode": "inherited_template",
+    "representativeScreenId": null,
+    "designIrHash": "d820631fe1d200e6fa503dc67d1ed55f71a22ce16d2b78ee2f03c73923621d61",
+    "requiredStates": [
+      "ready"
+    ],
+    "requiredActions": [
+      "navigate_context",
+      "follow_contextual_cta"
+    ],
+    "copyContractRef": "copy:155776f7e656bd211ed570b26a04c41ff629e4bb12ff0d0263f4d5978c80c935",
+    "verdict": "not_applicable",
+    "publicExposure": true
+  },
+  {
+    "path": "/slowed-vs-nightcore/",
+    "contentKey": "slowed-vs-nightcore",
+    "title": "Slowed vs Nightcore: The Real Difference Explained",
+    "description": "Slowed vs nightcore, explained: tempo, pitch, moods and when each edit fits your track. Compare the two styles, then make either one free in your browser.",
+    "index": true,
+    "canonical": "/slowed-vs-nightcore/",
+    "navLabel": "Slowed vs Nightcore",
+    "routeArchetype": "article_guide",
+    "indexPolicy": "index",
+    "routeCompositionRequired": true,
+    "compositionIdOrTemplateFamily": "route:/slowed-vs-nightcore/",
+    "coverageMode": "inherited_template",
+    "representativeScreenId": null,
+    "designIrHash": "7d539d0844d40bf2cb75033c0374abdb23a708fb3c52fcb41fe86e2b3e06930e",
+    "requiredStates": [
+      "ready"
+    ],
+    "requiredActions": [
+      "navigate_context",
+      "follow_contextual_cta"
+    ],
+    "copyContractRef": "copy:0d9fb8dcd53049136d87e79d233aa2f2db898cb1646e9f9ebb9980a30eec075f",
+    "verdict": "not_applicable",
+    "publicExposure": true
+  },
+  {
+    "path": "/about/",
+    "contentKey": "about",
+    "title": "About Slowed and Reverb Maker site",
+    "description": "What this slowed and reverb maker site does: a free browser tool that slows songs, adds reverb and nightcore presets, and exports WAV or MP3 with no upload.",
+    "index": true,
+    "canonical": "/about/",
+    "navLabel": "About",
+    "routeArchetype": "article_guide",
+    "indexPolicy": "index",
+    "routeCompositionRequired": true,
+    "compositionIdOrTemplateFamily": "route:/about/",
+    "coverageMode": "inherited_template",
+    "representativeScreenId": null,
+    "designIrHash": "ffadc9eb5064eaf5b59906dcd466287cb775e891ff4aae730b9fdd2196668c0f",
+    "requiredStates": [
+      "ready"
+    ],
+    "requiredActions": [
+      "navigate_context",
+      "follow_contextual_cta"
+    ],
+    "copyContractRef": "copy:11e4742c3d6ab4b15fe95df269cb14931d7209efd30e3292168d76e536ff0a6b",
+    "verdict": "not_applicable",
+    "publicExposure": true
+  },
+  {
+    "path": "/privacy/",
+    "contentKey": "privacy",
+    "title": "Slowed and Reverb Maker – Privacy Policy",
+    "description": "Slowed and Reverb Maker processes every audio file in your own browser. This page explains what data we keep, what we never collect, and why.",
+    "index": false,
+    "canonical": "/privacy/",
+    "navLabel": "Privacy",
+    "routeArchetype": "legal",
+    "indexPolicy": "noindex",
+    "routeCompositionRequired": true,
+    "compositionIdOrTemplateFamily": "route:/privacy/",
+    "coverageMode": "inherited_template",
+    "representativeScreenId": null,
+    "designIrHash": "d2816a6bf233d9399eef6066b866e888a5cbea9d85318daa05af88b1ff3b5eea",
+    "requiredStates": [
+      "ready"
+    ],
+    "requiredActions": [
+      "navigate_document",
+      "return_to_product"
+    ],
+    "copyContractRef": "copy:6fbfacaccbe9a3fde8fad0e22e71857ce3f8b198c379c99ef0145a8bfa329b1a",
+    "verdict": "not_applicable",
+    "publicExposure": true
+  },
+  {
+    "path": "/terms/",
+    "contentKey": "terms",
+    "title": "Slowed and Reverb Maker – Terms of Use",
+    "description": "The terms for using Slowed and Reverb Maker: free browser use, your responsibility for the songs you edit, and the limits of our liability.",
+    "index": false,
+    "canonical": "/terms/",
+    "navLabel": "Terms",
+    "routeArchetype": "legal",
+    "indexPolicy": "noindex",
+    "routeCompositionRequired": true,
+    "compositionIdOrTemplateFamily": "route:/terms/",
+    "coverageMode": "inherited_template",
+    "representativeScreenId": null,
+    "designIrHash": "a728522dd22675069ceae431ea5dcaf0f27a1652f0df428531e63afe9cb01c4d",
+    "requiredStates": [
+      "ready"
+    ],
+    "requiredActions": [
+      "navigate_document",
+      "return_to_product"
+    ],
+    "copyContractRef": "copy:937723ec71ced4807024204ae3dcc9b1d38cba1d7e2aa2e47803c25fdf79842c",
+    "verdict": "not_applicable",
+    "publicExposure": true
+  },
+  {
+    "path": "/contact/",
+    "contentKey": "contact",
+    "title": "Contact Slowed and Reverb Maker",
+    "description": "How to send a correction, a source, or a question about how Slowed and Reverb Maker checks public facts.",
+    "index": true,
+    "canonical": "/contact/",
+    "navLabel": "Contact",
+    "coverageMode": "inherited_template",
+    "publicExposure": true,
+    "routeArchetype": "article_guide",
+    "indexPolicy": "index",
+    "routeCompositionRequired": true,
+    "compositionIdOrTemplateFamily": null,
+    "representativeScreenId": null,
+    "designIrHash": null,
+    "requiredStates": [
+      "ready"
+    ],
+    "requiredActions": [
+      "navigate_context",
+      "follow_contextual_cta"
+    ],
+    "copyContractRef": "copy:40456ae97b488850ee4fb41b4b216c2b3344055dcd6431901ca446295d74dfd7",
+    "verdict": "not_applicable"
+  }
+],
+  "nav": [
+  {
+    "label": "Slowed + Reverb",
+    "href": "/"
+  }
+],
+  "navGroups": [
+  {
+    "label": "Guides",
+    "items": [
+      {
+        "label": "Nightcore Maker",
+        "href": "/nightcore-maker/"
+      },
+      {
+        "label": "How To",
+        "href": "/how-to-make-slowed-and-reverb/"
+      },
+      {
+        "label": "Slowed vs Nightcore",
+        "href": "/slowed-vs-nightcore/"
+      }
+    ]
+  }
+],
+  "navMore": [],
+  "navIcons": {
+  "/": {
+    "d": "M9 5.4 15.6 12 9 18.6 7.6 17.2 12.8 12 7.6 6.8Z",
+    "filled": true
+  },
+  "/nightcore-maker/": {
+    "d": "M9 5.4 15.6 12 9 18.6 7.6 17.2 12.8 12 7.6 6.8Z",
+    "filled": true
+  },
+  "/how-to-make-slowed-and-reverb/": {
+    "d": "M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2Z",
+    "filled": true
+  },
+  "/slowed-vs-nightcore/": {
+    "d": "M4.8 10.6h3v8.8h-3ZM10.5 4.6h3v14.8h-3ZM16.2 13h3v6.4h-3Z",
+    "filled": true
+  }
+},
+  "sectionIcons": {
+  "Make slowed and reverb right here": {
+    "d": "M5 5h14v6H11v8H5z",
+    "filled": true
+  },
+  "Presets for the classic sound": {
+    "d": "M4.2 4.6h15.6V9H4.2Zm0 6h5.2V19.4H4.2Zm7.2 0h8.4V19.4h-8.4Z",
+    "filled": true
+  },
+  "Waveform trim": {
+    "d": "M5 5h14v14H5z",
+    "filled": true
+  },
+  "Live preview": {
+    "d": "M12 6.8c-5.1 0-8 5.2-8 5.2s2.9 5.2 8 5.2 8-5.2 8-5.2-2.9-5.2-8-5.2Zm0 8a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6Z",
+    "filled": true
+  },
+  "How it works": {
+    "d": "M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2Z",
+    "filled": true
+  },
+  "Load your audio file": {
+    "d": "M5 5h14v6H11v8H5z",
+    "filled": true
+  },
+  "Slow down audio and shape the sound": {
+    "d": "M5 5h14v6H11v8H5z",
+    "filled": true
+  },
+  "Export the finished track": {
+    "d": "M10.6 9H7.4L12 4l4.6 5h-3.2v5.4h-2.8ZM5 12h2.4v4.6h9.2V12H19v7H5Z",
+    "filled": true
+  },
+  "Formats and file handling": {
+    "d": "M5.6 4.6h12.8V9h-2.4V7h-3v10h2v2.4H9V17h2V7H8v2H5.6Z",
+    "filled": true
+  },
+  "Export wav mp3, your choice": {
+    "d": "M10.6 9H7.4L12 4l4.6 5h-3.2v5.4h-2.8ZM5 12h2.4v4.6h9.2V12H19v7H5Z",
+    "filled": true
+  },
+  "Your file stays on your device": {
+    "d": "M5 5h14v14H5z",
+    "filled": true
+  },
+  "Slowed and reverb FAQ": {
+    "d": "M4.2 5h15.6v10.8h-7.2L8 19.6v-3.8H4.2Z",
+    "filled": true
+  },
+  "The nightcore tool is on this screen": {
+    "d": "M14.6 6.2a4 4 0 0 0-5 5L4 16.8 7.2 20l5.6-5.6a4 4 0 0 0 5-5l-2.6 2.6-2.4-2.4Z",
+    "filled": true
+  },
+  "Nightcore preset": {
+    "d": "M4.2 4.6h15.6V9H4.2Zm0 6h5.2V19.4H4.2Zm7.2 0h8.4V19.4h-8.4Z",
+    "filled": true
+  },
+  "Sped up version, your way": {
+    "d": "M12 3.6A8.4 8.4 0 1 1 3.6 12h2.2A6.2 6.2 0 1 0 12 5.8c-1.7 0-3.3.7-4.4 1.8L10 10H3.6V3.6L5.9 6A8.4 8.4 0 0 1 12 3.6Zm-.9 4h1.8v4l3 2.2-1 1.4-3.8-2.7Z",
+    "filled": true
+  },
+  "Daycore, the opposite direction": {
+    "d": "M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z",
+    "filled": true
+  },
+  "Trim before export": {
+    "d": "M10.6 9H7.4L12 4l4.6 5h-3.2v5.4h-2.8ZM5 12h2.4v4.6h9.2V12H19v7H5Z",
+    "filled": true
+  },
+  "How to make a nightcore track here": {
+    "d": "M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2Z",
+    "filled": true
+  },
+  "Load the song": {
+    "d": "M12 3l7 9-7 9-7-9z",
+    "filled": true
+  },
+  "Apply the preset or adjust by hand": {
+    "d": "M10.6 5.4v2.2H7.2v9.2h9.2v-3.4h2.2V19H5V5.4ZM17.6 3.6l2.8 2.8L13 13.8h-2.8V11Z",
+    "filled": true
+  },
+  "Export MP3 or WAV": {
+    "d": "M10.6 9H7.4L12 4l4.6 5h-3.2v5.4h-2.8ZM5 12h2.4v4.6h9.2V12H19v7H5Z",
+    "filled": true
+  },
+  "Nightcore, daycore and slowed and reverb": {
+    "d": "M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z",
+    "filled": true
+  },
+  "Which one should you make?": {
+    "d": "M5 5h4v14H5zM11 5h4v14h-4zM17 5h2v14h-2z",
+    "filled": true
+  },
+  "Nightcore FAQ": {
+    "d": "M4.2 5h15.6v10.8h-7.2L8 19.6v-3.8H4.2Z",
+    "filled": true
+  },
+  "The Short Answer": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "Step by Step": {
+    "d": "M4.2 4.2h6.8V11H4.2ZM13 13h6.8v6.8H13ZM11 6.4h6.2v6.2h-2.4v-3.8H11Z",
+    "filled": true
+  },
+  "Save the song as an audio file": {
+    "d": "M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z",
+    "filled": true
+  },
+  "Load it into the browser tool": {
+    "d": "M14.6 6.2a4 4 0 0 0-5 5L4 16.8 7.2 20l5.6-5.6a4 4 0 0 0 5-5l-2.6 2.6-2.4-2.4Z",
+    "filled": true
+  },
+  "Pick the Classic Slowed + Reverb preset": {
+    "d": "M4.2 4.6h15.6V9H4.2Zm0 6h5.2V19.4H4.2Zm7.2 0h8.4V19.4h-8.4Z",
+    "filled": true
+  },
+  "Fine-tune speed and pitch": {
+    "d": "M13.4 3 5.6 14h4.2l-.8 7 7.8-11h-4.2Z",
+    "filled": true
+  },
+  "Trim to the section you want": {
+    "d": "M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z",
+    "filled": true
+  },
+  "Preview, then export WAV or MP3": {
+    "d": "M10.6 9H7.4L12 4l4.6 5h-3.2v5.4h-2.8ZM5 12h2.4v4.6h9.2V12H19v7H5Z",
+    "filled": true
+  },
+  "The Settings Explained": {
+    "d": "M11.4 6.2H4.4v2.4h7Zm2.4-1.8h2.4v6h-2.4Zm2.4 1.8h3.4v2.4h-3.4ZM4.4 15.4h3.4v2.4H4.4Zm5.8-1.8h2.4v6h-2.4Zm2.4 1.8h7v2.4h-7Z",
+    "filled": true
+  },
+  "Speed": {
+    "d": "M13.4 3 5.6 14h4.2l-.8 7 7.8-11h-4.2Z",
+    "filled": true
+  },
+  "Pitch": {
+    "d": "M5 5h4v14H5zM11 5h4v14h-4zM17 5h2v14h-2z",
+    "filled": true
+  },
+  "Reverb effect": {
+    "d": "M5 5h14v14H5z",
+    "filled": true
+  },
+  "Bass boost": {
+    "d": "M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z",
+    "filled": true
+  },
+  "Sources": {
+    "d": "M12 3l7 9-7 9-7-9z",
+    "filled": true
+  },
+  "The short answer": {
+    "d": "M5 5h14v6H11v8H5z",
+    "filled": true
+  },
+  "Slowed": {
+    "d": "M12 3l7 9-7 9-7-9z",
+    "filled": true
+  },
+  "Nightcore": {
+    "d": "M5 5h14v14H5z",
+    "filled": true
+  },
+  "Why they differ so much": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "Side-by-side comparison": {
+    "d": "M4.8 10.6h3v8.8h-3ZM10.5 4.6h3v14.8h-3ZM16.2 13h3v6.4h-3Z",
+    "filled": true
+  },
+  "The 0.8x and 1.25x starting points": {
+    "d": "M12 3.8 14.5 9l5.5.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9L9.5 9Z",
+    "filled": true
+  },
+  "What reverb changes": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "When to use each style": {
+    "d": "M7.2 4h2.4v2H14.4V4h2.4v2h2.6v4H4.6V6h2.6ZM4.6 11.6h14.8v7.8H4.6Z",
+    "filled": true
+  },
+  "Choose slowed when the song is slow already": {
+    "d": "M7.2 4h2.4v2H14.4V4h2.4v2h2.6v4H4.6V6h2.6ZM4.6 11.6h14.8v7.8H4.6Z",
+    "filled": true
+  },
+  "Choose nightcore for fast, rhythmic tracks": {
+    "d": "M13.4 3 5.6 14h4.2l-.8 7 7.8-11h-4.2Z",
+    "filled": true
+  },
+  "Daycore is the middle path": {
+    "d": "M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z",
+    "filled": true
+  },
+  "Test both on the same file": {
+    "d": "M5 5h14v14H5z",
+    "filled": true
+  },
+  "Settings that translate well": {
+    "d": "M11.4 6.2H4.4v2.4h7Zm2.4-1.8h2.4v6h-2.4Zm2.4 1.8h3.4v2.4h-3.4ZM4.4 15.4h3.4v2.4H4.4Zm5.8-1.8h2.4v6h-2.4Zm2.4 1.8h7v2.4h-7Z",
+    "filled": true
+  },
+  "Slowed recipe": {
+    "d": "M4 4h4v16H4zM10 4h10v7H10zM10 13h10v7H10z",
+    "filled": true
+  },
+  "Nightcore recipe": {
+    "d": "M4 4h4v16H4zM10 4h10v7H10zM10 13h10v7H10z",
+    "filled": true
+  },
+  "Trim before you export": {
+    "d": "M10.6 9H7.4L12 4l4.6 5h-3.2v5.4h-2.8ZM5 12h2.4v4.6h9.2V12H19v7H5Z",
+    "filled": true
+  },
+  "Who this site is for": {
+    "d": "M12 3l7 9-7 9-7-9z",
+    "filled": true
+  },
+  "Social media creators": {
+    "d": "M17 3.4a2.6 2.6 0 1 1 0 5.2c-.6 0-1.2-.2-1.6-.6l-4.6 2.6a2.7 2.7 0 0 1 0 .8l4.6 2.6c.4-.4 1-.6 1.6-.6a2.6 2.6 0 1 1-2.6 2.6v-.4l-4.6-2.6c-.4.4-1 .6-1.6.6a2.6 2.6 0 1 1 1.6-4.6l4.6-2.6v-.4A2.6 2.6 0 0 1 17 3.4Z",
+    "filled": true
+  },
+  "Playlist and chill-mix makers": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "Curious listeners": {
+    "d": "M5 5h14v6H11v8H5z",
+    "filled": true
+  },
+  "How the tool works": {
+    "d": "M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2Z",
+    "filled": true
+  },
+  "Load a file": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "Shape the sound": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "Export": {
+    "d": "M10.6 9H7.4L12 4l4.6 5h-3.2v5.4h-2.8ZM5 12h2.4v4.6h9.2V12H19v7H5Z",
+    "filled": true
+  },
+  "What we will not do": {
+    "d": "M5 5h4v14H5zM11 5h4v14h-4zM17 5h2v14h-2z",
+    "filled": true
+  },
+  "Your files stay yours": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "No watermarks or sign-up walls": {
+    "d": "M5 5h14v6H11v8H5z",
+    "filled": true
+  },
+  "Honest about limits": {
+    "d": "M12 11.4a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8ZM5 19.6a7 7 0 0 1 14 0Z",
+    "filled": true
+  },
+  "Why these sounds exist": {
+    "d": "M12 3l7 9-7 9-7-9z",
+    "filled": true
+  },
+  "What Happens to Your Audio Data": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "Local processing only": {
+    "d": "M4.2 4.2h6.8V11H4.2ZM13 13h6.8v6.8H13ZM11 6.4h6.2v6.2h-2.4v-3.8H11Z",
+    "filled": true
+  },
+  "No accounts, no uploads": {
+    "d": "M12 7c-4.6 0-7.4 5-7.4 5s2.8 5 7.4 5 7.4-5 7.4-5-2.8-5-7.4-5Zm0 7.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2Z",
+    "filled": true
+  },
+  "Saved settings stay local": {
+    "d": "M11.4 6.2H4.4v2.4h7Zm2.4-1.8h2.4v6h-2.4Zm2.4 1.8h3.4v2.4h-3.4ZM4.4 15.4h3.4v2.4H4.4Zm5.8-1.8h2.4v6h-2.4Zm2.4 1.8h7v2.4h-7Z",
+    "filled": true
+  },
+  "Server requests we do make": {
+    "d": "M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z",
+    "filled": true
+  },
+  "Cookies and Analytics": {
+    "d": "M4.4 17.6h15.2V20H4.4Zm1.8-1.4 3.8-4.8 3 3 5.2-7.2 1.4 1-6.4 8.8-3-3-2.6 3.4Z",
+    "filled": true
+  },
+  "You control clearing": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "Your Rights and Contact": {
+    "d": "M3.6 6h16.8L12 13ZM3.6 8.4V18h16.8V8.4L12 15Z",
+    "filled": true
+  },
+  "Changes to this policy": {
+    "d": "M12 4l7 2.6v5.2c0 4.4-3 7.2-7 8.6-4-1.4-7-4.2-7-8.6V6.6Z",
+    "filled": true
+  },
+  "Using the Service": {
+    "d": "M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6z",
+    "filled": true
+  },
+  "Permitted use": {
+    "d": "M5 5h14v6H11v8H5z",
+    "filled": true
+  },
+  "Copyright is your responsibility": {
+    "d": "M12 3l7 9-7 9-7-9z",
+    "filled": true
+  },
+  "Prohibited use": {
+    "d": "M5 5h14v14H5z",
+    "filled": true
+  },
+  "No warranty": {
+    "d": "M5 5h14v14H5z",
+    "filled": true
+  },
+  "Limitation of liability": {
+    "d": "M5 5h4v14H5zM11 5h4v14h-4zM17 5h2v14h-2z",
+    "filled": true
+  },
+  "Intellectual Property": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "Trademarks": {
+    "d": "M5 5h4v14H5zM11 5h4v14h-4zM17 5h2v14h-2z",
+    "filled": true
+  },
+  "Changes and Governing Terms": {
+    "d": "M12 4l7 2.6v5.2c0 4.4-3 7.2-7 8.6-4-1.4-7-4.2-7-8.6V6.6Z",
+    "filled": true
+  },
+  "Effective date": {
+    "d": "M5 5h14v14H5z",
+    "filled": true
+  },
+  "How to reach us": {
+    "d": "M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2Z",
+    "filled": true
+  },
+  "How a correction lands": {
+    "d": "M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2Z",
+    "filled": true
+  },
+  "What this page cannot promise": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "What to include in a correction": {
+    "d": "M12 4l8 15H4z",
+    "filled": true
+  },
+  "If a tool result looks wrong": {
+    "d": "M14.6 6.2a4 4 0 0 0-5 5L4 16.8 7.2 20l5.6-5.6a4 4 0 0 0 5-5l-2.6 2.6-2.4-2.4Z",
+    "filled": true
+  },
+  "When a change shows up": {
+    "d": "M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2Z",
+    "filled": true
+  },
+  "FAQ": {
+    "d": "M4.2 5h15.6v10.8h-7.2L8 19.6v-3.8H4.2Z",
+    "filled": true
+  }
+},
+  "design": {
+  "background": "#3d0012",
+  "surface": "#4d0519",
+  "text": "#ffe6f4",
+  "accent": "#ff99d3",
+  "font": "Chivo, system-ui, sans-serif"
+},
+  "visual": {
+  "layoutArchetype": "mission-console",
+  "navigationModel": "top-bar",
+  "heroComposition": "tool-canvas",
+  "sectionSequence": [
+    "tool-stage",
+    "how-it-works",
+    "formats",
+    "faq"
+  ],
+  "density": "comfortable",
+  "radiusFamily": "soft",
+  "buttonGeometry": "square",
+  "surfaceTreatment": "outlined",
+  "backgroundTexture": "noise",
+  "dataDisplay": "spec-matrix",
+  "motion": "responsive",
+  "motionMotifs": [
+    "scroll-progress",
+    "value-tick",
+    "stagger-reveal"
+  ],
+  "iconLanguage": "geometric",
+  "typeScale": 1.25,
+  "headingWeight": 700,
+  "headingCase": "upper",
+  "contentMeasure": 68,
+  "maxWidth": 1200,
+  "colors": {
+    "background": "#3d0012",
+    "surface": "#4d0519",
+    "text": "#ffe6f4",
+    "accent": "#ff99d3",
+    "secondary": "#c77aa0",
+    "gradient": {
+      "angle": 180,
+      "from": "#541229",
+      "to": "#772e4c"
+    },
+    "font": "Chivo, system-ui, sans-serif",
+    "headingFont": "Chivo, system-ui, sans-serif"
+  },
+  "variantDefaults": {
+    "hero": "oversized-type",
+    "cards": "outlined",
+    "statusStrip": "metrics-band",
+    "divider": "hairline"
+  },
+  "aestheticDirection": "neo-memphis",
+  "customDialect": {
+    "space": {
+      "related": 0.9,
+      "group": 1,
+      "section": 1.15
+    },
+    "headingTracking": "0.01em",
+    "displayFloorBoost": 1.15,
+    "textureOpacity": 0.12,
+    "motion": {
+      "duration": 1,
+      "distance": 1,
+      "ease": "cubic-bezier(0.3,0,0.2,1)"
+    }
+  },
+  "brandVoice": {
+    "headline": "Let the last chorus drift.",
+    "lede": "Drop in a song, shape it live with speed, pitch and reverb, and export WAV or MP3 — no signup, nothing leaves your browser."
+  },
+  "tasteDirection": "borrowed-category",
+  "tastePalette": "burgundy-bubblegum",
+  "tasteType": "chivo-black"
+},
+  "composition": {
+  "root": {
+    "type": "shell",
+    "children": [
+      {
+        "type": "nav",
+        "motion": "scroll-progress"
+      },
+      {
+        "type": "row",
+        "collapse": "stack",
+        "children": [
+          {
+            "type": "group",
+            "span": 7,
+            "collapse": "stack",
+            "children": [
+              {
+                "type": "hero",
+                "variant": "split-media",
+                "source": "tool",
+                "emphasis": "lead",
+                "collapse": "stack"
+              },
+              {
+                "type": "tool",
+                "source": "tool",
+                "label": "Drop your track",
+                "capability": "audio-loader"
+              },
+              {
+                "type": "tool",
+                "source": "tool",
+                "label": "Shape the sound",
+                "capability": "slowed-reverb-console",
+                "motion": "value-tick"
+              },
+              {
+                "type": "tool",
+                "source": "tool",
+                "label": "Render and download",
+                "capability": "wav-export"
+              },
+              {
+                "type": "toast",
+                "label": "Your WAV is ready"
+              }
+            ]
+          },
+          {
+            "type": "group",
+            "span": 4,
+            "sticky": true,
+            "collapse": "stack",
+            "children": [
+              {
+                "type": "steps",
+                "source": "how-it-works"
+              },
+              {
+                "type": "cards",
+                "variant": "outlined",
+                "source": "formats",
+                "motion": "stagger-reveal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "faq",
+        "source": "faq",
+        "collapse": "stack"
+      },
+      {
+        "type": "footer"
+      }
+    ]
+  }
+},
+  "routeCompositions": {
+  "/": {
+    "root": {
+      "type": "shell",
+      "children": [
+        {
+          "type": "nav",
+          "motion": "scroll-progress"
+        },
+        {
+          "type": "row",
+          "collapse": "stack",
+          "children": [
+            {
+              "type": "group",
+              "span": 7,
+              "collapse": "stack",
+              "children": [
+                {
+                  "type": "hero",
+                  "variant": "split-media",
+                  "source": "tool",
+                  "emphasis": "lead",
+                  "collapse": "stack"
+                },
+                {
+                  "type": "tool",
+                  "source": "tool",
+                  "label": "Drop your track",
+                  "capability": "audio-loader"
+                },
+                {
+                  "type": "tool",
+                  "source": "tool",
+                  "label": "Shape the sound",
+                  "capability": "slowed-reverb-console",
+                  "motion": "value-tick"
+                },
+                {
+                  "type": "tool",
+                  "source": "tool",
+                  "label": "Render and download",
+                  "capability": "wav-export"
+                },
+                {
+                  "type": "toast",
+                  "label": "Your WAV is ready"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "span": 4,
+              "sticky": true,
+              "collapse": "stack",
+              "children": [
+                {
+                  "type": "steps",
+                  "source": "how-it-works"
+                },
+                {
+                  "type": "cards",
+                  "variant": "outlined",
+                  "source": "formats",
+                  "motion": "stagger-reveal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "faq",
+          "source": "faq",
+          "collapse": "stack"
+        },
+        {
+          "type": "footer"
+        }
+      ]
+    }
+  },
+  "/nightcore-maker/": {
+    "root": {
+      "type": "shell",
+      "children": [
+        {
+          "type": "nav",
+          "motion": "scroll-progress"
+        },
+        {
+          "type": "hero",
+          "variant": "split-media",
+          "source": "tool",
+          "collapse": "stack"
+        },
+        {
+          "type": "row",
+          "collapse": "stack",
+          "children": [
+            {
+              "type": "group",
+              "span": 7,
+              "collapse": "stack",
+              "children": [
+                {
+                  "type": "tool",
+                  "source": "tool",
+                  "label": "Load a track",
+                  "capability": "audio-loader"
+                },
+                {
+                  "type": "tool",
+                  "source": "tool",
+                  "label": "Nightcore console",
+                  "capability": "slowed-reverb-console",
+                  "motion": "value-tick"
+                },
+                {
+                  "type": "tool",
+                  "source": "tool",
+                  "label": "Render and download",
+                  "capability": "wav-export"
+                },
+                {
+                  "type": "toast",
+                  "label": "Render complete"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "span": 5,
+              "collapse": "stack",
+              "children": [
+                {
+                  "type": "steps",
+                  "variant": "numbered-rows",
+                  "source": "how-it-works"
+                },
+                {
+                  "type": "media",
+                  "variant": "editorial-figure",
+                  "source": "styles"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "cards",
+          "variant": "outlined",
+          "source": "styles",
+          "collapse": "stack",
+          "motion": "stagger-reveal"
+        },
+        {
+          "type": "faq",
+          "source": "faq",
+          "collapse": "stack"
+        },
+        {
+          "type": "footer"
+        }
+      ]
+    }
+  },
+  "/how-to-make-slowed-and-reverb/": {
+    "root": {
+      "type": "shell",
+      "children": [
+        {
+          "type": "nav",
+          "motion": "scroll-progress"
+        },
+        {
+          "type": "prose",
+          "source": "answer",
+          "emphasis": "lead",
+          "collapse": "stack"
+        },
+        {
+          "type": "row",
+          "collapse": "stack",
+          "children": [
+            {
+              "type": "group",
+              "span": 7,
+              "collapse": "stack",
+              "children": [
+                {
+                  "type": "steps",
+                  "source": "steps",
+                  "motion": "step-track"
+                }
+              ]
+            },
+            {
+              "type": "aside",
+              "span": 5,
+              "sticky": true,
+              "collapse": "stack",
+              "children": [
+                {
+                  "type": "media",
+                  "variant": "editorial-figure",
+                  "source": "steps"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "dataGrid",
+          "variant": "spec-matrix",
+          "source": "settings-explained",
+          "collapse": "stack",
+          "mobilePresentation": "cards"
+        },
+        {
+          "type": "footer"
+        }
+      ]
+    }
+  },
+  "/slowed-vs-nightcore/": {
+    "root": {
+      "type": "shell",
+      "children": [
+        {
+          "type": "nav",
+          "motion": "scroll-progress"
+        },
+        {
+          "type": "prose",
+          "source": "answer",
+          "emphasis": "lead",
+          "collapse": "stack"
+        },
+        {
+          "type": "table",
+          "source": "comparison",
+          "collapse": "scroll",
+          "mobilePresentation": "cards"
+        },
+        {
+          "type": "row",
+          "collapse": "stack",
+          "children": [
+            {
+              "type": "media",
+              "variant": "editorial-figure",
+              "source": "comparison",
+              "span": 6,
+              "collapse": "stack"
+            },
+            {
+              "type": "cards",
+              "variant": "outlined",
+              "source": "when-to-use",
+              "span": 6,
+              "collapse": "stack",
+              "motion": "stagger-reveal"
+            }
+          ]
+        },
+        {
+          "type": "dataGrid",
+          "variant": "spec-matrix",
+          "source": "practical-settings",
+          "collapse": "stack",
+          "mobilePresentation": "cards"
+        },
+        {
+          "type": "footer"
+        }
+      ]
+    }
+  },
+  "/about/": {
+    "root": {
+      "type": "shell",
+      "children": [
+        {
+          "type": "nav",
+          "motion": "scroll-progress"
+        },
+        {
+          "type": "hero",
+          "variant": "editorial-cover",
+          "source": "who",
+          "collapse": "stack"
+        },
+        {
+          "type": "prose",
+          "variant": "drop-cap-lede",
+          "source": "who",
+          "collapse": "stack"
+        },
+        {
+          "type": "row",
+          "collapse": "stack",
+          "children": [
+            {
+              "type": "prose",
+              "source": "how-tool-works",
+              "span": 7,
+              "collapse": "stack"
+            },
+            {
+              "type": "media",
+              "variant": "editorial-figure",
+              "source": "how-tool-works",
+              "span": 5,
+              "collapse": "stack"
+            }
+          ]
+        },
+        {
+          "type": "cards",
+          "variant": "outlined",
+          "source": "principles",
+          "collapse": "stack"
+        },
+        {
+          "type": "prose",
+          "source": "background",
+          "collapse": "stack"
+        },
+        {
+          "type": "footer"
+        }
+      ]
+    }
+  },
+  "/privacy/": {
+    "root": {
+      "type": "shell",
+      "children": [
+        {
+          "type": "nav",
+          "motion": "scroll-progress"
+        },
+        {
+          "type": "prose",
+          "source": "data",
+          "emphasis": "lead",
+          "collapse": "stack"
+        },
+        {
+          "type": "prose",
+          "variant": "drop-cap-lede",
+          "source": "cookies",
+          "collapse": "stack"
+        },
+        {
+          "type": "prose",
+          "source": "rights",
+          "collapse": "stack"
+        },
+        {
+          "type": "footer"
+        }
+      ]
+    }
+  },
+  "/terms/": {
+    "root": {
+      "type": "shell",
+      "children": [
+        {
+          "type": "nav",
+          "motion": "scroll-progress"
+        },
+        {
+          "type": "prose",
+          "source": "usage",
+          "emphasis": "lead",
+          "collapse": "stack"
+        },
+        {
+          "type": "prose",
+          "variant": "drop-cap-lede",
+          "source": "ip",
+          "collapse": "stack"
+        },
+        {
+          "type": "prose",
+          "source": "changes",
+          "collapse": "stack"
+        },
+        {
+          "type": "footer"
+        }
+      ]
+    }
+  }
+},
+  "capabilities": [],
+  "toolSpecs": [
+  {
+    "id": "audio-loader",
+    "title": "Load a track",
+    "jtbd": "Loads a local audio file (MP3/WAV/M4A/OGG/FLAC) in the visitor's browser and renders a playable waveform.",
+    "inputs": [
+      {
+        "id": "audio-file",
+        "kind": "file",
+        "label": "Audio file",
+        "required": true
+      }
+    ],
+    "output": {
+      "label": "Playable waveform panel",
+      "description": "A chip row showing file name, format and duration, above a canvas waveform with Play preview / Stop transport controls."
+    },
+    "acceptance": [
+      {
+        "id": "load-basic",
+        "given": {},
+        "expect": [
+          {
+            "kind": "contains",
+            "value": "shipsite-test-music.wav"
+          },
+          {
+            "kind": "contains",
+            "value": "WAV"
+          },
+          {
+            "kind": "contains",
+            "value": "4 s"
+          }
+        ],
+        "files": {
+          "audio-file": {
+            "name": "shipsite-test-music.wav",
+            "mimeType": "audio/wav",
+            "base64": "UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA="
+          }
+        }
+      },
+      {
+        "id": "no-file",
+        "given": {},
+        "expect": [
+          {
+            "kind": "contains",
+            "value": "Choose an audio file"
+          }
+        ],
+        "files": {
+          "audio-file": null
+        },
+        "expectedState": "error"
+      }
+    ],
+    "execution": "client",
+    "privacy": "in-browser",
+    "privacyNote": "The file is decoded by the browser's own Web Audio APIs on the visitor's device; nothing is uploaded."
+  },
+  {
+    "id": "slowed-reverb-console",
+    "title": "Shape it live",
+    "jtbd": "Applies speed, pitch, reverb and bass changes live with presets like Classic Slowed + Reverb, Nightcore and Daycore, plus waveform trimming.",
+    "inputs": [
+      {
+        "id": "preset",
+        "kind": "select",
+        "label": "Preset",
+        "options": [
+          {
+            "value": "none",
+            "label": "Custom"
+          },
+          {
+            "value": "classic",
+            "label": "Classic Slowed + Reverb"
+          },
+          {
+            "value": "nightcore",
+            "label": "Nightcore"
+          },
+          {
+            "value": "daycore",
+            "label": "Daycore"
+          }
+        ]
+      },
+      {
+        "id": "speed",
+        "kind": "number",
+        "label": "Speed",
+        "placeholder": "1.0",
+        "required": true
+      },
+      {
+        "id": "pitch",
+        "kind": "number",
+        "label": "Pitch (semitones)",
+        "placeholder": "0",
+        "required": true
+      },
+      {
+        "id": "reverb-pct",
+        "kind": "number",
+        "label": "Reverb (%)",
+        "placeholder": "0",
+        "required": true
+      },
+      {
+        "id": "bass-db",
+        "kind": "number",
+        "label": "Bass boost (dB)",
+        "placeholder": "0",
+        "required": true
+      },
+      {
+        "id": "trim-start",
+        "kind": "number",
+        "label": "Trim start (s)",
+        "placeholder": "0",
+        "required": true
+      },
+      {
+        "id": "trim-end",
+        "kind": "number",
+        "label": "Trim end (s)",
+        "placeholder": "0",
+        "required": true
+      }
+    ],
+    "output": {
+      "label": "Live settings readout",
+      "description": "A readout line (Speed x, Pitch st, Reverb %, Bass dB, Trim range, preset name) bound to the sliders, with live preview transport when a track is loaded."
+    },
+    "acceptance": [
+      {
+        "id": "custom-settings",
+        "given": {
+          "preset": "none",
+          "speed": "0.8",
+          "pitch": "-3",
+          "reverb-pct": "60",
+          "bass-db": "4",
+          "trim-start": "0",
+          "trim-end": "0"
+        },
+        "expect": [
+          {
+            "kind": "contains",
+            "value": "0.8"
+          },
+          {
+            "kind": "contains",
+            "value": "-3 st"
+          },
+          {
+            "kind": "contains",
+            "value": "60%"
+          },
+          {
+            "kind": "contains",
+            "value": "4 dB"
+          }
+        ]
+      },
+      {
+        "id": "classic-preset",
+        "given": {
+          "preset": "classic"
+        },
+        "expect": [
+          {
+            "kind": "contains",
+            "value": "0.8"
+          },
+          {
+            "kind": "contains",
+            "value": "Classic Slowed + Reverb"
+          }
+        ]
+      },
+      {
+        "id": "nightcore-preset",
+        "given": {
+          "preset": "nightcore"
+        },
+        "expect": [
+          {
+            "kind": "contains",
+            "value": "1.25"
+          },
+          {
+            "kind": "contains",
+            "value": "Nightcore"
+          }
+        ]
+      },
+      {
+        "id": "trim-readout",
+        "given": {
+          "trim-start": "0",
+          "trim-end": "2"
+        },
+        "expect": [
+          {
+            "kind": "contains",
+            "value": "Trim 0.0"
+          },
+          {
+            "kind": "contains",
+            "value": "2.0"
+          }
+        ]
+      },
+      {
+        "id": "speed-out-of-range",
+        "given": {
+          "speed": "3"
+        },
+        "expect": [
+          {
+            "kind": "contains",
+            "value": "Speed must be between 0.5 and 1.5"
+          }
+        ],
+        "expectedState": "error"
+      }
+    ],
+    "execution": "client",
+    "privacy": "in-browser",
+    "privacyNote": "All shaping runs through the browser's Web Audio graph on the visitor's device; no audio leaves the page."
+  },
+  {
+    "id": "wav-export",
+    "title": "Render and download",
+    "jtbd": "Renders the adjusted audio offline and exports it as a downloadable WAV or MP3 file matching the preview.",
+    "inputs": [
+      {
+        "id": "format",
+        "kind": "select",
+        "label": "Export format",
+        "options": [
+          {
+            "value": "wav",
+            "label": "WAV"
+          },
+          {
+            "value": "mp3",
+            "label": "MP3"
+          }
+        ]
+      }
+    ],
+    "output": {
+      "label": "Rendered file summary and download button",
+      "description": "After a short offline render, a summary line (source file name, duration, format) and a Download button producing the file that matches the preview settings."
+    },
+    "acceptance": [
+      {
+        "id": "render-wav",
+        "given": {
+          "format": "wav"
+        },
+        "expect": [
+          {
+            "kind": "contains",
+            "value": "shipsite-test-music.wav"
+          },
+          {
+            "kind": "contains",
+            "value": "4 s"
+          },
+          {
+            "kind": "contains",
+            "value": "WAV"
+          }
+        ],
+        "setup": [
+          {
+            "toolId": "audio-loader",
+            "acceptanceId": "load-basic"
+          }
+        ]
+      },
+      {
+        "id": "render-mp3",
+        "given": {
+          "format": "mp3"
+        },
+        "expect": [
+          {
+            "kind": "contains",
+            "value": "shipsite-test-music.wav"
+          },
+          {
+            "kind": "contains",
+            "value": "MP3"
+          }
+        ],
+        "setup": [
+          {
+            "toolId": "audio-loader",
+            "acceptanceId": "load-basic"
+          }
+        ]
+      },
+      {
+        "id": "render-no-file",
+        "given": {
+          "format": "wav"
+        },
+        "expect": [
+          {
+            "kind": "contains",
+            "value": "Load an audio file first"
+          }
+        ],
+        "expectedState": "error"
+      }
+    ],
+    "execution": "client",
+    "privacy": "in-browser",
+    "privacyNote": "The render is an OfflineAudioContext pass in the browser; the encoded file is handed to the visitor as a local download and never uploaded."
+  }
+],
+  "runtimeRequirements": {"requiresCapability":true,"requiredCapabilityOperations":[],"toolPromises":["Loads a local audio file (MP3/WAV/M4A/OGG/FLAC) in the visitor's browser and renders a playable waveform.","Applies speed, pitch, reverb and bass changes live with presets like Classic Slowed + Reverb, Nightcore and Daycore, plus waveform trimming.","Renders the adjusted audio offline and exports it as a downloadable WAV or MP3 file matching the preview."],"requiresAuth":false,"requiresBilling":false},
+  "runtimePrivacy": {"analytics":"aggregate","requiresConsent":false},
+  "demandSelectionHash": "6a27090141909e938ff71e6032c05a8c98d376a6b216165ea75de0c91423dab7",
+  "assetPlan": [
+  {
+    "path": "/images/slots/home-tool.png",
+    "subject": "A young producer working late in a dim bedroom studio, reaching toward a laptop with headphones around their neck",
+    "purpose": "",
+    "alt": "A producer working late at night in a dim bedroom studio, reaching toward a glowing laptop",
+    "source": "ai-image-generated",
+    "sourcePage": null,
+    "license": "ai-image-generated",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "hero-subject",
+    "route": "/",
+    "sectionId": null,
+    "recordKey": null,
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null,
+    "treatment": "collage",
+    "caption": "Late-night sessions are where most slowed edits are born — one laptop, one track, no studio."
+  },
+  {
+    "path": "/images/home-formats.png",
+    "subject": "A fan of colorful cassette tapes spread on dark wood, one tape pulled halfway out of its case",
+    "purpose": "",
+    "alt": "A fan of colorful cassette tapes spread across a dark wooden surface in warm lamplight",
+    "source": "ai-image-generated",
+    "sourcePage": null,
+    "license": "ai-image-generated",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "section-media",
+    "route": "/",
+    "sectionId": "formats",
+    "recordKey": null,
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null,
+    "treatment": "framed",
+    "caption": "One engine reads every common format, then writes the export back as WAV or MP3."
+  },
+  {
+    "path": "/images/home-faq.png",
+    "subject": "A young commuter on a night bus wearing earbuds with eyes closed, warm city lights streaking past the window",
+    "purpose": "",
+    "alt": "A commuter on a night bus wearing earbuds with eyes closed while city lights streak past",
+    "source": "ai-image-generated",
+    "sourcePage": null,
+    "license": "ai-image-generated",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "section-media",
+    "route": "/",
+    "sectionId": "faq",
+    "recordKey": null,
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null,
+    "treatment": "float",
+    "caption": "The finished file rides along: earbuds in, city out of focus."
+  },
+  {
+    "path": "/images/split-styles.png",
+    "subject": "One continuous photo split by mood: a listener reclined in warm lamplight on the left, a dancer in bright daylight on the right",
+    "purpose": "",
+    "alt": "A split photograph: a relaxed listener in warm low lamplight beside a dancer mid-motion in bright cool daylight",
+    "source": "ai-image-generated",
+    "sourcePage": null,
+    "license": "ai-image-generated",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "section-media",
+    "route": "/slowed-vs-nightcore/",
+    "sectionId": "comparison",
+    "recordKey": null,
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null,
+    "treatment": "masked",
+    "shape": "slant",
+    "caption": "Same song, opposite directions: one sinks into lamplight, one jumps into daylight."
+  },
+  {
+    "path": "/images/about-flow.png",
+    "subject": "A closed laptop with headphones resting on its lid on a clean desk by a bright window",
+    "purpose": "",
+    "alt": "A closed laptop with headphones resting on its lid on a clean desk by a bright window",
+    "source": "ai-image-generated",
+    "sourcePage": null,
+    "license": "ai-image-generated",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "section-media",
+    "route": "/about/",
+    "sectionId": "how-tool-works",
+    "recordKey": null,
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null,
+    "treatment": "spot"
+  },
+  {
+    "path": "/images/entities/fmt-mp3.svg",
+    "subject": "MP3",
+    "purpose": "",
+    "alt": "MP3",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "fmt-mp3",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/fmt-wav.svg",
+    "subject": "WAV",
+    "purpose": "",
+    "alt": "WAV",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "fmt-wav",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/fmt-input-extra.svg",
+    "subject": "M4A, OGG, FLAC",
+    "purpose": "",
+    "alt": "M4A, OGG, FLAC",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "fmt-input-extra",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/style-nightcore.svg",
+    "subject": "Nightcore (sped up)",
+    "purpose": "",
+    "alt": "Nightcore (sped up)",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "style-nightcore",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/style-slowed.svg",
+    "subject": "Slowed and reverb",
+    "purpose": "",
+    "alt": "Slowed and reverb",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "style-slowed",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/style-daycore.svg",
+    "subject": "Daycore",
+    "purpose": "",
+    "alt": "Daycore",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "style-daycore",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/cmp-speed.svg",
+    "subject": "Speed",
+    "purpose": "",
+    "alt": "Speed",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "cmp-speed",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/cmp-pitch.svg",
+    "subject": "Pitch",
+    "purpose": "",
+    "alt": "Pitch",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "cmp-pitch",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/cmp-reverb.svg",
+    "subject": "Reverb",
+    "purpose": "",
+    "alt": "Reverb",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "cmp-reverb",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/cmp-bass.svg",
+    "subject": "Bass",
+    "purpose": "",
+    "alt": "Bass",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "cmp-bass",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/cmp-mood.svg",
+    "subject": "Mood",
+    "purpose": "",
+    "alt": "Mood",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "cmp-mood",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  },
+  {
+    "path": "/images/entities/cmp-use.svg",
+    "subject": "Common use",
+    "purpose": "",
+    "alt": "Common use",
+    "source": "ai-generated-original",
+    "sourcePage": null,
+    "license": "ai-generated-original",
+    "attribution": "",
+    "kind": "decorative",
+    "role": "entity-icon",
+    "route": null,
+    "sectionId": null,
+    "recordKey": "cmp-use",
+    "generatedSvg": null,
+    "generationPrompt": null,
+    "fallbackQuery": null
+  }
+],
+  "recipeCss": "",
+  "qualityContractVersion": "site-factory-v2.1@2.1.0",
+  "runtimeCapabilityTruth": {
+  "executableCapabilityIds": [
+    "audio-loader",
+    "slowed-reverb-console",
+    "wav-export"
+  ],
+  "authE2E": false,
+  "billingE2E": false,
+  "backendMode": "STATIC_ONLY"
+},
+  "fontLinks": ["https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap"],
+  "motionRuntimeScript": "(function () {\n  \"use strict\";\n  if (window.__shipsiteMotion) return;\n  window.__shipsiteMotion = true;\n  var reduced = window.matchMedia && window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches;\n  // Authored CSS keys its own resting state on .revealed\n  // ([data-motion=\"scroll-reveal\"]:not(.revealed) { opacity: 0 }), but the\n  // class only came from the no-view() fallback, so in Chrome Key Finder's\n  // example answer card stayed transparent on the first screen forever\n  // (2026-11-10). Every scroll-reveal element now gets .revealed as it is\n  // seen, in every browser, and at once under reduced motion or without an\n  // observer.\n  function revealAll() {\n    var nodes = document.querySelectorAll('[data-motion=\"scroll-reveal\"]');\n    for (var i = 0; i < nodes.length; i++) nodes[i].classList.add(\"revealed\");\n  }\n  if (reduced || !(\"IntersectionObserver\" in window)) {\n    revealAll();\n    window.addEventListener(\"load\", revealAll);\n    return;\n  }\n\n  var timelineSupported = false;\n  try {\n    timelineSupported = window.CSS && CSS.supports && CSS.supports(\"animation-timeline: view()\");\n  } catch (e) { timelineSupported = false; }\n\n  var revealed = new IntersectionObserver(function (entries) {\n    for (var i = 0; i < entries.length; i++) {\n      if (!entries[i].isIntersecting) continue;\n      entries[i].target.classList.add(\"revealed\");\n      revealed.unobserve(entries[i].target);\n    }\n  }, { rootMargin: \"0px 0px -8% 0px\", threshold: 0.08 });\n\n  // Seen at threshold 0, so a card taller than the screen or one only partly\n  // in the first view still counts.\n  var seen = new IntersectionObserver(function (entries) {\n    for (var i = 0; i < entries.length; i++) {\n      if (!entries[i].isIntersecting) continue;\n      entries[i].target.classList.add(\"revealed\");\n      seen.unobserve(entries[i].target);\n    }\n  }, { threshold: 0 });\n  function armSeen(scope) {\n    var nodes = (scope || document).querySelectorAll('[data-motion=\"scroll-reveal\"]:not(.revealed)');\n    for (var i = 0; i < nodes.length; i++) seen.observe(nodes[i]);\n  }\n\n  var revealEngaged = false;\n  function armFallback(scope) {\n    if (timelineSupported) return;\n    var nodes = (scope || document).querySelectorAll('[data-motion=\"scroll-reveal\"]:not(.revealed):not(.motion-armed)');\n    for (var i = 0; i < nodes.length; i++) {\n      var node = nodes[i];\n      var box = node.getBoundingClientRect();\n      if (box.top < window.innerHeight * 0.92 && box.bottom > 0) {\n        node.classList.add(\"revealed\");\n        continue;\n      }\n      node.classList.add(\"motion-armed\");\n      revealed.observe(node);\n    }\n  }\n  function engageReveals() {\n    if (revealEngaged) return;\n    if ((window.scrollY || window.pageYOffset || 0) <= 0) return;\n    revealEngaged = true;\n    document.documentElement.classList.add(\"motion-scrolled\");\n    armFallback(document);\n  }\n  function armReveals(scope) {\n    if (!revealEngaged) return;\n    armFallback(scope);\n  }\n  window.addEventListener(\"scroll\", engageReveals, { passive: true });\n  engageReveals();\n\n  function armStagger(scope) {\n    var nodes = (scope || document).querySelectorAll('[data-motion=\"stagger-reveal\"]:not(.stagger-armed)');\n    for (var i = 0; i < nodes.length; i++) {\n      var node = nodes[i];\n      var box = node.getBoundingClientRect();\n      if (box.top < window.innerHeight * 0.9) continue;\n      node.classList.add(\"stagger-armed\");\n      revealed.observe(node);\n    }\n  }\n\n  function rollCount(node) {\n    if (node.__counted) return;\n    node.__counted = true;\n    var targets = node.classList.contains(\"status-count\")\n      ? [node]\n      : node.querySelectorAll(\".status-count\");\n    for (var i = 0; i < targets.length; i++) {\n      var el = targets[i];\n      var final = parseFloat(String(el.textContent).replace(/[^0-9.]/g, \"\"));\n      if (!isFinite(final) || final <= 0) continue;\n      var start = null;\n      function step(ts) {\n        if (start === null) start = ts;\n        var t = Math.min((ts - start) / 900, 1);\n        el.textContent = String(Math.round(final * (1 - Math.pow(1 - t, 3))));\n        if (t < 1) requestAnimationFrame(step);\n      }\n      requestAnimationFrame(step);\n    }\n  }\n\n  var counted = new IntersectionObserver(function (entries) {\n    for (var i = 0; i < entries.length; i++) {\n      if (entries[i].isIntersecting) { rollCount(entries[i].target); counted.unobserve(entries[i].target); }\n    }\n  }, { threshold: 0.4 });\n\n  function armCounts(scope) {\n    var nodes = (scope || document).querySelectorAll('[data-motion=\"count-up\"]');\n    for (var i = 0; i < nodes.length; i++) counted.observe(nodes[i]);\n  }\n\n  // tilt-glare: pointer position → CSS variables. Fine pointers only; the\n  // CSS springs the card back when .tilting drops on leave.\n  var finePointer = window.matchMedia && window.matchMedia(\"(pointer: fine)\").matches;\n  function armTilts(scope) {\n    if (!finePointer) return;\n    var nodes = (scope || document).querySelectorAll('[data-motion=\"tilt-glare\"]');\n    for (var i = 0; i < nodes.length; i++) {\n      var node = nodes[i];\n      if (node.__tilt) continue;\n      node.__tilt = true;\n      node.addEventListener(\"pointermove\", function (event) {\n        var el = event.currentTarget;\n        var box = el.getBoundingClientRect();\n        var x = (event.clientX - box.left) / Math.max(box.width, 1);\n        var y = (event.clientY - box.top) / Math.max(box.height, 1);\n        el.style.setProperty(\"--tilt-x\", ((x - 0.5) * 12).toFixed(2) + \"deg\");\n        el.style.setProperty(\"--tilt-y\", ((0.5 - y) * 12).toFixed(2) + \"deg\");\n        el.style.setProperty(\"--glare-x\", Math.round(x * 100) + \"%\");\n        el.style.setProperty(\"--glare-y\", Math.round(y * 100) + \"%\");\n        el.classList.add(\"tilting\");\n      });\n      node.addEventListener(\"pointerleave\", function (event) {\n        var el = event.currentTarget;\n        el.classList.remove(\"tilting\");\n        el.style.setProperty(\"--tilt-x\", \"0deg\");\n        el.style.setProperty(\"--tilt-y\", \"0deg\");\n      });\n    }\n  }\n\n  // value-tick: the text is already the new value; replay the roll class.\n  function armTicks(scope) {\n    if (!(\"MutationObserver\" in window)) return;\n    var nodes = (scope || document).querySelectorAll('[data-motion=\"value-tick\"]');\n    for (var i = 0; i < nodes.length; i++) {\n      var node = nodes[i];\n      if (node.__tick) continue;\n      node.__tick = true;\n      new MutationObserver(function (records) {\n        var el = records[0].target.nodeType === 1 ? records[0].target : records[0].target.parentElement;\n        while (el && el.getAttribute && el.getAttribute(\"data-motion\") !== \"value-tick\") el = el.parentElement;\n        if (!el) return;\n        el.classList.remove(\"ticked\");\n        void el.offsetWidth;\n        el.classList.add(\"ticked\");\n      }).observe(node, { childList: true, characterData: true, subtree: true });\n    }\n  }\n\n  // Every tool's answer settles in when it changes, whether or not the\n  // authored page set value-tick on it: a silent swap reads as nothing\n  // happened. The Web Animations API touches no attribute or text node React\n  // renders, so React keeps owning the output.\n  var settled = \"MutationObserver\" in window ? new MutationObserver(function (records) {\n    var seen = [];\n    for (var i = 0; i < records.length; i++) {\n      var node = records[i].target.nodeType === 1 ? records[i].target : records[i].target.parentElement;\n      var out = node && node.closest ? node.closest(\"[data-tool-output]\") : null;\n      if (!out || seen.indexOf(out) >= 0 || !out.animate) continue;\n      seen.push(out);\n      if (out.querySelector('[data-motion=\"value-tick\"]') || out.getAttribute(\"data-motion\") === \"value-tick\") continue;\n      out.animate([{ opacity: 0.35, transform: \"translateY(4px)\" }, { opacity: 1, transform: \"none\" }], { duration: 240, easing: \"cubic-bezier(0.23, 1, 0.32, 1)\" });\n    }\n  }) : null;\n  function armOutputs(scope) {\n    if (!settled) return;\n    var nodes = (scope || document).querySelectorAll(\"[data-tool-output]\");\n    for (var i = 0; i < nodes.length; i++) {\n      if (nodes[i].__settle) continue;\n      nodes[i].__settle = true;\n      settled.observe(nodes[i], { childList: true, characterData: true, subtree: true });\n    }\n  }\n\n  // line-reveal / draw-on: arm only what is below the first screen, so the\n  // first frame never hides; draw-on measures each stroke for its dash.\n  // Own observer at threshold 0: an armed heading is clipped to a 1% sliver,\n  // and a ratio threshold never fires on a clipped target (the heading stayed\n  // hidden in the first browser check).\n  var drawn = new IntersectionObserver(function (entries) {\n    for (var i = 0; i < entries.length; i++) {\n      if (!entries[i].isIntersecting) continue;\n      entries[i].target.classList.add(\"revealed\");\n      drawn.unobserve(entries[i].target);\n    }\n  }, { rootMargin: \"0px 0px -8% 0px\", threshold: 0 });\n  function armDrawn(scope) {\n    var nodes = (scope || document).querySelectorAll('[data-motion=\"line-reveal\"]:not(.motion-armed), [data-motion=\"draw-on\"]:not(.motion-armed)');\n    for (var i = 0; i < nodes.length; i++) {\n      var node = nodes[i];\n      if (node.getBoundingClientRect().top < window.innerHeight * 0.9) continue;\n      if (node.getAttribute(\"data-motion\") === \"draw-on\") {\n        var strokes = node.querySelectorAll(\"path, line, polyline, polygon, rect, circle, ellipse\");\n        for (var j = 0; j < strokes.length; j++) {\n          var length = 0;\n          try { length = strokes[j].getTotalLength ? strokes[j].getTotalLength() : 0; } catch (e) { length = 0; }\n          if (length > 0) strokes[j].style.setProperty(\"--draw-len\", String(Math.ceil(length)));\n        }\n      }\n      node.classList.add(\"motion-armed\");\n      drawn.observe(node);\n    }\n  }\n\n  // flip-list: when a sorted or filtered list reorders, every surviving item\n  // glides from where it was to where it is (GSAP Flip's First-Last-Invert-\n  // Play, without the library). React moves the same keyed nodes, so the\n  // runtime keeps each child's offset inside its container and, the moment a\n  // mutation lands, animates the difference with Web Animations — no attribute\n  // or text write, so React keeps owning the list. New items fade in.\n  var flipPositions = typeof WeakMap === \"function\" ? new WeakMap() : null;\n  function measureFlip(list) {\n    var base = list.getBoundingClientRect();\n    for (var i = 0; i < list.children.length; i++) {\n      var box = list.children[i].getBoundingClientRect();\n      flipPositions.set(list.children[i], { x: box.left - base.left, y: box.top - base.top });\n    }\n  }\n  function playFlip(list) {\n    var base = list.getBoundingClientRect();\n    for (var i = 0; i < list.children.length; i++) {\n      var child = list.children[i];\n      if (!child.animate) continue;\n      var box = child.getBoundingClientRect();\n      var before = flipPositions.get(child);\n      if (!before) {\n        child.animate([{ opacity: 0, transform: \"scale(0.97)\" }, { opacity: 1, transform: \"none\" }], { duration: 260, easing: \"cubic-bezier(0.23, 1, 0.32, 1)\" });\n        continue;\n      }\n      var dx = before.x - (box.left - base.left);\n      var dy = before.y - (box.top - base.top);\n      if (Math.abs(dx) < 1 && Math.abs(dy) < 1) continue;\n      child.animate([{ transform: \"translate(\" + dx + \"px, \" + dy + \"px)\" }, { transform: \"none\" }], { duration: 360, easing: \"cubic-bezier(0.23, 1, 0.32, 1)\" });\n    }\n    measureFlip(list);\n  }\n  function armFlips(scope) {\n    if (!flipPositions || !(\"MutationObserver\" in window)) return;\n    var nodes = (scope || document).querySelectorAll('[data-motion=\"flip-list\"]');\n    for (var i = 0; i < nodes.length; i++) {\n      var list = nodes[i];\n      if (list.__flip) continue;\n      list.__flip = true;\n      measureFlip(list);\n      new MutationObserver(function (records) { playFlip(records[0].target); }).observe(list, { childList: true });\n    }\n  }\n  var flipResize = null;\n  window.addEventListener(\"resize\", function () {\n    clearTimeout(flipResize);\n    flipResize = setTimeout(function () {\n      var lists = document.querySelectorAll('[data-motion=\"flip-list\"]');\n      for (var i = 0; i < lists.length; i++) if (lists[i].__flip) measureFlip(lists[i]);\n    }, 150);\n  });\n\n  // step-track: scroll storytelling without pinning. The step crossing the\n  // middle of the screen is marked active and the track beside the list fills\n  // to it (ScrollTrigger scrub's feel). No step is ever dimmed: every step\n  // stays at full contrast, the active one only gains an accent rule.\n  function armSteps(scope) {\n    var nodes = (scope || document).querySelectorAll('[data-motion=\"step-track\"]:not(.steps-armed)');\n    for (var i = 0; i < nodes.length; i++) {\n      var track = nodes[i];\n      track.classList.add(\"steps-armed\");\n      var steps = track.querySelectorAll(\":scope > li, :scope > [data-step]\");\n      if (!steps.length) continue;\n      (function (track, steps) {\n        var watcher = new IntersectionObserver(function (entries) {\n          for (var k = 0; k < entries.length; k++) {\n            if (!entries[k].isIntersecting) continue;\n            var index = Array.prototype.indexOf.call(steps, entries[k].target);\n            for (var s = 0; s < steps.length; s++) steps[s].classList.toggle(\"step-active\", s === index);\n            track.style.setProperty(\"--step-progress\", String((index + 1) / steps.length));\n          }\n        }, { rootMargin: \"-45% 0px -45% 0px\", threshold: 0 });\n        for (var s = 0; s < steps.length; s++) watcher.observe(steps[s]);\n      })(track, steps);\n    }\n  }\n\n  function arm(scope) { armSeen(scope); armReveals(scope); armStagger(scope); armCounts(scope); armTilts(scope); armTicks(scope); armOutputs(scope); armDrawn(scope); armFlips(scope); armSteps(scope); }\n  arm(document);\n\n  // Preview/runtime surfaces that swap DOM after load (tool shells, accordions)\n  // get one late pass instead of a MutationObserver tax on every page.\n  window.addEventListener(\"load\", function () { arm(document); });\n})();",
+  "ogImage": null,
+  "brandLogo": "/brand/logo.svg",
+  "atmosphereBackground": "/images/atmosphere.svg",
+  "sectionTexture": null,
+  "footerGroups": [
+  {
+    "title": "Tool",
+    "links": [
+      {
+        "label": "Slowed and Reverb Maker",
+        "href": "/"
+      },
+      {
+        "label": "Nightcore Maker",
+        "href": "/nightcore-maker/"
+      }
+    ]
+  },
+  {
+    "title": "Guides",
+    "links": [
+      {
+        "label": "How to Make Slowed and Reverb",
+        "href": "/how-to-make-slowed-and-reverb/"
+      },
+      {
+        "label": "Slowed vs Nightcore",
+        "href": "/slowed-vs-nightcore/"
+      }
+    ]
+  },
+  {
+    "title": "Trust",
+    "links": [
+      {
+        "label": "About",
+        "href": "/about/"
+      },
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy/"
+      },
+      {
+        "label": "Terms of Use",
+        "href": "/terms/"
+      }
+    ]
+  },
+  {
+    "title": "Site",
+    "links": [
+      {
+        "label": "Contact Slowed and Reverb Maker",
+        "href": "/contact/"
+      }
+    ]
+  }
+],
+  "footerNote": "Slowed and Reverb Maker runs entirely in your browser and never uploads your files. Slowed + Reverb and Nightcore are community style names; this site is not affiliated with any platform or artist.",
+  "attribution": false
+}

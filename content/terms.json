@@ -1,0 +1,94 @@
+{
+  "title": "Slowed and Reverb Maker – Terms of Use",
+  "description": "The terms for using Slowed and Reverb Maker: free browser use, your responsibility for the songs you edit, and the limits of our liability.",
+  "h1": "Terms of Use",
+  "heroText": "By using Slowed and Reverb Maker you agree to the terms on this page. The service is a free online audio editor: it loads a file in your browser, applies the reverb effect, speed, pitch and bass boost changes you choose, and exports a WAV or MP3. You keep full responsibility for the audio you process.",
+  "ctas": [
+    {
+      "label": "Start editing audio",
+      "href": "/",
+      "primary": true
+    }
+  ],
+  "sections": [
+    {
+      "id": "usage",
+      "title": "Using the Service",
+      "body": "Use of the tool is free and needs no account. These rules describe what you may do with it and what we promise.",
+      "items": [
+        {
+          "title": "Permitted use",
+          "body": "You may load audio files you own or have the right to edit, slow down audio, change pitch, apply reverb and bass boost, trim the waveform, and download the exported WAV or MP3 for personal or lawful commercial projects."
+        },
+        {
+          "title": "Copyright is your responsibility",
+          "body": "The tool does not check the rights attached to your file. Editing a song you do not own, and posting the result on TikTok, YouTube or other platforms, may require permission from the rights holder. That permission is yours to obtain; we provide the processing only."
+        },
+        {
+          "title": "Prohibited use",
+          "body": "Do not use the service to process material you have no right to use, to distribute infringing audio, or to interfere with the site's availability. Automated scraping or abuse of the tool route may lead to blocking."
+        },
+        {
+          "title": "No warranty",
+          "body": "The service is provided as is. Export quality depends on your source file, your device and your browser. We do not promise uninterrupted availability or a specific result for every format, though MP3, WAV, M4A, OGG and FLAC inputs and WAV and MP3 exports are supported."
+        },
+        {
+          "title": "Limitation of liability",
+          "body": "To the maximum extent permitted by law, we are not liable for indirect or consequential loss arising from use of the service, including any claim connected to audio you edit or publish."
+        }
+      ]
+    },
+    {
+      "id": "ip",
+      "title": "Intellectual Property",
+      "body": "The site name, design and code belong to the site owner. Your source audio and your exported files remain yours; we claim no rights in them and keep no copies.",
+      "items": [
+        {
+          "title": "Trademarks",
+          "body": "Product names and trademarks that appear in our guide and comparison pages are used to describe them accurately and remain the property of their owners."
+        }
+      ]
+    },
+    {
+      "id": "changes",
+      "title": "Changes and Governing Terms",
+      "body": "We may update these terms as the product changes; the current version is always this page. Questions about the terms can be sent to the contact address shown on our [about page](/about/). For how your files are handled, read the [privacy policy](/privacy/).",
+      "items": [
+        {
+          "title": "Effective date",
+          "body": "These terms take effect from the date shown at the top of this page and apply to every use of the tool from that point."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need an account to use the tool?",
+      "answer": "No. The tool is free and runs without any sign-up. You load a file, adjust speed, pitch, reverb and bass boost, and download the exported WAV or MP3 directly."
+    },
+    {
+      "question": "Can I use the exported audio commercially?",
+      "answer": "For audio you own or have licensed, yes. The terms let you use your exports in lawful commercial projects. Rights to the source song are your responsibility to check."
+    },
+    {
+      "question": "Who owns the audio I edit?",
+      "answer": "You do. Your uploaded file and your exported result stay on your device, and we claim no ownership over them and store no copies."
+    },
+    {
+      "question": "Is the service guaranteed to be available?",
+      "answer": "The service is provided as is, without a warranty of uninterrupted availability. The supported formats are MP3, WAV, M4A, OGG and FLAC for input, and WAV and MP3 for export."
+    },
+    {
+      "question": "Can the terms change?",
+      "answer": "Yes. As the product evolves we may update these terms on this page. Continued use after an update means you accept the current version."
+    }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Terms of Use – Slowed and Reverb Maker",
+    "about": "Terms governing use of the Slowed and Reverb Maker browser tool",
+    "inLanguage": "en",
+    "dateModified": "2026-11-12"
+  }
+}

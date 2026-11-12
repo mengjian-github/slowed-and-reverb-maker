@@ -1,0 +1,12 @@
+{
+  "contract": "shipsite.source-image-normalization.v1",
+  "path": "public/images/home-formats.png",
+  "originalKey": "projects/prj_d2592157-71b/versions/ver_204ebe0e-850/source-image-originals/e7bb1b345d58fd54e2a41705dfbc7f16726179a708d59817dfa4caf1b909a1b8.png",
+  "originalSha256": "e7bb1b345d58fd54e2a41705dfbc7f16726179a708d59817dfa4caf1b909a1b8",
+  "normalizedSha256": "cc642bff5a49925a737e1810ad49bf23c6493fcb3ff6d39889d3f51803f48e7c",
+  "originalBytes": 2314576,
+  "normalizedBytes": 238606,
+  "operation": "opaque-photo-to-jpeg",
+  "format": "image/jpeg",
+  "quality": 84
+}

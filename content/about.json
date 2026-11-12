@@ -1,0 +1,120 @@
+{
+  "title": "About Slowed and Reverb Maker site",
+  "description": "What this slowed and reverb maker site does: a free browser tool that slows songs, adds reverb and nightcore presets, and exports WAV or MP3 with no upload.",
+  "h1": "About Slowed and Reverb Maker",
+  "heroText": "This site is a free, browser-based audio tool for making slowed and reverb edits. You load a song from your own device, the tool processes it locally so the file never leaves your computer, and you export a WAV or MP3 that matches what you heard. There is no account to create and no watermark on the result. The [main tool](/) handles slowed edits; a dedicated [nightcore maker](/nightcore-maker/) covers the sped-up side.",
+  "ctas": [
+    {
+      "label": "Open the tool",
+      "href": "/",
+      "primary": true
+    },
+    {
+      "label": "Read the how-to guide",
+      "href": "/how-to-make-slowed-and-reverb/",
+      "primary": false
+    }
+  ],
+  "sections": [
+    {
+      "id": "who",
+      "title": "Who this site is for",
+      "body": "The tool was built for one repeated job: turn a song into a slowed, reverbed or sped-up edit without installing software or paying for an editor. That job is common enough that whole apps exist for it, but most people only need it a few times a week, on whatever laptop or phone they already own.",
+      "items": [
+        {
+          "title": "Social media creators",
+          "body": "TikTok and YouTube editors who need a specific sound for a clip tonight, not a full digital audio workstation. Load, tweak, trim on the waveform, export."
+        },
+        {
+          "title": "Playlist and chill-mix makers",
+          "body": "People building lo-fi music mixes and late-night playlists who want to slow down audio across many tracks with the same settings each time."
+        },
+        {
+          "title": "Curious listeners",
+          "body": "Anyone who heard a daycore or nightcore version of a favourite song and wants to hear their own files that way. The presets make the first result good on the first try."
+        }
+      ]
+    },
+    {
+      "id": "how-tool-works",
+      "title": "How the tool works",
+      "body": "Everything runs inside your browser tab; no audio is uploaded to a server at any point.",
+      "steps": [
+        {
+          "title": "Load a file",
+          "body": "Pick an MP3, WAV, M4A, OGG or FLAC from your device. The tool renders a playable waveform so you can see the track before changing it."
+        },
+        {
+          "title": "Shape the sound",
+          "body": "Adjust speed, pitch, reverb and bass and hear the result immediately, or start from presets like Classic Slowed + Reverb, Nightcore and Daycore. Trim the start and end on the waveform."
+        },
+        {
+          "title": "Export",
+          "body": "The tool renders the final audio offline in your browser and gives you a downloadable WAV or MP3 that matches the preview exactly."
+        }
+      ],
+      "image": {
+        "src": "/images/about-flow.png",
+        "alt": "A closed laptop with headphones resting on its lid on a clean desk by a bright window"
+      }
+    },
+    {
+      "id": "principles",
+      "title": "What we will not do",
+      "body": "Three commitments that shape every part of the site.",
+      "items": [
+        {
+          "title": "Your files stay yours",
+          "body": "Because processing is local, the site never receives, stores or listens to your audio. Closing the tab clears everything."
+        },
+        {
+          "title": "No watermarks or sign-up walls",
+          "body": "The exported file is your file, unbranded, and the tool runs on the first screen without an account."
+        },
+        {
+          "title": "Honest about limits",
+          "body": "The tool works on local audio files. It does not fetch songs from links, and it is not for distributing music you do not have the rights to use."
+        }
+      ]
+    },
+    {
+      "id": "background",
+      "title": "Why these sounds exist",
+      "body": "Slowed and reverb and nightcore are both tape-style edits: speed and pitch move together. The slowed style descends from daycore, the deliberately slowed-down scene that predates nightcore, and today both sit at the centre of online lo-fi music culture. The tool exists because the effect needs only a few precise numbers applied well, not studio software."
+    },
+    {
+      "id": "sources",
+      "title": "Sources",
+      "body": "[browser audio processing](https://developer.mozilla.org/en-US/docs/Web/Audio_API). [slowedgenerator.com](https://slowedgenerator.com/)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is this tool really free?",
+      "answer": "Yes. Loading files, applying effects and exporting WAV or MP3 cost nothing and require no account. The tool runs entirely in your browser, so there is no server cost per edit to pass on."
+    },
+    {
+      "question": "Do my songs get uploaded anywhere?",
+      "answer": "No. All audio processing happens locally in your browser tab. Your files never leave your device, and nothing is stored after you close the page."
+    },
+    {
+      "question": "Which file formats can I load?",
+      "answer": "MP3, WAV, M4A, OGG and FLAC. Exports are available as WAV or MP3, and the exported file matches the preview you heard before exporting."
+    },
+    {
+      "question": "Can I use the exported audio commercially?",
+      "answer": "The tool changes the sound of a file but does not change who owns the underlying song. You are responsible for having the rights to any track you edit and for how you use the result."
+    },
+    {
+      "question": "Who is behind the site?",
+      "answer": "Slowed and Reverb Maker is an independent browser tool project. Questions about the tool, corrections or feature requests can be sent to the contact address shown on this page's footer once the site is live."
+    }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "About Slowed and Reverb Maker",
+    "description": "What the site does, who it is for and how the browser-based slowed and reverb tool processes audio locally.",
+    "datePublished": "2026-11-12"
+  }
+}

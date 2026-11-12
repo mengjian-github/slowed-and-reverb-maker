@@ -1,0 +1,6 @@
+Shipsite browser media runtime
+Transformers.js 4.2.0: Apache-2.0. ONNX Runtime Web/common: MIT.
+Whisper tiny ONNX conversion: onnx-community/whisper-tiny at ff4177021cc41f7db950912b73ea4fdf7d01d8e7. Base model openai/whisper-tiny is marked Apache-2.0 in its model card; preserve that license and attribution.
+Silero VAD: snakers4/silero-vad at 867c2aa692646a1f1de3e94a15c9dd9f614c0acb, MIT.
+Published model references: https://huggingface.co/onnx-community/whisper-tiny and https://huggingface.co/openai/whisper-tiny
+All model/runtime resources are prepared at build time from pinned public URLs and verified SHA-256 values; visitor media stays in the browser.

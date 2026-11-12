@@ -1,0 +1,228 @@
+{
+  "title": "Slowed and Reverb Maker – Free Online Tool",
+  "description": "Free online slowed and reverb maker. Upload an audio file, adjust speed, pitch and reverb live in your browser, and export MP3 or WAV. No signup, no watermark.",
+  "h1": "Slowed and Reverb Maker",
+  "heroText": "Turn any song on your device into a slowed and reverb version in about a minute. This free tool loads your audio in the browser, plays the effect live as you adjust speed, pitch, reverb and bass, then renders the finished track for download. No signup, no watermark, and your file never leaves your device.",
+  "ctas": [
+    {
+      "label": "Load an audio file",
+      "href": "/",
+      "primary": true
+    },
+    {
+      "label": "Try the sample audio",
+      "href": "/",
+      "primary": false
+    }
+  ],
+  "sections": [
+    {
+      "id": "tool",
+      "title": "Make slowed and reverb right here",
+      "body": "The editing tool sits on this first screen. Drop in a file and every effect responds while the track plays.",
+      "items": [
+        {
+          "title": "Presets for the classic sound",
+          "body": "One click applies the slowed and reverb formula: around 0.8x speed with room reverb and a bass boost. Presets for Nightcore and Daycore are here too."
+        },
+        {
+          "title": "Waveform trim",
+          "body": "Load the file, see its waveform, and keep only the verse or hook you want. The export matches exactly what you trimmed."
+        },
+        {
+          "title": "Live preview",
+          "body": "Change pitch, speed, reverb or bass and hear the result instantly, so you never export a version you have not heard."
+        }
+      ]
+    },
+    {
+      "id": "how-it-works",
+      "title": "How it works",
+      "body": "Three steps, all inside this page. Nothing is uploaded, because every audio operation runs in your browser as [browser audio processing](https://developer.mozilla.org/en-US/docs/Web/Audio_API), the open web standard for real-time sound.",
+      "steps": [
+        {
+          "title": "Load your audio file",
+          "body": "Drag in an MP3, WAV, M4A, OGG or FLAC from your device. The file decodes locally and appears as a playable waveform within seconds for a typical song."
+        },
+        {
+          "title": "Slow down audio and shape the sound",
+          "body": "Apply the Classic Slowed + Reverb preset or set speed, pitch, reverb and bass yourself. To change pitch independently of tempo, adjust it after picking a speed. Trim the waveform to keep just the part you need."
+        },
+        {
+          "title": "Export the finished track",
+          "body": "The tool renders the adjusted audio offline, so the export always matches the preview. Export wav mp3 files straight to your downloads folder, ready to post or listen to."
+        }
+      ]
+    },
+    {
+      "id": "formats",
+      "title": "Formats and file handling",
+      "body": "The tool reads the formats most phones and computers already produce, and exports the two formats editors ask for most. [Learn the exact settings for the classic sound](/how-to-make-slowed-and-reverb/) before you export.",
+      "items": [
+        {
+          "title": "Export wav mp3, your choice",
+          "body": "WAV keeps the full rendered quality for video editors. MP3 gives a smaller file that uploads quickly. Either way the download is watermark-free."
+        },
+        {
+          "title": "Your file stays on your device",
+          "body": "There is no upload endpoint. The audio lives in browser memory until you close the tab, which is also why the tool works without an account."
+        }
+      ],
+      "table": {
+        "caption": "Supported input and output formats",
+        "columns": [
+          "Format",
+          "Role"
+        ],
+        "rows": [
+          {
+            "cells": [
+              "MP3",
+              "Input and export"
+            ],
+            "status": "working",
+            "recordKey": "fmt-mp3",
+            "evidenceRefs": [
+              "ev_119"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "WAV",
+              "Input and lossless export"
+            ],
+            "status": "working",
+            "recordKey": "fmt-wav",
+            "evidenceRefs": [
+              "ev_119"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "M4A, OGG, FLAC",
+              "Input"
+            ],
+            "status": "working",
+            "recordKey": "fmt-input-extra",
+            "evidenceRefs": [
+              "ev_119"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          }
+        ],
+        "lastCheckedAt": "2026-11-12"
+      },
+      "image": {
+        "src": "/images/home-formats.png",
+        "alt": "A fan of colorful cassette tapes spread across a dark wooden surface in warm lamplight",
+        "caption": "One engine reads every common format, then writes the export back as WAV or MP3."
+      }
+    },
+    {
+      "id": "faq",
+      "title": "Slowed and reverb FAQ",
+      "body": "Short answers to what visitors ask most before their first export.",
+      "image": {
+        "src": "/images/home-faq.png",
+        "alt": "A commuter on a night bus wearing earbuds with eyes closed while city lights streak past",
+        "caption": "The finished file rides along: earbuds in, city out of focus."
+      }
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is this slowed and reverb maker really free?",
+      "answer": "Yes. Every function on this page is free: loading a file, all presets and sliders, waveform trim, and MP3 or WAV export. There is no account, no quota and no watermark, because the processing runs on your own device at no cost to us or you."
+    },
+    {
+      "question": "What settings make the classic slowed and reverb sound?",
+      "answer": "The named preset applies the widely used recipe: speed around 0.8x, a room-style reverb effect at a moderate level, and a bass boost for warmth. You can then fine-tune each value by ear. Our guide page walks through each setting with starting numbers."
+    },
+    {
+      "question": "Do I need to install anything or sign up?",
+      "answer": "No. The tool runs entirely in your browser, on phone or desktop, with nothing to install and no sign-up step. Open this page, load your file and start adjusting. Closing the tab discards the audio from memory."
+    },
+    {
+      "question": "Which file formats can I use?",
+      "answer": "You can load MP3, WAV, M4A, OGG and FLAC files from your device. Exports are WAV for full quality or MP3 for a smaller, easy-to-share file. The exported file matches exactly what you heard in the preview."
+    },
+    {
+      "question": "Can I speed a song up instead of slowing it down?",
+      "answer": "Yes. Raise the speed and pitch values and the same tool produces a nightcore-style sped up version, which is the opposite of slowed and reverb. The dedicated nightcore maker page explains that style in more detail."
+    },
+    {
+      "question": "Can I publish the result on social media?",
+      "answer": "That is up to you to decide. Slowing down a commercial recording creates a derivative of it, so if you publish the result you are responsible for having the rights you need. This site does not grant any copyright clearance and does not host your files."
+    }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Slowed and Reverb Maker",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any (web browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Free browser tool that turns local audio files into slowed and reverb versions with live speed, pitch, reverb and bass controls, waveform trimming, and WAV or MP3 export."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this slowed and reverb maker really free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Every function on this page is free: loading a file, all presets and sliders, waveform trim, and MP3 or WAV export. There is no account, no quota and no watermark."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What settings make the classic slowed and reverb sound?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Speed around 0.8x, a room-style reverb effect at a moderate level, and a bass boost for warmth. Fine-tune each value by ear after applying the preset."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to install anything or sign up?",
+            "answer": "No. The tool runs entirely in your browser with nothing to install and no sign-up step."
+          },
+          {
+            "@type": "Question",
+            "name": "Which file formats can I use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can load MP3, WAV, M4A, OGG and FLAC files. Exports are WAV or MP3, matching the preview."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I speed a song up instead of slowing it down?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Raise speed and pitch to get a nightcore-style sped up version."
+            }
+          }
+        ]
+      }
+    ],
+    "dateModified": "2026-11-12"
+  },
+  "hero": {
+    "src": "/images/slots/home-tool.png",
+    "alt": "A producer working late at night in a dim bedroom studio, reaching toward a glowing laptop",
+    "caption": "Late-night sessions are where most slowed edits are born — one laptop, one track, no studio."
+  }
+}

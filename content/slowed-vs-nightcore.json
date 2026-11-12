@@ -1,0 +1,239 @@
+{
+  "title": "Slowed vs Nightcore: The Real Difference Explained",
+  "description": "Slowed vs nightcore, explained: tempo, pitch, moods and when each edit fits your track. Compare the two styles, then make either one free in your browser.",
+  "h1": "Slowed vs Nightcore",
+  "heroText": "One edit drags a song down to a dreamy crawl; the other pushes it into a bright, sped-up version. The difference comes down to two numbers: how fast the track plays and how high the pitch sits. Slowed edits drop both, which is why they sound like daycore or lo-fi music. Nightcore raises both. You can hear both in seconds with our free [slowed and reverb maker](/) and its [nightcore maker](/nightcore-maker/) route.",
+  "ctas": [
+    {
+      "label": "Make a slowed edit",
+      "href": "/",
+      "primary": true
+    },
+    {
+      "label": "Try the nightcore maker",
+      "href": "/nightcore-maker/",
+      "primary": false
+    }
+  ],
+  "sections": [
+    {
+      "id": "answer",
+      "title": "The short answer",
+      "body": "Slowed and nightcore are opposite directions from the same starting point: the original recording.",
+      "items": [
+        {
+          "title": "Slowed",
+          "body": "Speed drops below 1x, usually around 0.8x, and pitch moves down with it. Reverb is often added for space. The mood is calm, hazy and late-night."
+        },
+        {
+          "title": "Nightcore",
+          "body": "Speed rises above 1x, usually around 1.25x, and pitch climbs with it. The mood is bright, urgent and energetic. No reverb is typical; the track already feels packed."
+        },
+        {
+          "title": "Why they differ so much",
+          "body": "Both styles change speed and pitch together, the way a tape player does. Because pitch follows speed, the voice and instruments shift key, and that shift carries most of the emotional change."
+        }
+      ]
+    },
+    {
+      "id": "comparison",
+      "title": "Side-by-side comparison",
+      "body": "The table shows the settings and results that separate the two edits when you slow down audio or build a sped-up version.",
+      "items": [
+        {
+          "title": "The 0.8x and 1.25x starting points",
+          "body": "These two numbers are the working defaults most tools and presets use. Start there, listen, then move in small steps. A 0.75x slowed edit already feels like daycore; anything past 1.3x starts sounding thin and chipmunk-bright."
+        },
+        {
+          "title": "What reverb changes",
+          "body": "Reverb smears each note into the space after it. On a slowed edit it turns a dry vocal into something that hangs in the air. On a nightcore edit it usually just adds mud, which is why the style skips it."
+        }
+      ],
+      "table": {
+        "caption": "Slowed vs nightcore: typical settings and sound",
+        "columns": [
+          "Property",
+          "Slowed + Reverb",
+          "Nightcore"
+        ],
+        "rows": [
+          {
+            "cells": [
+              "Speed",
+              "About 0.8x of the original",
+              "About 1.25x of the original"
+            ],
+            "status": "working",
+            "recordKey": "cmp-speed",
+            "evidenceRefs": [
+              "ev_119"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "Pitch",
+              "Shifted down with the tempo",
+              "Shifted up with the tempo"
+            ],
+            "status": "working",
+            "recordKey": "cmp-pitch",
+            "evidenceRefs": [
+              "ev_119"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "Reverb",
+              "Usually added, around 50% wet",
+              "Usually none"
+            ],
+            "status": "working",
+            "recordKey": "cmp-reverb",
+            "evidenceRefs": [
+              "ev_119"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "Bass",
+              "Often boosted for weight",
+              "Rarely changed"
+            ],
+            "status": "working",
+            "recordKey": "cmp-bass",
+            "evidenceRefs": [
+              "ev_119"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "Mood",
+              "Calm, nostalgic, lo-fi music energy",
+              "Fast, bright, club energy"
+            ],
+            "status": "unconfirmed",
+            "recordKey": "cmp-mood",
+            "evidenceRefs": [
+              "ev_005"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "Common use",
+              "TikTok edits, chill playlists, sleep mixes",
+              "Dance edits, sped-up versions of pop songs"
+            ],
+            "status": "unconfirmed",
+            "recordKey": "cmp-use",
+            "evidenceRefs": [
+              "ev_006"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          }
+        ],
+        "lastCheckedAt": "2026-11-12"
+      },
+      "image": {
+        "src": "/images/split-styles.png",
+        "alt": "A split photograph: a relaxed listener in warm low lamplight beside a dancer mid-motion in bright cool daylight",
+        "caption": "Same song, opposite directions: one sinks into lamplight, one jumps into daylight."
+      }
+    },
+    {
+      "id": "when-to-use",
+      "title": "When to use each style",
+      "body": "Pick the style from the song and the platform you are posting to, not from habit.",
+      "items": [
+        {
+          "title": "Choose slowed when the song is slow already",
+          "body": "R&B, indie ballads and trap with sung hooks take a tempo drop well. Slowing an already fast track can smear the lyrics. Add reverb and a touch of bass boost for the classic late-night sound."
+        },
+        {
+          "title": "Choose nightcore for fast, rhythmic tracks",
+          "body": "Pop, dance and hyperpop survive a sped-up version best. The vocals rise but the rhythm tightens, which is the effect nightcore fans are after."
+        },
+        {
+          "title": "Daycore is the middle path",
+          "body": "Daycore keeps the slowed, lowered feel but stays gentle enough for full listens rather than short clips. It is a slowed edit with restraint: small speed cut, moderate reverb."
+        },
+        {
+          "title": "Test both on the same file",
+          "body": "Load the track once and A/B the two presets before you export. Our guide to [how to make slowed and reverb](/how-to-make-slowed-and-reverb/) walks through the exact settings, and the tool exports WAV or MP3 that matches what you previewed."
+        }
+      ]
+    },
+    {
+      "id": "practical-settings",
+      "title": "Settings that translate well",
+      "body": "Small moves survive different speakers and platforms better than extreme ones.",
+      "steps": [
+        {
+          "title": "Slowed recipe",
+          "body": "Speed 0.8x, pitch down with the tempo, reverb near 50%, bass boost around 20%. Keep vocal tracks within 0.85x or lyrics turn muddy."
+        },
+        {
+          "title": "Nightcore recipe",
+          "body": "Speed 1.25x, pitch up with the tempo, no reverb. If vocals sound shrill, pull back to 1.15x instead of adding effects."
+        },
+        {
+          "title": "Trim before you export",
+          "body": "Use the waveform to cut silence from the start and end. A clean two-second fade beats a clipped first beat on every platform."
+        }
+      ]
+    },
+    {
+      "id": "sources",
+      "title": "Sources",
+      "body": "[browser audio processing](https://developer.mozilla.org/en-US/docs/Web/Audio_API)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is slowed just nightcore in reverse?",
+      "answer": "Effectively, yes. Both change speed and pitch together. Slowed drops speed below 1x and pitch down, nightcore raises both above 1x. The reverb and bass boost usually added to slowed edits are the only extra ingredient."
+    },
+    {
+      "question": "What is daycore?",
+      "answer": "Daycore is the slowed counterpart to nightcore: a track slowed down and pitched down, usually gently, for a soft, dreamy feel. It predates the sped-up nightcore style, which was originally made by pitching dance tracks up."
+    },
+    {
+      "question": "Does nightcore damage audio quality?",
+      "answer": "Raising speed and pitch does not remove detail the way heavy compression does, but extreme settings make vocals thin and shrill. Staying near 1.25x or below keeps the track listenable, and exporting WAV preserves the rendered result at full resolution."
+    },
+    {
+      "question": "Which style is better for TikTok?",
+      "answer": "Both work. Slowed + reverb suits emotional, late-night edits; sped-up versions suit dance and trend sounds. Render a short trimmed preview of each from the same file and post whichever keeps the hook intact."
+    },
+    {
+      "question": "Do I need to change pitch separately from speed?",
+      "answer": "For the classic slowed and nightcore sounds, no: pitch should follow speed, like a tape machine. Changing pitch alone shifts the key without changing length, which produces a different, usually unnatural result."
+    },
+    {
+      "question": "Can I convert between the two styles?",
+      "answer": "Yes. Load the same original file and switch presets rather than re-editing an export. Every export should come from the original recording so quality is not lost twice."
+    }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Slowed vs Nightcore",
+    "description": "The real difference between slowed and nightcore edits: speed, pitch, reverb, mood and when to use each style.",
+    "about": [
+      "Slowed and reverb",
+      "Nightcore",
+      "Daycore"
+    ],
+    "datePublished": "2026-11-12"
+  }
+}

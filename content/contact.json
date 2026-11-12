@@ -1,0 +1,56 @@
+{
+  "title": "Contact Slowed and Reverb Maker",
+  "description": "How to send a correction, a source, or a question about how Slowed and Reverb Maker checks public facts.",
+  "h1": "Contact",
+  "heroText": "Slowed and Reverb Maker is an independent reference and does not speak for the product or trademark holders it describes. This page says who you can reach, how a correction is checked, and what we will not pretend to handle. A complete request names the path, the sentence, and a source that still opens.",
+  "ctas": [
+    {
+      "label": "Back to the guide",
+      "href": "/",
+      "primary": true
+    }
+  ],
+  "sections": [
+    {
+      "id": "how-to-reach",
+      "title": "How to reach us",
+      "body": "This site does not run a separate ticket desk. Check the public sources listed on the page the claim appears on. If a sentence does not match its source, note the path, the sentence, and a URL that still opens. We correct from public pages that can be fetched again, not from anonymous retellings."
+    },
+    {
+      "id": "corrections",
+      "title": "How a correction lands",
+      "body": "A correction rewrites only the sentence a source can support, and it updates that page's checked date. One comment does not take a page down, and an unverified leak is not published as a fact. Expired entries are marked expired or unconfirmed instead of being left to look current."
+    },
+    {
+      "id": "what-we-cannot-do",
+      "title": "What this page cannot promise",
+      "body": "Slowed and Reverb Maker cannot make announcements for another company, issue accounts or codes, or escalate a support case to the official channel. Account, refund, and personal-data requests belong with the product's own support. This page only covers public facts this site wrote incorrectly."
+    },
+    {
+      "id": "what-to-include",
+      "title": "What to include in a correction",
+      "body": "Name four things: the path that is wrong, the sentence you saw, the wording you believe is correct, and a URL that still opens. Without a source we cannot check the claim. A screenshot helps, but it does not replace a page we can fetch again. We will not rewrite an entry from a chat log or an anonymous forward."
+    },
+    {
+      "id": "tool-questions",
+      "title": "If a tool result looks wrong",
+      "body": "If a calculation looks wrong, include the inputs you used and the result you expected. Every tool shows its method on the page, so the quickest check is to follow the same steps by hand; a report with an example we can reproduce is handled first."
+    },
+    {
+      "id": "response-time",
+      "title": "When a change shows up",
+      "body": "A correction lands in the next build that republishes that page, and the checked date updates with it. Urgent account or payment issues belong on the official channel; this page is not a support queue. If we cannot fetch your source, the entry stays as written rather than becoming an unverified rewrite. Every public claim should still open at its source, and the footer date is when we last checked rather than a lifetime guarantee. When a source stops opening, the claim it supported is marked unconfirmed until a new source that opens is found."
+    },
+    {
+      "id": "sources",
+      "title": "Sources",
+      "body": "[browser audio processing](https://developer.mozilla.org/en-US/docs/Web/Audio_API). [slowedgenerator.com](https://slowedgenerator.com/)."
+    }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Contact",
+    "dateModified": "2026-11-12"
+  }
+}

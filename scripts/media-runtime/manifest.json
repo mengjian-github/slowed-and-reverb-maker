@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "runtimeId": "whisper-tiny-4.2.0-v1",
+  "basePath": "/__shipsite/media/",
+  "maxInputBytes": 10485760,
+  "maxDurationSeconds": 120,
+  "partBytes": 16777216,
+  "resources": [
+    {
+      "path": "transformers.mjs",
+      "url": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.2.0/dist/transformers.web.min.js",
+      "bytes": 431652,
+      "sha256": "0a96dcf4c48981b7d05f53827e6975ec239132606ad0d526bbc2db0fcdbc4ded",
+      "transform": "browser-imports"
+    },
+    {
+      "path": "ort.webgpu.mjs",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.26.0-dev.20260416-b7804b056c/dist/ort.webgpu.bundle.min.mjs",
+      "bytes": 112901,
+      "sha256": "2ec70f685749470635e64dd142c2510dc13b37bb593d9cd6ab4f8923e5204479"
+    },
+    {
+      "path": "ort-wasm-simd-threaded.asyncify.mjs",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.26.0-dev.20260416-b7804b056c/dist/ort-wasm-simd-threaded.asyncify.mjs",
+      "bytes": 47389,
+      "sha256": "5959c6733039619c9af710d8e1bae8d6e84402787990637be987c2b1bd6c5fa9"
+    },
+    {
+      "path": "ort-wasm-simd-threaded.asyncify.wasm",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.26.0-dev.20260416-b7804b056c/dist/ort-wasm-simd-threaded.asyncify.wasm",
+      "bytes": 23567050,
+      "sha256": "e0c0c6d3e73d43b8a249972f8358f845b08cc16fec3c80efafdf8bed40366786"
+    },
+    {
+      "path": "common/backend-impl.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/backend-impl.js",
+      "bytes": 5339,
+      "sha256": "97dd81b055a06f61120f09468fe59f046a9262b7b87bf5d05bceb085bf4f5558"
+    },
+    {
+      "path": "common/backend.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/backend.js",
+      "bytes": 184,
+      "sha256": "017ce2ec9dc2021ebc1ef2c4f04e1bc74276c65921b0297e7ed8cc16e640495b"
+    },
+    {
+      "path": "common/env-impl.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/env-impl.js",
+      "bytes": 848,
+      "sha256": "0da4c562a49fe147e19320a64cbb456184eb0e6242b1fe69c65c8368c55f3d97"
+    },
+    {
+      "path": "common/env.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/env.js",
+      "bytes": 262,
+      "sha256": "b2bbd3d3b00a95765713c57cd0f5ef73718ae5b8322e07cb47a43e2accb21f15"
+    },
+    {
+      "path": "common/index.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/index.js",
+      "bytes": 1036,
+      "sha256": "ad23f6d6ce2c99c449031f24a5181f259516c64a9a67428c98a8539b857729bd"
+    },
+    {
+      "path": "common/inference-session-impl.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/inference-session-impl.js",
+      "bytes": 8703,
+      "sha256": "0446814a392c147b5c38ba242d9911ee54002b5d01a8e19fb4895fb8f8a0cdd3"
+    },
+    {
+      "path": "common/inference-session.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/inference-session.js",
+      "bytes": 348,
+      "sha256": "3ad4271a88edb3d242dc1e0e7bbf66510f9a56eff874c433b3b37f900ac007b1"
+    },
+    {
+      "path": "common/onnx-model.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/onnx-model.js",
+      "bytes": 145,
+      "sha256": "9e9dc8678be0ea04575a542894508db355a4f9f2155ac7f4c17a697c5f843382"
+    },
+    {
+      "path": "common/onnx-value.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/onnx-value.js",
+      "bytes": 145,
+      "sha256": "33dc232498753fc9026dfa44c99440cb1a6d29f3e53e1ad2fb8b696705158f06"
+    },
+    {
+      "path": "common/tensor-conversion-impl.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/tensor-conversion-impl.js",
+      "bytes": 7852,
+      "sha256": "df6fa3cd1813c2d3e588cc07973cfe5ea2ab8647c957168200caa58e51440161"
+    },
+    {
+      "path": "common/tensor-conversion.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/tensor-conversion.js",
+      "bytes": 152,
+      "sha256": "8c43ec1d061ab71032a1b28f45d85ef95f8d7bd2d4cd71d059e96d83e3a8f422"
+    },
+    {
+      "path": "common/tensor-factory-impl.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/tensor-factory-impl.js",
+      "bytes": 11002,
+      "sha256": "cf5606fe23461e01bff59c2d72ac47d74e652548718f1e5fab07a22b441379b4"
+    },
+    {
+      "path": "common/tensor-factory.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/tensor-factory.js",
+      "bytes": 149,
+      "sha256": "68b9f4f4573f25012ce8a4f73c9a2cee3a28db91de8bbb0a20ddb08bcba33c4b"
+    },
+    {
+      "path": "common/tensor-impl-type-mapping.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/tensor-impl-type-mapping.js",
+      "bytes": 2706,
+      "sha256": "20bd5ddb858954cf071bace6c7a6628c8e311433798ec172f4c778bebd81d407"
+    },
+    {
+      "path": "common/tensor-impl.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/tensor-impl.js",
+      "bytes": 16091,
+      "sha256": "6a749be63055f9d21069566b1515412484a3a03448ca20427c8f8d29328a2843"
+    },
+    {
+      "path": "common/tensor-utils-impl.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/tensor-utils-impl.js",
+      "bytes": 1920,
+      "sha256": "87d3e07c153616138c2f57846545eea9c47957c714d50c0264696bdc293e6732"
+    },
+    {
+      "path": "common/tensor-utils.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/tensor-utils.js",
+      "bytes": 147,
+      "sha256": "7acfdb2f8403ae84b7ae62d55d6eeb01519108be8874337b317b911ed60190cd"
+    },
+    {
+      "path": "common/tensor.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/tensor.js",
+      "bytes": 286,
+      "sha256": "721d24a538de5333057bfc423bc00c3453a1c483f4495c857d0a6f9b8f2d330e"
+    },
+    {
+      "path": "common/trace.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/trace.js",
+      "bytes": 1891,
+      "sha256": "9b87e6309a1c502b03558aa94b0a65c8ea1e8eb59cb46090f54f6eacd191b841"
+    },
+    {
+      "path": "common/type-helper.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/type-helper.js",
+      "bytes": 146,
+      "sha256": "3e2588c6a5ee7b9755e199eef10c6aa2e777d0366ea47d27953657a5638deeae"
+    },
+    {
+      "path": "common/version.js",
+      "url": "https://cdn.jsdelivr.net/npm/onnxruntime-common@1.24.3/dist/esm/version.js",
+      "bytes": 263,
+      "sha256": "d672b2eff8bc628553c506f4d9997a802fcf579d8135f32319f91551608ff697"
+    },
+    {
+      "path": "models/whisper-tiny/config.json",
+      "url": "https://huggingface.co/onnx-community/whisper-tiny/resolve/ff4177021cc41f7db950912b73ea4fdf7d01d8e7/config.json",
+      "bytes": 2243,
+      "sha256": "46aeea0a406afbeb563fc8e59ca10609203df4299af6a83f73752fef369efd2d"
+    },
+    {
+      "path": "models/whisper-tiny/generation_config.json",
+      "url": "https://huggingface.co/onnx-community/whisper-tiny/resolve/ff4177021cc41f7db950912b73ea4fdf7d01d8e7/generation_config.json",
+      "bytes": 3772,
+      "sha256": "f5c67e5a4f7102f8cb4d058bc95da276bbc19eeec997267c3bb0f25ef68facd1"
+    },
+    {
+      "path": "models/whisper-tiny/preprocessor_config.json",
+      "url": "https://huggingface.co/onnx-community/whisper-tiny/resolve/ff4177021cc41f7db950912b73ea4fdf7d01d8e7/preprocessor_config.json",
+      "bytes": 339,
+      "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+    },
+    {
+      "path": "models/whisper-tiny/tokenizer.json",
+      "url": "https://huggingface.co/onnx-community/whisper-tiny/resolve/ff4177021cc41f7db950912b73ea4fdf7d01d8e7/tokenizer.json",
+      "bytes": 2480466,
+      "sha256": "27fc476bfe7f17299480be2273fc0608e4d5a99aba2ab5dec5374b4482d1a566"
+    },
+    {
+      "path": "models/whisper-tiny/tokenizer_config.json",
+      "url": "https://huggingface.co/onnx-community/whisper-tiny/resolve/ff4177021cc41f7db950912b73ea4fdf7d01d8e7/tokenizer_config.json",
+      "bytes": 282683,
+      "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+    },
+    {
+      "path": "models/whisper-tiny/onnx/encoder_model_quantized.onnx",
+      "url": "https://huggingface.co/onnx-community/whisper-tiny/resolve/ff4177021cc41f7db950912b73ea4fdf7d01d8e7/onnx/encoder_model_quantized.onnx",
+      "bytes": 10124990,
+      "sha256": "2af4a414ca47aa30f61246017e5fe82b0a8d229281d1255ba666a2a7f6b84d19"
+    },
+    {
+      "path": "models/whisper-tiny/onnx/decoder_model_merged_quantized.onnx",
+      "url": "https://huggingface.co/onnx-community/whisper-tiny/resolve/ff4177021cc41f7db950912b73ea4fdf7d01d8e7/onnx/decoder_model_merged_quantized.onnx",
+      "bytes": 30719241,
+      "sha256": "25e807a962b6349356d0ea5d0dfe530b7e5bf0e2a484aeca0359d03143faddd3",
+      "transform": "model-parts"
+    },
+    {
+      "path": "models/vad/silero_vad.onnx",
+      "url": "https://raw.githubusercontent.com/snakers4/silero-vad/867c2aa692646a1f1de3e94a15c9dd9f614c0acb/src/silero_vad/data/silero_vad.onnx",
+      "bytes": 2327524,
+      "sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3"
+    },
+    {
+      "path": "LICENSE-transformers.txt",
+      "url": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.2.0/LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "LICENSE-onnxruntime.txt",
+      "url": "https://raw.githubusercontent.com/microsoft/onnxruntime/b7804b056c30aa35c1748f8e4e239d0e2ff25d6d/LICENSE",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    {
+      "path": "LICENSE-silero.txt",
+      "url": "https://raw.githubusercontent.com/snakers4/silero-vad/867c2aa692646a1f1de3e94a15c9dd9f614c0acb/LICENSE",
+      "bytes": 1075,
+      "sha256": "2e63e9a38b6e8fc0c7bc37ce174caca1862870856c6daf5697cfb785e925520b"
+    }
+  ]
+}

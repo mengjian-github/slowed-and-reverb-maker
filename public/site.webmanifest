@@ -1,0 +1,16 @@
+{
+  "name": "Slowed and Reverb Maker",
+  "short_name": "Slowed and Reverb Maker",
+  "description": "Free online slowed and reverb maker. Upload an audio file, adjust speed, pitch and reverb live in your browser, and export MP3 or WAV. No signup, no watermark, files never leave your device.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#3d0012",
+  "theme_color": "#3d0012",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}
