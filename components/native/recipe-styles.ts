@@ -366,6 +366,8 @@ details.mobile-nav { margin-inline-start: auto; position: relative; }
 }
 /* dropzone: Lucian #032 port */
 .dropzone {
+  display: block;
+  cursor: pointer;
   position: relative;
   border-radius: var(--radius);
   padding: clamp(1.4rem, 4vw, 2.2rem) 1rem;

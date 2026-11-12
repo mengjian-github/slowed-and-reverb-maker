@@ -510,8 +510,7 @@ export default function AudioStudio({ defaultPreset = "classic", exportTag = "sl
       {/* audio-loader */}
       <section className="panel" data-capability="audio-loader" data-operation="tool-spec" data-state={loaderState} aria-label="Load a track">
         <h3>Load a track</h3>
-        <div
-          className={`dropzone${dragging ? " is-over" : ""}`}
+        <label htmlFor="sr-audio-file" className={`dropzone${dragging ? " is-over" : ""}`}
           onDragEnter={(e) => {
             e.preventDefault();
             setDragging(true);
@@ -543,19 +542,18 @@ export default function AudioStudio({ defaultPreset = "classic", exportTag = "sl
             </button>
           </div>
           <input
+            id="sr-audio-file"
             ref={fileInputRef}
             type="file"
             accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac"
             data-tool-input="audio-file"
             className="sr-file"
-            tabIndex={-1}
-            aria-hidden="true"
             onChange={(e) => {
               const file = e.target.files?.[0];
               if (file) void loadFile(file);
             }}
           />
-        </div>
+        </label>
         <p className="privacy-note">Your file is decoded by your own browser on this device — nothing is uploaded.</p>
         <div data-tool-output className="tool-output loader-output">
           {loaderState === "error" || loaderMsg ? (
@@ -688,6 +686,7 @@ export default function AudioStudio({ defaultPreset = "classic", exportTag = "sl
             </div>
           </dl>
           <p className="hint">Click the waveform once to set the trim start, again for the end.</p>
+          {consoleError ? <p className="msg err">{consoleError}</p> : null}
         </div>
       </section>
 
@@ -714,8 +713,8 @@ export default function AudioStudio({ defaultPreset = "classic", exportTag = "sl
             <span className="stage">{exportStage}</span>
           </div>
         ) : null}
-        {exportMsg ? <p className="msg err">{exportMsg}</p> : null}
         <div data-tool-output className="tool-output export-output">
+          {exportMsg ? <p className="msg err">{exportMsg}</p> : null}
           {exportResult ? (
             <div className="export-done">
               <p className="export-headline">
