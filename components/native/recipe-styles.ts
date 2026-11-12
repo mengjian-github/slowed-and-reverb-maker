@@ -255,10 +255,20 @@ details.mobile-nav { margin-inline-start: auto; position: relative; }
 /* Phone first screen: headline, then the tool. Picture and mast move out of the way. */
 @media (max-width: 719.5px) {
   .hero-type h1 { font-size: clamp(2.1rem, 9.5vw, 2.8rem); }
-  .band-wrap { margin: 0.6rem 0 1rem; }
-  .band { height: 44px; }
+  .band-wrap { margin: 0.4rem 0 0.7rem; }
+  .band { height: 38px; }
+  .shell { padding-top: 1rem; }
   .hero-grid { gap: 1.1rem; }
   .hero-figure { display: none; }
+  .atmosphere-layer { display: none; }
+  /* Headline, then the tool; the hero's supporting copy follows the console. */
+  .hero-copy { order: 2; }
+  .voice-sub { font-size: 0.92rem; }
+  .lede { font-size: 0.9rem; }
+  .mobile-nav:not([open]) .mobile-nav-links { display: none; }
+  .topbar { padding-top: 0.45rem; padding-bottom: 0.45rem; }
+  .mast { padding: 0.45rem 0.7rem; }
+  .mnum { font-size: 1.15rem; }
   .lede { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
   .voice { font-size: 1rem; }
   .ctas { margin-top: 0; }
@@ -548,7 +558,7 @@ canvas.wave { width: 100%; height: 96px; display: block; border-radius: 8px; bac
   .cards[data-motion="stagger-reveal"] .card:nth-child(3) { animation-delay: 140ms; }
   .cards[data-motion="stagger-reveal"] .card:nth-child(4) { animation-delay: 210ms; }
 }
-@keyframes riseIn { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
+@keyframes riseIn { from { translate: 0 14px; } to { translate: 0 0; } }
 @media (prefers-reduced-motion: reduce) {
   .band .bar, .dropzone::before { animation: none !important; }
   * { transition-duration: 0.01ms !important; }
