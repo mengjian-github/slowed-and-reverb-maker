@@ -66,7 +66,7 @@
       "items": [
         {
           "title": "WAV when quality matters",
-          "body": "The WAV export is uncompressed 16-bit PCM at your browser's audio rate, 44.1 kHz on most devices, so it opens cleanly in an editor or a video timeline and loses nothing in a second pass."
+          "body": "The WAV export is uncompressed 16-bit PCM at the source file's own sample rate, so it opens cleanly in an editor or a video timeline and loses nothing in a second pass."
         },
         {
           "title": "MP3 when it has to travel",

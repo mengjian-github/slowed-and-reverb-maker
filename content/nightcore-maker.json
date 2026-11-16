@@ -50,7 +50,7 @@
         },
         {
           "title": "Apply the preset or adjust by hand",
-          "body": "Nightcore is already selected on this page. Move speed alone to change tempo with the pitch held, or move pitch alone to lift the vocal without speeding the beat up, then add a little reverb or bass if the result feels thin. Trim start and trim end keep the chorus you actually want."
+          "body": "Nightcore is already selected on this page. Moving speed changes tempo and pitch together, tape-style, so a small speed lift already makes the track higher; the pitch field then adds whole semitones on top of that lift. Add a little reverb or bass if the result feels thin, and use trim start and trim end to keep the chorus you actually want."
         },
         {
           "title": "Export MP3 or WAV",
@@ -135,7 +135,7 @@
     },
     {
       "question": "Is nightcore the same as a sped up version?",
-      "answer": "Not quite. A plain sped-up version raises tempo while leaving pitch roughly where it was, so the vocal keeps its depth; nightcore lifts both. This tool's speed slider raises tempo and pitch together tape-style, so set speed to 1.15x and pull the pitch field down toward −2 st when you want a sped-up take with a milder lift."
+      "answer": "Not quite. A plain sped-up version raises tempo while leaving pitch roughly where it was, so the vocal keeps its depth; nightcore lifts both. This engine moves the two together tape-style, so a milder lift is a smaller speed change — around 1.05x to 1.10x with pitch left at 0 — and pulling the pitch field down toward −2 st takes part of that lift back out."
     },
     {
       "question": "How much should I speed a song up for nightcore?",
