@@ -1,0 +1,175 @@
+{
+  "title": "Nightcore Maker – Speed Up Any Song Online Free",
+  "description": "Free nightcore maker: turn any song into a nightcore or sped-up version in your browser with speed and pitch presets, then export MP3 or WAV. No signup, files stay on you",
+  "h1": "Nightcore Maker",
+  "heroText": "Turn any song into a nightcore version in your browser: faster, higher-pitched, brighter. Load a file from your device, apply the Nightcore preset or set speed and pitch yourself, hear the change live, and export the result as MP3 or WAV. Free, no signup, no watermark.",
+  "ctas": [
+    {
+      "label": "Speed up my song",
+      "href": "/nightcore-maker/",
+      "primary": true
+    },
+    {
+      "label": "Try the sample audio",
+      "href": "/nightcore-maker/",
+      "primary": false
+    }
+  ],
+  "sections": [
+    {
+      "id": "tool",
+      "title": "The nightcore tool is on this screen",
+      "body": "This page is a working nightcore maker, not a description of one: it opens with the Nightcore preset already applied. Load a file and the waveform appears in the second deck.",
+      "items": [
+        {
+          "title": "Nightcore preset",
+          "body": "One press sets 1.25x speed, +4 semitones of pitch and a light 12% reverb, which is the nightcore recipe most edits use: faster, higher and a little brighter without smearing the vocal."
+        },
+        {
+          "title": "Sped up version, your way",
+          "body": "Prefer a mild lift for a reel or the full 1.5x for an energetic edit? Move speed across 0.5x to 1.5x and pitch across 12 semitones each way, independently. Play preview follows each change so you hear the result before rendering."
+        },
+        {
+          "title": "Daycore, the opposite direction",
+          "body": "The same console slows a track down and lowers its pitch: Daycore is 0.75x with -5 semitones, 40% reverb and +4 dB bass. Both styles come from one workflow, and the same export."
+        },
+        {
+          "title": "Trim before export",
+          "body": "The waveform shows the whole file with the trim marks on it. Set trim start and trim end in seconds, press Reset trim to start over, and the render contains exactly that section of the song."
+        }
+      ]
+    },
+    {
+      "id": "how-it-works",
+      "title": "How to make a nightcore track here",
+      "body": "Nightcore is tempo and pitch raised together, and this tool handles both live in the browser through the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/Audio_API). Nothing is uploaded to a server on the way.",
+      "steps": [
+        {
+          "title": "Load the song",
+          "body": "Drag in an MP3, WAV, M4A, OGG, FLAC or AAC file, or press Choose file. It decodes on your machine and draws its waveform; Try the sample loads a short built-in tone if you want to hear the preset first."
+        },
+        {
+          "title": "Apply the preset or adjust by hand",
+          "body": "Nightcore is already selected on this page. Move speed alone to change tempo with the pitch held, or move pitch alone to lift the vocal without speeding the beat up, then add a little reverb or bass if the result feels thin. Trim start and trim end keep the chorus you actually want."
+        },
+        {
+          "title": "Export MP3 or WAV",
+          "body": "Render runs the same graph offline and reports the source length and the finished length before the download. Choose WAV for a 16-bit file or MP3 at 192 kbps, then press Download; it lands in your device's downloads folder, never on a server."
+        }
+      ]
+    },
+    {
+      "id": "styles",
+      "title": "Nightcore, daycore and slowed and reverb",
+      "body": "All three styles come from the same two numbers, speed and pitch. What changes is the direction and how far you push them. Every row in this table is one press of a preset on this page.",
+      "items": [
+        {
+          "title": "Which one should you make?",
+          "body": "Nightcore suits upbeat edits and dance clips; slowed and reverb suits chill and late-night moods. [The slowed vs nightcore comparison](/slowed-vs-nightcore/) works through when each one lands."
+        }
+      ],
+      "table": {
+        "caption": "Style recipes you can apply from this page",
+        "columns": [
+          "Style",
+          "Typical speed",
+          "Typical pitch"
+        ],
+        "rows": [
+          {
+            "cells": [
+              "Nightcore (sped up)",
+              "1.2x to 1.3x",
+              "Raised with the tempo"
+            ],
+            "status": "working",
+            "recordKey": "style-nightcore",
+            "evidenceRefs": [
+              "ev_001"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "Slowed and reverb",
+              "0.8x to 0.9x",
+              "Unchanged, with reverb and bass boost"
+            ],
+            "status": "working",
+            "recordKey": "style-slowed",
+            "evidenceRefs": [
+              "ev_002"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          },
+          {
+            "cells": [
+              "Daycore",
+              "0.75x to 0.85x",
+              "Lowered with the tempo"
+            ],
+            "status": "working",
+            "recordKey": "style-daycore",
+            "evidenceRefs": [
+              "ev_003"
+            ],
+            "observedAt": "2026-11-12",
+            "sourceUrl": "https://slowedgenerator.com/"
+          }
+        ],
+        "lastCheckedAt": "2026-11-12"
+      }
+    },
+    {
+      "id": "faq",
+      "title": "Nightcore FAQ",
+      "body": "Answers to the questions visitors ask before their first sped-up export."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What does a nightcore maker do to a song?",
+      "answer": "It raises playback speed and pitch together, which is what defines the style: the track gets faster, higher and brighter while staying recognizable. This page opens with that already set (1.25x, +4 semitones, 12% reverb), previews it live, then renders the result to WAV or MP3."
+    },
+    {
+      "question": "Is nightcore the same as a sped up version?",
+      "answer": "Not quite. A plain sped-up version raises tempo while leaving pitch where it was, so the vocal keeps its depth. Nightcore lifts both. This tool does either: keep the Nightcore preset for the classic sound, or move the pitch field independently to speed a track up without the chipmunk lift."
+    },
+    {
+      "question": "How much should I speed a song up for nightcore?",
+      "answer": "Most edits sit between 1.2x and 1.3x, and the preset lands at 1.25x. Past about 1.4x vocals start to sound thin and lyrics get hard to follow. Preview each step with Play preview and trust your ears over any fixed number."
+    },
+    {
+      "question": "Does the nightcore maker cost anything or need an account?",
+      "answer": "No. It is free with no signup, no quota and no watermark. The audio decodes in your browser, so nothing installs and no file leaves your device; you can render as many WAV or MP3 files as you like."
+    },
+    {
+      "question": "Can I make slowed and reverb or daycore here too?",
+      "answer": "Yes. Press Daycore for 0.75x speed, -5 semitones, 40% reverb and +4 dB bass, or press Classic Slowed + Reverb for 0.80x with 55% reverb. The [slowed and reverb guide](/how-to-make-slowed-and-reverb/) walks through each setting in order."
+    },
+    {
+      "question": "Can I put nightcore edits on YouTube or TikTok?",
+      "answer": "The exported file plays anywhere, but publishing a derivative of a commercial recording is a rights decision only you can make. This tool processes your file locally and grants no copyright clearance, so check that you hold the rights before you post."
+    }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Nightcore Maker",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any (web browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Free browser tool that turns local audio files into nightcore or sped-up versions with live speed and pitch presets, waveform trimming, and WAV or MP3 export."
+      }
+    ],
+    "dateModified": "2026-11-12"
+  }
+}

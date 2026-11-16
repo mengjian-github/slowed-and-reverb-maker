@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-12T16:25:20.425Z",
+  "assets": {
+    "/images/about-flow.png": {
+      "path": "/images/about-flow.png",
+      "width": 1448,
+      "height": 1086,
+      "orientation": "landscape",
+      "dominantColors": [],
+      "contentDescription": "A closed laptop on a wooden desk with headphones resting on its lid, beside a bright window; part of a person in a dark sweater is visible at the right edge.",
+      "subjectTags": [
+        "laptop",
+        "headphones",
+        "desk",
+        "window",
+        "workspace"
+      ],
+      "composition": "full-scene",
+      "textDensity": "none",
+      "qualityScore": 78,
+      "suitableRoles": [
+        "section-media",
+        "atmospheric-background",
+        "gallery-media"
+      ],
+      "usage": "page",
+      "annotator": "vlm",
+      "annotatedAt": "2026-11-12T16:25:20.425Z",
+      "sourceEtag": "dc1c28f59d915021d5c600b1a6c37b68"
+    },
+    "/images/home-faq.png": {
+      "path": "/images/home-faq.png",
+      "width": 1448,
+      "height": 1086,
+      "orientation": "landscape",
+      "dominantColors": [],
+      "contentDescription": "A young woman with eyes closed wears white earbuds while resting against a night bus window, with blurred warm city lights streaking past outside.",
+      "subjectTags": [
+        "commuter",
+        "earbuds",
+        "bus",
+        "night",
+        "city-lights",
+        "listening"
+      ],
+      "composition": "full-scene",
+      "textDensity": "none",
+      "qualityScore": 88,
+      "suitableRoles": [
+        "hero-subject",
+        "section-media",
+        "atmospheric-background"
+      ],
+      "usage": "page",
+      "annotator": "vlm",
+      "annotatedAt": "2026-11-12T14:37:38.996Z",
+      "sourceEtag": "12647699b821480555003e5c50c1508d"
+    },
+    "/images/home-formats.png": {
+      "path": "/images/home-formats.png",
+      "width": 1448,
+      "height": 1086,
+      "orientation": "landscape",
+      "dominantColors": [],
+      "contentDescription": "A hand pulls a pink cassette halfway out of its case among a fan of colorful cassette tapes on dark wood, lit by warm lamplight.",
+      "subjectTags": [
+        "cassette-tapes",
+        "retro",
+        "wood",
+        "lamplight",
+        "hand",
+        "music"
+      ],
+      "composition": "full-scene",
+      "textDensity": "none",
+      "qualityScore": 80,
+      "suitableRoles": [
+        "section-media",
+        "atmospheric-background",
+        "gallery-media"
+      ],
+      "usage": "page",
+      "annotator": "vlm",
+      "annotatedAt": "2026-11-12T14:37:38.996Z",
+      "sourceEtag": "7a0d3fa9689375ce69421d7f7267dcc2"
+    },
+    "/images/slots/home-tool.png": {
+      "path": "/images/slots/home-tool.png",
+      "width": 2496,
+      "height": 1664,
+      "orientation": "landscape",
+      "dominantColors": [],
+      "contentDescription": "A young man with headphones around his neck reaches toward a laptop in a dimly lit bedroom studio at night, with a lamp and bed visible in the warm background.",
+      "subjectTags": [
+        "producer",
+        "laptop",
+        "headphones",
+        "night",
+        "home-studio",
+        "music"
+      ],
+      "composition": "full-scene",
+      "textDensity": "none",
+      "qualityScore": 85,
+      "suitableRoles": [
+        "hero-subject",
+        "section-media",
+        "atmospheric-background"
+      ],
+      "usage": "page",
+      "annotator": "vlm",
+      "annotatedAt": "2026-11-12T14:37:38.996Z",
+      "sourceEtag": "b14c52e592be9017bbf5cbf1e82bf3da"
+    },
+    "/images/split-styles.png": {
+      "path": "/images/split-styles.png",
+      "width": 1448,
+      "height": 1086,
+      "orientation": "landscape",
+      "dominantColors": [],
+      "contentDescription": "A woman with headphones reclines with eyes closed in warm lamplight in the foreground while another woman with headphones dances with raised arms in the background.",
+      "subjectTags": [
+        "music",
+        "listening",
+        "dancing",
+        "headphones",
+        "people",
+        "indoor"
+      ],
+      "composition": "full-scene",
+      "textDensity": "none",
+      "qualityScore": 80,
+      "suitableRoles": [
+        "hero-subject",
+        "section-media",
+        "gallery-media"
+      ],
+      "usage": "page",
+      "annotator": "vlm",
+      "annotatedAt": "2026-11-12T16:25:20.425Z",
+      "sourceEtag": "c0e2741b24db329f8171044bd48b44a7"
+    }
+  },
+  "vision": {
+    "lastVlmSuccessAt": "2026-11-12T16:25:20.425Z"
+  }
+}

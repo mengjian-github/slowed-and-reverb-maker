@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Mood">
+  <rect width="256" height="256" fill="#3d0012"/>
+  <rect width="256" height="256" fill="hsl(321 62% 42%)" opacity="0.88"/>
+  <circle cx="128" cy="128" r="78" fill="none" stroke="#ff99d3" stroke-width="8" opacity="0.9"/>
+  <text x="128" y="148" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="72" font-weight="800" fill="#ffe6f4">MO</text>
+</svg>

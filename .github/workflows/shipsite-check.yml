@@ -66,12 +66,12 @@ jobs:
           path: |
             ~/.shipsite/qa
             ~/.cache/ms-playwright
-          key: shipsite-qa-${{ runner.os }}-${{ runner.arch }}-1.4.20
+          key: shipsite-qa-${{ runner.os }}-${{ runner.arch }}-1.7.19
       - name: Run the ShipSite build check
         env:
           SHIPSITE_CHECK_ID: ${{ inputs.check_id }}
           SHIPSITE_VERSION_ID: ${{ inputs.version_id }}
-        run: npx -y --package https://shipsite.ai/link/shipsite-link-1.4.20.tgz shipsite-link --ci-check
+        run: npx -y --package https://shipsite.ai/link/shipsite-link-1.7.19.tgz shipsite-link --ci-check
       - name: See what is worth keeping
         id: keep
         if: ${{ always() && runner.environment == 'github-hosted' }}
@@ -136,13 +136,13 @@ jobs:
           path: |
             ~/.shipsite/qa
             ~/.cache/ms-playwright
-          key: shipsite-qa-${{ runner.os }}-${{ runner.arch }}-1.4.20
+          key: shipsite-qa-${{ runner.os }}-${{ runner.arch }}-1.7.19
       - name: Run the ShipSite engineer session
         env:
           SHIPSITE_REPO_DIR: ${{ github.workspace }}/repo
           SHIPSITE_CHECK_ID: ${{ inputs.check_id }}
           SHIPSITE_VERSION_ID: ${{ inputs.version_id }}
-        run: npx -y --package https://shipsite.ai/link/shipsite-link-1.4.20.tgz shipsite-link --agent-session
+        run: npx -y --package https://shipsite.ai/link/shipsite-link-1.7.19.tgz shipsite-link --agent-session
       - name: See what is worth keeping
         id: keep
         if: ${{ always() && runner.environment == 'github-hosted' }}

@@ -1,0 +1,72 @@
+name: ShipSite Build
+run-name: ShipSite Build ${{ inputs.commit_sha || github.sha }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: ShipSite project id
+        required: true
+        type: string
+      source_sha256:
+        description: Immutable ShipSite source receipt
+        required: true
+        type: string
+      commit_sha:
+        description: The commit ShipSite published for this build
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+  actions: read
+  id-token: write
+
+env:
+  CI: "true"
+
+jobs:
+  build:
+    name: Build and verify
+    runs-on: ${{ vars.SHIPSITE_RUNNER || 'ubuntu-latest' }}
+    timeout-minutes: 20
+    steps:
+      # The published commit, not whatever the branch pointed at when the
+      # dispatch was read: a dispatch sent right after the push can still
+      # resolve the branch to the commit before it.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.commit_sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Bind verified source version to the compiler
+        env:
+          SHIPSITE_PROJECT_ID: ${{ inputs.project_id }}
+          SHIPSITE_SOURCE_SHA256: ${{ inputs.source_sha256 }}
+        run: node .shipsite/build-env.mjs
+      - run: npm ci
+      - run: npm run build
+      - run: npm test --if-present
+      - name: Return verified build to ShipSite
+        if: success()
+        shell: bash
+        env:
+          SHIPSITE_PROJECT_ID: ${{ inputs.project_id }}
+          SHIPSITE_SOURCE_SHA256: ${{ inputs.source_sha256 }}
+        run: node .shipsite/return-build.mjs
+      # A successful OIDC return already stores the hash-verified build in
+      # ShipSite R2. Do not create a second delivery dependency on GitHub
+      # artifact storage; retain only short-lived failed-build diagnostics.
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: shipsite-build-${{ github.sha }}
+          retention-days: 1
+          if-no-files-found: ignore
+          path: |
+            dist
+            out
+            .open-next
