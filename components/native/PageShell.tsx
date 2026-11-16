@@ -11,7 +11,6 @@ export function PageShell({ config, children }: { config: SiteConfig; children: 
   return (
     <>
       <a className="skip-link" href="#content">Skip to content</a>
-      <div className="scroll-progress" aria-hidden="true" />
       <SiteHeader config={config} />
       <main id="content">{children}</main>
       <SiteFooter config={config} />
@@ -130,7 +129,7 @@ export function SectionBlock({ section }: { section: PageSection }) {
       ) : null}
       {section.image ? (
         <figure className="band-figure">
-          <img src={section.image.src} alt={section.image.alt} decoding="async" />
+          <img src={section.image.src} alt={section.image.alt} />
           {section.image.caption ? <figcaption>{section.image.caption}</figcaption> : null}
           {section.image.credit ? (
             <p className="figure-credit">

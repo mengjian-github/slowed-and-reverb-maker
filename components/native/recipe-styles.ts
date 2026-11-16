@@ -44,7 +44,7 @@ body[data-atmosphere="true"]::before {
 }
 /* Two registers: the display line is the only all-caps type on the page; section
    heads drop to sentence case so the eye gets a second step between 5rem and 12px. */
-h1 { text-transform: uppercase; line-height: 0.9; letter-spacing: -0.02em; font-weight: 700; }
+h1 { text-transform: uppercase; line-height: 0.92; letter-spacing: -0.02em; font-weight: 700; text-wrap: balance; }
 h2 { text-transform: none; letter-spacing: -0.012em; font-weight: 700; }
 h3 { text-transform: none; letter-spacing: -0.005em; font-weight: 700; }
 p { line-height: 1.6; }
@@ -114,7 +114,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .hero-band { padding-block: clamp(1.2rem, 2.6vw, 2.2rem) 0; display: grid; }
 .eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0; color: #ff99d3; font-weight: 700; font-size: 0.875rem; letter-spacing: 0.02em; }
 .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff99d3; box-shadow: 0 0 0 4px color-mix(in srgb, #ff99d3 18%, transparent); }
-.hero-band h1 { margin: 0.35rem 0 0; font-size: clamp(2.4rem, 0.9rem + 6vw, 6rem); max-width: 18ch; }
+.hero-band h1 { margin: 0.35rem 0 0; font-size: clamp(2.4rem, 1.1rem + 5.4vw, 5.5rem); max-width: 18ch; }
 .lede { margin: 0.9rem 0 0; max-width: 64ch; font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem); line-height: 1.62; color: #edc4d8; }
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem 1.2rem; margin-top: 1.3rem; }
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0.55rem 1.1rem; border: 1.5px solid #ff99d3; background: transparent; color: #ffe6f4; font: inherit; font-weight: 700; letter-spacing: 0; text-transform: none; text-decoration: none; cursor: pointer; border-radius: 2px; transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease; }
@@ -176,8 +176,11 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .stage-still { margin: 0; }
 .still-frame { position: relative; display: block; border-radius: 8px; overflow: hidden; background: #4d0519; }
 .still-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255, 153, 211, 0.10) 0%, rgba(55, 0, 16, 0) 45%, rgba(55, 0, 16, 0.45) 100%); pointer-events: none; }
-.stage-still img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 54% 40%; filter: saturate(1.02) contrast(1.04) brightness(1.08); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.stage-still img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 58% 34%; filter: saturate(1.06) contrast(1.08) brightness(1.14); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
 .stage-still:hover img { transform: scale(1.03); }
+/* the preset caption rides the photograph's lower edge, so the picture carries
+   the panel's reading instead of a chip floating under it */
+.still-frame .still-chip { position: absolute; left: 0.6rem; bottom: 0.6rem; z-index: 2; background: color-mix(in srgb, #3d0012 86%, transparent); backdrop-filter: blur(4px); }
 .stage-still figcaption { margin-top: 0.55rem; color: #edc4d8; font-size: 0.875rem; display: grid; gap: 0.4rem; }
 .still-chip { justify-self: start; background: #4d0519; color: #ff99d3; border: 1px solid color-mix(in srgb, #ff99d3 50%, transparent); padding: 0.3rem 0.55rem; font-weight: 700; font-size: 0.875rem; font-variant-numeric: tabular-nums; }
 .stage-metrics { display: flex; flex-wrap: wrap; gap: 0.9rem 1.6rem; margin: 0; padding: 0.85rem 0 0; border-top: 1px solid color-mix(in srgb, #ffe6f4 16%, transparent); }
@@ -263,14 +266,23 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .slider-top { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; }
 .slider-top span:first-child { font-size: 0.92rem; letter-spacing: 0; text-transform: none; color: #edc4d8; font-weight: 600; transition: color 0.15s ease; }
 .slider:hover .slider-top span:first-child, .slider:focus-within .slider-top span:first-child { color: #ff99d3; }
-input[type="range"]:hover::-webkit-slider-thumb { box-shadow: 0 0 0 4px color-mix(in srgb, #ffe6f4 22%, transparent); }
-input[type="range"]::-webkit-slider-thumb { transition: box-shadow 0.15s ease; }
+input[type="range"]:hover::-webkit-slider-thumb { box-shadow: 0 0 0 5px color-mix(in srgb, #ffe6f4 24%, transparent); }
+input[type="range"]:active::-webkit-slider-thumb { background: #ff99d3; border-color: #ffe6f4; transform: scale(1.1); }
+input[type="range"]::-webkit-slider-thumb { transition: box-shadow 0.15s ease, transform 0.12s ease, background-color 0.12s ease; }
+input[type="range"]:hover::-moz-range-thumb { box-shadow: 0 0 0 5px color-mix(in srgb, #ffe6f4 24%, transparent); }
+input[type="range"]:active::-moz-range-thumb { background: #ff99d3; transform: scale(1.1); }
+input[type="range"]::-moz-range-thumb { transition: box-shadow 0.15s ease, transform 0.12s ease, background-color 0.12s ease; }
 .slider input[type="range"] { grid-column: 1; width: 100%; min-height: 40px; margin: 0; }
 .slider-field { position: relative; grid-column: 2; display: flex; align-items: center; }
 .slider .slider-number { width: 100%; min-width: 0; min-height: 40px; text-align: left; background: #370010; color: #ffe6f4; font-weight: 700; border: 1px solid color-mix(in srgb, #ff99d3 34%, transparent); border-radius: 2px; padding: 0 1.75rem 0 0.5rem; font: inherit; font-weight: 700; font-variant-numeric: tabular-nums; transition: border-color 0.14s ease, box-shadow 0.14s ease; }
 .slider .slider-number:hover { border-color: #ff99d3; }
 .slider .slider-number:focus-visible { border-color: #ff99d3; outline: 2px solid #ff99d3; outline-offset: 1px; }
 .slider-unit { position: absolute; right: 0.5rem; color: #edc4d8; font-size: 0.875rem; pointer-events: none; }
+/* the slider is the control; native spinners sat on top of the unit and clipped
+   the readout ("1.2" of 1.25) in a 5.2rem field */
+.slider .slider-number::-webkit-outer-spin-button,
+.slider .slider-number::-webkit-inner-spin-button { -webkit-appearance: none; appearance: none; margin: 0; }
+.slider .slider-number { -moz-appearance: textfield; appearance: textfield; }
 .shape-meter { display: block; width: 100%; height: 64px; max-width: none; margin-top: 0.5rem; color: #ff99d3; }
 .slider.bad .slider-number, .field-error { border-color: #ffb4b4; }
 .field-error { color: #ffb4b4; font-size: 0.9rem; font-weight: 700; }
@@ -362,7 +374,7 @@ th { font-size: 0.875rem; letter-spacing: 0.02em; text-transform: none; color: #
   body { font-size: 1rem; }
   main { padding: 0 1rem 2rem; }
   .hero-band { padding-block: 0.45rem 0; }
-  .hero-band h1 { font-size: clamp(1.7rem, 7.4vw, 2.2rem); }
+  .hero-band h1 { font-size: clamp(1.9rem, 8.6vw, 2.5rem); }
   .lede { font-size: 0.875rem; line-height: 1.42; margin-top: 0.45rem; }
   .cta-row { gap: 0.35rem 0.9rem; margin-top: 0.7rem; }
   .cta-row .btn { min-height: 42px; font-size: 0.875rem; padding: 0.4rem 0.8rem; }
