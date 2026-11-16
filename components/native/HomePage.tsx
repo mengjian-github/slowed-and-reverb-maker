@@ -30,7 +30,6 @@ export function HomePage({ content, config }: NativeRouteProps) {
   return (
     <PageShell config={config}>
       <section className="hero-band">
-        <p className="eyebrow"><span className="dot" aria-hidden="true" />In the browser, nothing uploaded</p>
         <h1>{content.h1}</h1>
         <p className="lede"><RichText value={content.heroText} /></p>
         <CtaRow content={content} onPrimary={openFile} onSecondary={playSample} />
@@ -43,10 +42,12 @@ export function HomePage({ content, config }: NativeRouteProps) {
         </div>
         <aside className="rail">
           <figure className="stage-still">
-            <img
-              src={content.hero?.src ?? "/images/slots/home-tool.png"}
-              alt={content.hero?.alt ?? "A producer working late at night in a dim bedroom studio, reaching toward a glowing laptop"}
-            />
+            <span className="still-frame">
+              <img
+                src={content.hero?.src ?? "/images/slots/home-tool.png"}
+                alt={content.hero?.alt ?? "A producer working late at night in a dim bedroom studio, reaching toward a glowing laptop"}
+              />
+            </span>
             <figcaption>
               <span className="still-chip">0.80× · reverb 55% · +4 dB</span>
               {content.hero?.caption ?? "Late-night sessions are where most slowed edits are born."}

@@ -21,7 +21,7 @@ export function ComparePage({ content, config }: NativeRouteProps) {
   return (
     <PageShell config={config}>
       <section className="hero-band">
-        <HeroCopy content={content} kicker="Two directions, one engine" />
+        <HeroCopy content={content} />
         <CtaRow content={content} />
       </section>
 

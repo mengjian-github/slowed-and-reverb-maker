@@ -22,7 +22,7 @@ export function GuidePage({ content, config }: NativeRouteProps) {
   return (
     <PageShell config={config}>
       <section className="hero-band hero-band-guide">
-        <HeroCopy content={content} kicker="The guide" />
+        <HeroCopy content={content} />
         <CtaRow content={content} />
       </section>
 

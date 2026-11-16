@@ -6,7 +6,7 @@ import { CtaRow, FaqList, HeroCopy, PageShell, Sections } from "./PageShell";
 
 type NativeRouteProps = { route: Route; content: PageContent; config: SiteConfig };
 
-function DocLayout({ content, config, kicker }: NativeRouteProps & { kicker: string }) {
+function DocLayout({ content, config }: NativeRouteProps) {
   const sections = content.sections ?? [];
   return (
     <PageShell config={config}>
@@ -23,7 +23,6 @@ function DocLayout({ content, config, kicker }: NativeRouteProps & { kicker: str
         </aside>
         <div className="doc-body">
           <header className="doc-head">
-            <p className="eyebrow"><span className="dot" aria-hidden="true" />{kicker}</p>
             <h1>{content.h1}</h1>
             <p className="lede">{content.heroText}</p>
           </header>
@@ -36,18 +35,18 @@ function DocLayout({ content, config, kicker }: NativeRouteProps & { kicker: str
 }
 
 export function PrivacyPage(props: NativeRouteProps) {
-  return <DocLayout {...props} kicker="Privacy" />;
+  return <DocLayout {...props} />;
 }
 
 export function TermsPage(props: NativeRouteProps) {
-  return <DocLayout {...props} kicker="Terms" />;
+  return <DocLayout {...props} />;
 }
 
 export function ContactPage({ content, config }: NativeRouteProps) {
   return (
     <PageShell config={config}>
       <section className="hero-band">
-        <HeroCopy content={content} kicker="Contact" />
+        <HeroCopy content={content} />
         {content.ctas?.length ? <CtaRow content={content} /> : null}
       </section>
       <Sections content={content} />

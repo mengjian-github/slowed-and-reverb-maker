@@ -68,7 +68,8 @@ function settingsFrom(preset: PresetId, speed: string, pitch: string, reverb: st
   };
 }
 
-export function Studio({ defaultPreset = "none", idPrefix }: StudioProps) {
+export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
+  const initial = defaultPreset === "none" ? null : PRESETS[defaultPreset];
   const reactId = useId();
   const fileRef = useRef<HTMLInputElement>(null);
   const contextRef = useRef<AudioContext | null>(null);
@@ -81,10 +82,10 @@ export function Studio({ defaultPreset = "none", idPrefix }: StudioProps) {
   const [decoding, setDecoding] = useState(false);
 
   const [preset, setPreset] = useState<PresetId>(defaultPreset);
-  const [speed, setSpeed] = useState(defaultPreset === "nightcore" ? "1.25" : "0.8");
-  const [pitch, setPitch] = useState(defaultPreset === "nightcore" ? "4" : "-3");
-  const [reverb, setReverb] = useState(defaultPreset === "nightcore" ? "12" : "60");
-  const [bass, setBass] = useState(defaultPreset === "nightcore" ? "0" : "4");
+  const [speed, setSpeed] = useState(initial ? String(initial.speed) : "1");
+  const [pitch, setPitch] = useState(initial ? String(initial.pitch) : "0");
+  const [reverb, setReverb] = useState(initial ? String(initial.reverbPct) : "0");
+  const [bass, setBass] = useState(initial ? String(initial.bassDb) : "0");
   const [trimStart, setTrimStart] = useState("0");
   const [trimEnd, setTrimEnd] = useState("0");
   const [shapeState, setShapeState] = useState<ToolState>("idle");
@@ -323,8 +324,8 @@ export function Studio({ defaultPreset = "none", idPrefix }: StudioProps) {
             void takeFile(event.dataTransfer.files?.[0]);
           }}
         >
-          <svg className="drop-dash" aria-hidden="true" viewBox="0 0 100 40" preserveAspectRatio="none">
-            <rect x="1" y="1" width="98" height="38" rx="3" pathLength="100" />
+          <svg className="drop-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 16V4" /><path d="m7 9 5-5 5 5" /><path d="M4 16v2.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V16" />
           </svg>
           <p className="drop-title">Drop a song here</p>
           <p className="drop-note">MP3, WAV, M4A, OGG or FLAC. It stays in this tab.</p>
@@ -636,27 +637,28 @@ function Waveform({ peaks, duration, trimStart, trimEnd, position, onTrim }: {
 /** The signature mark, live: pitch sets how dense the wave is, reverb how long
  *  its tail rings, bass how tall it stands, speed how fast it runs. */
 function ShapeMeter({ speed, pitch, reverb, bass }: { speed: number; pitch: number; reverb: number; bass: number }) {
-  const BARS = 44;
+  const BARS = 56;
   const cycles = 1.2 + ((pitch + 12) / 24) * 3 + (speed - 1) * 1.2;
-  const decay = 0.9 + reverb / 32;
-  const amp = 12 + Math.max(0, bass) * 1.1;
+  const decay = 0.85 + reverb / 48;
+  const amp = 14 + Math.max(0, bass) * 1.2;
+  const base = 32;
   return (
-    <svg className="shape-meter" viewBox="0 0 220 56" aria-hidden="true" focusable="false">
-      <line x1="4" y1="28" x2="216" y2="28" stroke="currentColor" strokeOpacity="0.28" strokeDasharray="2 4" />
+    <svg className="shape-meter" viewBox="0 0 280 64" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <line x1="2" y1={base} x2="278" y2={base} stroke="currentColor" strokeOpacity="0.3" strokeDasharray="2 4" />
       {Array.from({ length: BARS }, (_, i) => {
-        const env = Math.exp(-i / (BARS / decay / 1.6));
+        const env = Math.exp(-i / (BARS / decay / 1.9));
         const wave = Math.sin((i / BARS) * Math.PI * 2 * cycles);
-        const h = Math.max(2, Math.abs(wave) * env * amp);
+        const h = Math.min(base - 5, Math.max(3.6, Math.abs(wave) * env * amp));
         return (
           <rect
             key={i}
-            x={5 + i * 4.85}
-            y={28 - h / 2}
-            width={2.6}
+            x={3 + i * 4.9}
+            y={base - h / 2}
+            width={3.1}
             height={h}
-            rx={0.8}
+            rx={0.9}
             fill="currentColor"
-            opacity={0.45 + env * 0.55}
+            opacity={0.4 + env * 0.6}
           />
         );
       })}

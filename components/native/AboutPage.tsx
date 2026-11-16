@@ -16,7 +16,7 @@ export function AboutPage({ content, config }: NativeRouteProps) {
   return (
     <PageShell config={config}>
       <section className="hero-band">
-        <HeroCopy content={content} kicker="About the tool" />
+        <HeroCopy content={content} />
         <CtaRow content={content} />
       </section>
 
