@@ -19,36 +19,36 @@
     {
       "id": "answer",
       "title": "The Short Answer",
-      "body": "To make a slowed and reverb edit of a song, you slow it down to roughly 0.8x of its original speed, drop the pitch a step or two so voices stay natural, add a wet reverb effect around half mix, and often lift the bass slightly for warmth. The finished edit is the deep, atmospheric version popular on TikTok and YouTube lo-fi playlists. Here is the exact process, start to export, using a free [audio editor online](/) that runs the whole job in your browser. The three numbers to remember are 0.8x speed, 50% reverb and 20% bass. Start there, listen to one verse, and adjust only the setting that feels wrong rather than changing everything at once."
+      "body": "To make a slowed and reverb edit, load the song into [Slowed and Reverb Maker](/), press the Classic Slowed + Reverb preset, listen, trim the part you want, and render. The preset is four numbers you can see on the console: speed 0.80×, pitch −2 semitones, reverb 55% and bass +4 dB. That combination is the deep, atmospheric version of a song people mean when they say slowed and reverb.\n\nOn this tool speed and pitch are separate controls, so slowing a track down does not drag its pitch with it. The preset sets both: 0.80× changes the tempo, and the −2 semitone pitch shift is what takes the vocal down without making it muddy. Start from the preset, listen to one verse, then move only the slider that feels wrong — speed first if the track drags or rushes, reverb second if the room is too small or too washy. Everything decodes, previews and renders inside your browser tab, with no upload and no account, and you can try it on the built-in sample before you pick a file."
     },
     {
       "id": "steps",
       "title": "Step by Step",
-      "body": "The whole edit takes about two minutes once you have your audio file saved on your device. Every step runs locally, so nothing is uploaded to a server and there is no account to create.",
+      "body": "The edit takes a couple of minutes once the file is on your device. Every step runs locally — the audio never leaves the tab.",
       "steps": [
         {
           "title": "Save the song as an audio file",
-          "body": "Find the MP3, WAV, M4A, OGG or FLAC file of the track you want to edit. Slowed and Reverb Maker loads these formats directly from your device and renders the song as a playable waveform, so you can see exactly where the intro, drop and outro sit before you change anything."
+          "body": "Find the MP3, WAV, M4A, OGG, FLAC or AAC file you want to edit. The tool loads these straight from your device and draws the track as a playable waveform, so you can hear the original before you change anything."
         },
         {
           "title": "Load it into the browser tool",
-          "body": "Open [Slowed and Reverb Maker](/) and load your file. The waveform appears immediately and the original plays back so you have a reference. Because processing happens in your browser, a five-minute song is ready in seconds and stays private to your device."
+          "body": "Open Slowed and Reverb Maker and press Choose file, or drop the file on the loader. The waveform appears with the track name, format and length. If you just want to hear the effect first, press Try the sample for a short pad you can edit without finding a file."
         },
         {
           "title": "Pick the Classic Slowed + Reverb preset",
-          "body": "The preset sets speed to 0.8x, adds a 50% reverb mix and a 20% bass boost with pitch unchanged. This is the sound most people mean when they say slowed and reverb. If your song already sounds dark and bass-heavy, drop the bass boost to about 10% so vocals stay clear."
+          "body": "The preset sets speed to 0.80×, pitch to −2 semitones, reverb to 55% and bass boost to +4 dB. That is the sound most people mean by slowed and reverb. If your song is already dark and dense, drop the reverb a little before you touch anything else."
         },
         {
           "title": "Fine-tune speed and pitch",
-          "body": "Listen to the first verse at 0.8x. If it drags, try 0.85x; if you want the classic deep feel, go to 0.75x. Small pitch changes of about -1 to -2 semitones keep voices believable while deepening the tone. For a faster, brighter take on the same song, the [nightcore maker](/nightcore-maker/) applies the sped up version instead."
+          "body": "Listen to the first verse at 0.80×. If it drags, try 0.85×; for the deeper classic feel go to 0.75×. Pitch moves independently in whole semitones from −12 to +12, so −1 to −2 keeps voices believable while −4 and below heads toward daycore."
         },
         {
           "title": "Trim to the section you want",
-          "body": "Use the waveform trim handles to cut the track down to the 30-60 second hook you plan to post. A clean trim at the end of a phrase sounds better than a hard cut mid-word, so zoom in on the waveform and set the end point where the line finishes."
+          "body": "Drag the trim handles on the waveform, or type the start and end in seconds, to cut the track down to the 30–60 second hook you plan to post. Ending on the last word of a phrase sounds better than a cut mid-vowel."
         },
         {
-          "title": "Preview, then export WAV or MP3",
-          "body": "Play the trimmed section once more to check the reverb tail does not clip the ending. Then render the adjusted audio offline and export it as WAV for full quality or MP3 for a smaller file that uploads fast to TikTok, Instagram or YouTube. The export matches what you heard in the preview exactly."
+          "title": "Preview, then render WAV or MP3",
+          "body": "Play the trimmed section once more with the reverb on — the tail runs about 1.6 seconds past the end, so leave a little room. Then press Render: the tool renders the edit offline in your browser and offers a WAV file or a 192 kbps MP3, matching what you just heard."
         }
       ]
     },
@@ -59,19 +59,19 @@
       "items": [
         {
           "title": "Speed",
-          "body": "Speed multiplies playback rate. At 0.8x a three-minute song runs about 3:45 and every pitch drops with it, which is why slowed tracks sound deeper. Below 0.7x most vocals become muddy and the beat loses its groove, so 0.75x is the practical floor for rap or dance tracks."
+          "body": "Speed multiplies playback tempo, from 0.5× to 1.5× in fine steps. At 0.80× a three-minute song runs about 3:45. Below 0.7× most vocals smear and the beat loses its swing, so 0.75–0.85× is where the style lives. On this tool speed changes tempo only — the pitch control is separate."
         },
         {
           "title": "Pitch",
-          "body": "Pitch shift changes note height without changing tempo. Slowing a song already lowers pitch, so only nudge it a semitone or two. Positive pitch with slow speed gives the daycore feel, and it also rescues songs whose vocals sound too deep after heavy slowing."
+          "body": "Pitch shifts note height from −12 to +12 semitones without changing the length. Slowing no longer forces a pitch drop, so the Classic preset applies its own −2 semitones to deepen the voice. Push further for daycore; a positive value over a slow tempo gives the odd, bright slowed sound some edits use."
         },
         {
-          "title": "Reverb effect",
-          "body": "Reverb simulates the sound bouncing around a large room, adding a soft tail after each note. Around 50% mix is the classic range: clearly audible space without drowning the vocals. Push toward 70% for a dreamy, distant feel, and reduce it if consonants start smearing together."
+          "title": "Reverb",
+          "body": "Reverb adds the soft tail of a large room after each note. The 55% mix in the Classic preset is clearly audible space that still leaves the vocal in front. Sparse material such as piano or acoustic guitar takes 65–70%; dense mixes usually want less. At 0% the tail shrinks to a few milliseconds and the export stays dry."
         },
         {
           "title": "Bass boost",
-          "body": "Bass boost raises the low end so the slower track keeps weight on small phone speakers. 20% suits most songs; hip-hop and EDM tracks often need less because they already carry heavy low frequencies. On laptop or phone playback, check that the boost does not rattle the verse."
+          "body": "Bass boost lifts the low end by 0 to 12 dB so a slower track keeps weight on phone speakers. The Classic preset uses +4 dB, which suits most songs; hip-hop and EDM already carry heavy lows and often need none. Raise it until the kick feels solid, not until the mix turns muddy."
         }
       ]
     }
@@ -79,27 +79,27 @@
   "faq": [
     {
       "question": "What speed is a slowed and reverb song?",
-      "answer": "Most slowed and reverb edits sit between 0.75x and 0.85x of the original speed, with 0.8x the common default. At 0.8x, a three-minute song lasts roughly 3 minutes 45 seconds, and the pitch drops with it automatically, giving the deeper tone listeners expect from the style."
+      "answer": "Most slowed and reverb edits sit between 0.75× and 0.85× of the original speed, with 0.80× the common default. At 0.80× a three-minute song lasts roughly 3 minutes 45 seconds. On this tool the pitch does not drop by itself — the Classic preset also sets pitch to −2 semitones, which is what gives the voice its deeper tone."
     },
     {
       "question": "How much reverb should I add?",
-      "answer": "Start at a 50% reverb mix, which is what the Classic Slowed + Reverb preset uses. That level gives a clear room sound without burying the vocals. If the song is sparse, like an acoustic or piano track, you can go to 65-70% for a dreamier feel; dense mixes usually need less."
+      "answer": "Start at the 55% the Classic Slowed + Reverb preset uses: a clear room sound without burying the vocal. Sparse songs such as acoustic or piano tracks can take 65–70% for a dreamier feel, and dense mixes usually need less. The render adds a tail of about 1.6 seconds at any setting above zero."
     },
     {
       "question": "Can I make slowed and reverb on my phone?",
-      "answer": "Yes. The tool is a browser-based audio editor online, so it works in a mobile browser with no app install. Load the file from your phone storage, apply the preset, trim the waveform, and export MP3. The processing runs on your device, so it also works offline once the page has loaded."
+      "answer": "Yes. The tool is a browser page, so it works in a mobile browser with nothing to install: load the file from your storage, apply the preset, trim on the waveform and render an MP3. The audio is decoded and rendered on your device, so the edit itself needs no network once the page has loaded."
     },
     {
       "question": "Does slowing a song change the pitch?",
-      "answer": "It does, and that is part of the sound. Reducing playback speed lowers pitch proportionally: 0.8x speed drops every note by roughly a third of a tone. If you want slower tempo with the original pitch, raise the pitch control back up after slowing, which is how daycore edits stay true to the vocal."
+      "answer": "Not on this tool. Speed and pitch are two separate controls: the speed slider changes tempo only, and the pitch slider moves notes in whole semitones. That means a 0.80× edit keeps the original key unless you ask for a shift, and the Classic preset asks for −2 semitones so the result sounds deep rather than merely slow."
     },
     {
       "question": "What format should I export?",
-      "answer": "Export WAV when you want full, lossless quality, for example as a source file for a video edit. Export MP3 when the file is going straight to social media, because it is much smaller and uploads faster. Both exports are rendered offline and match the preview you heard exactly."
+      "answer": "Render WAV when the file goes into a video editor or another audio app — it is 16-bit lossless at the source sample rate. Render MP3 when the clip is going straight to social media: it is 192 kbps and far smaller, so it uploads faster. Both are rendered offline from the same buffer you previewed, so neither surprises you."
     },
     {
       "question": "How is slowed and reverb different from nightcore?",
-      "answer": "They are opposite directions on the same dial. Nightcore speeds a song up to around 1.25x, raising the pitch for a bright, energetic sped up version. Slowed and reverb reduces speed toward 0.8x and adds a reverb effect for a deep, relaxed feel. The [full comparison](/slowed-vs-nightcore/) breaks down when to use each."
+      "answer": "They are opposite directions on the same dial. The Nightcore preset runs at 1.25× with +4 semitones and only 12% reverb for a bright, urgent sound; the slowed preset runs at 0.80× with −2 semitones and 55% reverb for a deep, relaxed one. The [full comparison](/slowed-vs-nightcore/) breaks down when to use each."
     }
   ],
   "schema": {

@@ -18,54 +18,58 @@
   "sections": [
     {
       "id": "tool",
-      "title": "Make slowed and reverb right here",
-      "body": "The editing tool sits on this first screen. Drop in a file and every effect responds while the track plays.",
+      "title": "The console, deck by deck",
+      "body": "Three decks sit on this screen: load a track, shape it, then render the file. All of it runs in the browser, so the sliders keep responding while the song plays.",
       "items": [
         {
-          "title": "Presets for the classic sound",
-          "body": "One click applies the slowed and reverb formula: around 0.8x speed with room reverb and a bass boost. Presets for Nightcore and Daycore are here too."
+          "title": "Deck 1: load a track",
+          "body": "Drag an MP3, WAV, M4A, OGG, FLAC or AAC file onto the drop zone, or press Choose file. The file decodes on your device and its waveform appears in the second deck. Try the sample loads a short built-in tone if you want to test the controls before committing a song."
         },
         {
-          "title": "Waveform trim",
-          "body": "Load the file, see its waveform, and keep only the verse or hook you want. The export matches exactly what you trimmed."
+          "title": "Deck 2: shape it live",
+          "body": "Four presets set the numbers for you: Classic Slowed + Reverb (0.80x, -2 semitones, 55% reverb, +4 dB bass), Daycore (0.75x, -5, 40%, +4 dB) and Nightcore (1.25x, +4, 12%, 0 dB). Or drag speed anywhere from 0.5x to 1.5x, pitch across 12 semitones each way, reverb from 0% to 100% and bass from 0 to 12 dB yourself. Play preview follows every change, and the trim fields keep only the seconds you choose."
         },
         {
-          "title": "Live preview",
-          "body": "Change pitch, speed, reverb or bass and hear the result instantly, so you never export a version you have not heard."
+          "title": "Deck 3: render and download",
+          "body": "Pick WAV for a lossless 16-bit file or MP3 at 192 kbps for a smaller one, then press Render. The summary names the source file, its length and the finished length, and Download saves the file to your device. With no track loaded, Render says Load an audio file first instead of producing an empty file."
         }
       ]
     },
     {
       "id": "how-it-works",
       "title": "How it works",
-      "body": "Three steps, all inside this page. Nothing is uploaded, because every audio operation runs in your browser as [browser audio processing](https://developer.mozilla.org/en-US/docs/Web/Audio_API), the open web standard for real-time sound.",
+      "body": "Three steps, all inside this page. Nothing is uploaded, because every audio operation runs in your browser through [Web Audio](https://developer.mozilla.org/en-US/docs/Web/Audio_API), the open web standard for real-time sound.",
       "steps": [
         {
           "title": "Load your audio file",
-          "body": "Drag in an MP3, WAV, M4A, OGG or FLAC from your device. The file decodes locally and appears as a playable waveform within seconds for a typical song."
+          "body": "Drop in an MP3, WAV, M4A, OGG, FLAC or AAC file from your device, or press Choose file. The browser's own decoder turns it into an audio buffer in memory and draws the waveform, so a typical three-minute song is ready in a couple of seconds."
         },
         {
-          "title": "Slow down audio and shape the sound",
-          "body": "Apply the Classic Slowed + Reverb preset or set speed, pitch, reverb and bass yourself. To change pitch independently of tempo, adjust it after picking a speed. Trim the waveform to keep just the part you need."
+          "title": "Slow it down and shape the sound",
+          "body": "Apply Classic Slowed + Reverb, or set speed and pitch separately: slowing playback without pitch shift keeps the vocal in its original key, while the pitch field moves it independently. Reverb runs through a decaying room impulse, bass through a low-shelf boost at 120 Hz. Trim start and trim end cut the file to the section you want before any of that applies."
         },
         {
           "title": "Export the finished track",
-          "body": "The tool renders the adjusted audio offline, so the export always matches the preview. Export wav mp3 files straight to your downloads folder, ready to post or listen to."
+          "body": "Render runs the same audio graph offline, so the downloaded file is the version you previewed, plus the reverb tail (up to 1.6 seconds when reverb is on). The summary shows the source length and the rendered length before you download WAV or MP3."
         }
       ]
     },
     {
       "id": "formats",
       "title": "Formats and file handling",
-      "body": "The tool reads the formats most phones and computers already produce, and exports the two formats editors ask for most. [Learn the exact settings for the classic sound](/how-to-make-slowed-and-reverb/) before you export.",
+      "body": "Inputs are MP3, WAV, M4A, OGG, FLAC and AAC, which is what phones and laptops already produce. Exports are WAV at 16-bit or MP3 at 192 kbps. [The slowed and reverb guide](/how-to-make-slowed-and-reverb/) has the starting settings for each control.",
       "items": [
         {
-          "title": "Export wav mp3, your choice",
-          "body": "WAV keeps the full rendered quality for video editors. MP3 gives a smaller file that uploads quickly. Either way the download is watermark-free."
+          "title": "WAV when quality matters",
+          "body": "The WAV export is uncompressed 16-bit PCM at the source file's sample rate, so it opens cleanly in an editor or a video timeline and loses nothing in a second pass."
+        },
+        {
+          "title": "MP3 when it has to travel",
+          "body": "MP3 is encoded at 192 kbps, which keeps a slowed track small enough to send, upload or drop into a video editor without a noticeable loss on phone speakers."
         },
         {
           "title": "Your file stays on your device",
-          "body": "There is no upload endpoint. The audio lives in browser memory until you close the tab, which is also why the tool works without an account."
+          "body": "There is no upload endpoint: the audio lives in browser memory until you close the tab. That is also why the tool needs no account, no quota and no watermark."
         }
       ],
       "table": {
@@ -137,27 +141,27 @@
   "faq": [
     {
       "question": "Is this slowed and reverb maker really free?",
-      "answer": "Yes. Every function on this page is free: loading a file, all presets and sliders, waveform trim, and MP3 or WAV export. There is no account, no quota and no watermark, because the processing runs on your own device at no cost to us or you."
+      "answer": "Yes. Loading a file, all four presets, every slider, the trim fields, and both WAV and MP3 export are free, with no account, no quota and no watermark. The processing runs on your own device, so there is nothing for us to meter or charge."
     },
     {
       "question": "What settings make the classic slowed and reverb sound?",
-      "answer": "The named preset applies the widely used recipe: speed around 0.8x, a room-style reverb effect at a moderate level, and a bass boost for warmth. You can then fine-tune each value by ear. Our guide page walks through each setting with starting numbers."
+      "answer": "The Classic Slowed + Reverb preset applies 0.80x speed, -2 semitones of pitch, 55% reverb and +4 dB of bass boost. Press the preset, then adjust any slider by ear: most edits sit between 0.75x and 0.85x speed, with reverb strong enough to hear the tail on the last snare."
     },
     {
       "question": "Do I need to install anything or sign up?",
-      "answer": "No. The tool runs entirely in your browser, on phone or desktop, with nothing to install and no sign-up step. Open this page, load your file and start adjusting. Closing the tab discards the audio from memory."
+      "answer": "No. The tool is a page in your browser on phone or desktop, with nothing to install and no sign-up step. Open it, load a file and start adjusting; closing the tab discards the audio from memory."
     },
     {
       "question": "Which file formats can I use?",
-      "answer": "You can load MP3, WAV, M4A, OGG and FLAC files from your device. Exports are WAV for full quality or MP3 for a smaller, easy-to-share file. The exported file matches exactly what you heard in the preview."
+      "answer": "Load MP3, WAV, M4A, OGG, FLAC or AAC from your device. Export as WAV (16-bit, uncompressed) for editors or MP3 at 192 kbps for sharing. The rendered file follows the settings you just previewed, including trim start and trim end."
     },
     {
       "question": "Can I speed a song up instead of slowing it down?",
-      "answer": "Yes. Raise the speed and pitch values and the same tool produces a nightcore-style sped up version, which is the opposite of slowed and reverb. The dedicated nightcore maker page explains that style in more detail."
+      "answer": "Yes. Raise speed and pitch and the same console produces a nightcore-style sped-up version; the Nightcore preset does it in one press at 1.25x and +4 semitones. The [nightcore maker page](/nightcore-maker/) opens with that preset already applied."
     },
     {
       "question": "Can I publish the result on social media?",
-      "answer": "That is up to you to decide. Slowing down a commercial recording creates a derivative of it, so if you publish the result you are responsible for having the rights you need. This site does not grant any copyright clearance and does not host your files."
+      "answer": "That is your call, not ours. Slowing down a commercial recording creates a derivative of it, so if you publish the result you are responsible for having the rights you need. This site grants no copyright clearance and never receives your file."
     }
   ],
   "schema": {

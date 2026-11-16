@@ -6,7 +6,10 @@ import type { PageContent } from "../../lib/content";
 
 import { HomePage } from "./HomePage";
 import { NightcorePage } from "./NightcorePage";
-import { AboutPage, ComparePage, ContactPage, GuidePage, PrivacyPage, TermsPage } from "./GuidePage";
+import { GuidePage } from "./GuidePage";
+import { ComparePage } from "./ComparePage";
+import { AboutPage } from "./AboutPage";
+import { ContactPage, PrivacyPage, TermsPage } from "./LegalPage";
 
 export type NativeRouteProps = {
   route: Route;

@@ -49,12 +49,17 @@ export function SiteHeader({
     : [
         { label: "Slowed + Reverb", href: "/" },
         { label: "Nightcore", href: "/nightcore-maker/" },
-        { label: "How to", href: "/how-to-make-slowed-and-reverb/" },
+        { label: "How to make it", href: "/how-to-make-slowed-and-reverb/" },
         { label: "Slowed vs Nightcore", href: "/slowed-vs-nightcore/" },
       ];
+  // Groups the template ships by default repeat the header row; only keep a
+  // group when it carries a link the row does not already have.
+  const navGroups = (config.navGroups ?? [])
+    .map((group) => ({ ...group, items: group.items.filter((item) => !headerLinks.some((link) => link.href === item.href)) }))
+    .filter((group) => group.items.length > 0);
   const drawer = [
     ...headerLinks,
-    ...(config.navGroups ?? []).flatMap((group) => group.items),
+    ...navGroups.flatMap((group) => group.items),
   ];
   return (
     <header data-chrome="site">
@@ -68,7 +73,7 @@ export function SiteHeader({
           {headerLinks.map((item) => (
             <a key={item.href} href={item.href} className="nav-link" aria-current={samePath(item.href, path) ? "page" : undefined}>{item.label}</a>
           ))}
-          {(config.navGroups ?? []).map((group) => (
+          {navGroups.map((group) => (
             <details key={group.label} className="nav-group">
               <summary>{group.label}</summary>
               <div className="nav-group-links">

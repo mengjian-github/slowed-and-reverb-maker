@@ -458,7 +458,7 @@ export function Studio({ defaultPreset = "none", idPrefix }: StudioProps) {
           </p>
           <ShapeMeter speed={speedShown ?? 1} pitch={parseNumber(pitch) ?? 0} reverb={parseNumber(reverb) ?? 0} bass={parseNumber(bass) ?? 0} />
         </div>
-        <p className="readout-plain">Speed {speedText}×, pitch {parseNumber(pitch) ?? pitch} st, reverb {parseNumber(reverb) ?? reverb}%, bass {parseNumber(bass) ?? bass} dB, trim {Number(parseNumber(trimStart) ?? 0).toFixed(1)} to {Number(trimShownEnd || 0).toFixed(1)}.</p>
+        <p className="readout-plain sr-only">Speed {speedText}×, pitch {parseNumber(pitch) ?? pitch} st, reverb {parseNumber(reverb) ?? reverb}%, bass {parseNumber(bass) ?? bass} dB, trim {Number(parseNumber(trimStart) ?? 0).toFixed(1)} to {Number(trimShownEnd || 0).toFixed(1)}.</p>
       </section>
 
       <section
@@ -532,7 +532,6 @@ function Slider({ id, label, unit, min, max, step, value, onChange, hook, error 
     <label className={error ? "slider bad" : "slider"} htmlFor={id}>
       <span className="slider-top">
         <span>{label}</span>
-        <span className="slider-value">{value}{unit}</span>
       </span>
       <input
         id={id}
@@ -545,19 +544,22 @@ function Slider({ id, label, unit, min, max, step, value, onChange, hook, error 
         onChange={(event) => onChange(event.target.value)}
         style={{ ["--fill" as string]: `${ratio * 100}%` }}
       />
-      <input
-        className="slider-number"
-        type="number"
-        inputMode="decimal"
-        min={min}
-        max={max}
-        step={step}
-        placeholder={String(min)}
-        aria-label={label}
-        data-tool-input={hook}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-      />
+      <span className="slider-field">
+        <input
+          className="slider-number"
+          type="number"
+          inputMode="decimal"
+          min={min}
+          max={max}
+          step={step}
+          placeholder={String(min)}
+          aria-label={label}
+          data-tool-input={hook}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+        />
+        <span className="slider-unit" aria-hidden="true">{unit}</span>
+      </span>
       {error ? <span className="field-error" role="alert">{error}</span> : null}
     </label>
   );
@@ -631,17 +633,33 @@ function Waveform({ peaks, duration, trimStart, trimEnd, position, onTrim }: {
   );
 }
 
+/** The signature mark, live: pitch sets how dense the wave is, reverb how long
+ *  its tail rings, bass how tall it stands, speed how fast it runs. */
 function ShapeMeter({ speed, pitch, reverb, bass }: { speed: number; pitch: number; reverb: number; bass: number }) {
-  const speedX = 20 + ((speed - 0.5) / 1) * 160;
-  const pitchY = 46 - (pitch / 12) * 30;
+  const BARS = 44;
+  const cycles = 1.2 + ((pitch + 12) / 24) * 3 + (speed - 1) * 1.2;
+  const decay = 0.9 + reverb / 32;
+  const amp = 12 + Math.max(0, bass) * 1.1;
   return (
-    <svg className="shape-meter" viewBox="0 0 220 64" aria-hidden="true">
-      <line x1="20" y1="46" x2="180" y2="46" stroke="currentColor" strokeOpacity="0.35" />
-      <line x1="100" y1="10" x2="100" y2="58" stroke="currentColor" strokeOpacity="0.25" />
-      <circle cx={speedX} cy={pitchY} r={6 + reverb / 28} fill="none" stroke="currentColor" strokeWidth="2" />
-      <rect x="188" y={46 - bass * 2.6} width="10" height={bass * 2.6} fill="currentColor" />
-      <text x="20" y="60" fontSize="7">0.5×</text>
-      <text x="156" y="60" fontSize="7">1.5×</text>
+    <svg className="shape-meter" viewBox="0 0 220 56" aria-hidden="true" focusable="false">
+      <line x1="4" y1="28" x2="216" y2="28" stroke="currentColor" strokeOpacity="0.28" strokeDasharray="2 4" />
+      {Array.from({ length: BARS }, (_, i) => {
+        const env = Math.exp(-i / (BARS / decay / 1.6));
+        const wave = Math.sin((i / BARS) * Math.PI * 2 * cycles);
+        const h = Math.max(2, Math.abs(wave) * env * amp);
+        return (
+          <rect
+            key={i}
+            x={5 + i * 4.85}
+            y={28 - h / 2}
+            width={2.6}
+            height={h}
+            rx={0.8}
+            fill="currentColor"
+            opacity={0.45 + env * 0.55}
+          />
+        );
+      })}
     </svg>
   );
 }
