@@ -285,7 +285,7 @@ export function Studio({ defaultPreset = "none", idPrefix }: StudioProps) {
       const fileName = downloadName(track.name, format);
       setDownloadUrl(url);
       setDownloadFile(fileName);
-      setRenderedSummary(`${track.name} · ${formatSeconds(rendered.duration)} · ${format === "mp3" ? "MP3" : "WAV"}`);
+      setRenderedSummary(`${track.name} · ${formatSeconds(track.duration)} in · ${formatSeconds(rendered.duration)} out · ${format === "mp3" ? "MP3" : "WAV"}`);
       setExportMessage("");
       setExportState("success");
       setProgress(1);
@@ -329,7 +329,7 @@ export function Studio({ defaultPreset = "none", idPrefix }: StudioProps) {
           <p className="drop-title">Drop a song here</p>
           <p className="drop-note">MP3, WAV, M4A, OGG or FLAC. It stays in this tab.</p>
           <div className="drop-actions">
-            <button type="button" className="btn solid" data-jtbd-action="audio-loader" onClick={() => fileRef.current?.click()}>Choose file</button>
+            <label className="btn solid file-btn" htmlFor={`${reactId}-file`}>Choose file</label>
             <button type="button" className="btn ghost" onClick={loadSample}>Try the sample</button>
           </div>
           <input
@@ -574,10 +574,8 @@ function Waveform({ peaks, duration, trimStart, trimEnd, position, onTrim }: {
   const drag = useRef<"start" | "end" | null>(null);
   if (!peaks.length || duration <= 0) {
     return (
-      <div className="wave empty" aria-hidden="true">
-        {Array.from({ length: 48 }, (_, index) => (
-          <span key={index} style={{ height: `${18 + ((index * 37) % 46)}%` }} />
-        ))}
+      <div className="wave empty">
+        <span className="wave-empty-label">The waveform appears here once a track is loaded</span>
       </div>
     );
   }

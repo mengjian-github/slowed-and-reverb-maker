@@ -119,6 +119,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 .drop-note { margin: 0; color: #ffc2e2; font-size: 0.95rem; position: relative; }
 .drop-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; position: relative; margin-top: 0.4rem; }
 .file-input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.file-btn { cursor: pointer; }
 .chip-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 .chip { border: 1px solid color-mix(in srgb, #ffe6f4 30%, transparent); padding: 0.3rem 0.55rem; font-size: 0.9rem; }
 .chip b { font-weight: 700; }
@@ -128,8 +129,9 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 .stage-line progress { width: 8rem; accent-color: #ff99d3; }
 
 .wave { position: relative; display: flex; align-items: center; gap: 2px; height: 92px; padding: 0.4rem; background: #3d0012; border-radius: 4px; cursor: ew-resize; touch-action: none; }
-.wave.empty { opacity: 0.4; }
-.wave .bar, .wave.empty span { flex: 1 1 0; background: color-mix(in srgb, #c77aa0 45%, transparent); border-radius: 1px; min-height: 4px; }
+.wave.empty { display: flex; align-items: center; justify-content: center; border: 1px dashed color-mix(in srgb, #ffe6f4 22%, transparent); background: #3d0012; }
+.wave-empty-label { color: #ffc2e2; font-size: 0.88rem; letter-spacing: 0; text-align: center; padding: 0 0.5rem; }
+.wave .bar { flex: 1 1 0; background: color-mix(in srgb, #c77aa0 45%, transparent); border-radius: 1px; min-height: 4px; }
 .wave .bar.in { background: #ff99d3; }
 .trim-mark { position: absolute; top: 0; bottom: 0; width: 2px; background: #ffe6f4; }
 .playhead { position: absolute; top: 0; bottom: 0; width: 2px; background: #ff99d3; }
@@ -174,7 +176,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 .steps p, .spec-grid p { margin: 0; }
 .spec-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.8rem; }
 .spec-grid li { border: 1.5px solid color-mix(in srgb, #ffe6f4 24%, transparent); padding: 0.9rem 1rem; border-radius: 8px; }
-.table-wrap { overflow-x: auto; }
+.table-wrap { overflow-x: auto; padding: 0.75rem 0.95rem; background: #4d0519; }
 table { width: 100%; border-collapse: collapse; }
 caption { text-align: left; font-weight: 700; margin-bottom: 0.5rem; }
 th, td { text-align: left; padding: 0.55rem 0.7rem; border-bottom: 1px solid color-mix(in srgb, #ffe6f4 16%, transparent); vertical-align: top; }
