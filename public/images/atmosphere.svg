@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff99d3" stop-opacity="0.48"/>
+      <stop offset="0.55" stop-color="#4d0519" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#3d0012"/>
+    </linearGradient>
+    <radialGradient id="r" cx="78%" cy="6%" r="58%">
+      <stop offset="0" stop-color="#ff99d3" stop-opacity="0.62"/>
+      <stop offset="1" stop-color="#3d0012" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="s" cx="12%" cy="88%" r="46%">
+      <stop offset="0" stop-color="#c77aa0" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#3d0012" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="n">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" stitchTiles="stitch"/>
+    </filter>
+  </defs>
+  <rect width="1920" height="980" fill="#3d0012"/>
+  <rect width="1920" height="980" fill="url(#g)"/>
+  <rect width="1920" height="980" fill="url(#r)"/>
+  <rect width="1920" height="980" fill="url(#s)"/>
+  <ellipse cx="1240" cy="180" rx="620" ry="280" fill="#ff99d3" opacity="0.2"/>
+  <ellipse cx="320" cy="820" rx="520" ry="240" fill="#c77aa0" opacity="0.18"/>
+  <ellipse cx="980" cy="420" rx="340" ry="340" fill="#ff99d3" opacity="0.1"/>
+  <rect width="1920" height="980" filter="url(#n)" opacity="0.1"/>
+</svg>
