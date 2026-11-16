@@ -1,0 +1,95 @@
+{
+  "title": "Slowed and Reverb Maker – Privacy Policy",
+  "description": "Slowed and Reverb Maker processes every audio file in your own browser. This page explains what data we keep, what we never collect, and why.",
+  "h1": "Privacy Policy",
+  "heroText": "Slowed and Reverb Maker works on your audio entirely inside your browser. When you slow down audio, change pitch, add reverb or export a WAV or MP3 file, the file is processed on your own device and never uploaded to us. This page explains what we do and do not collect.",
+  "ctas": [
+    {
+      "label": "Back to the tool",
+      "href": "/",
+      "primary": true
+    },
+    {
+      "label": "Terms",
+      "href": "/terms/",
+      "primary": false
+    }
+  ],
+  "sections": [
+    {
+      "id": "data",
+      "title": "What Happens to Your Audio Data",
+      "body": "Your audio file stays on your machine at every step, from the moment you pick it to the moment you download the finished WAV or MP3.",
+      "items": [
+        {
+          "title": "Local processing only",
+          "body": "The browser reads your MP3, WAV, M4A, OGG or FLAC file, renders the waveform, applies the reverb effect, speed, pitch and bass boost changes, and exports the result. No server receives a copy of your song or your edit."
+        },
+        {
+          "title": "No accounts, no uploads",
+          "body": "Slowed and Reverb Maker has no sign-in, so we hold no names, emails or passwords. There is no upload queue and no stored project library, because nothing is sent anywhere in the first place."
+        },
+        {
+          "title": "Saved settings stay local",
+          "body": "If you save a preset such as Classic Slowed + Reverb or Nightcore, that choice is stored in your own browser's local storage. Clearing your browser data removes it. It is not synced or shared."
+        },
+        {
+          "title": "Server requests we do make",
+          "body": "Like most websites, our hosting provider logs standard technical request data (IP address, browser type, requested pages) for security and to keep the site available. These logs contain no audio content."
+        }
+      ]
+    },
+    {
+      "id": "cookies",
+      "title": "Cookies and Analytics",
+      "body": "The tool itself needs no cookies to run. If the site carries anonymous traffic analytics or unobtrusive advertising, those third parties may set their own cookies subject to their policies; they never see your audio files.",
+      "items": [
+        {
+          "title": "You control clearing",
+          "body": "You can block or delete cookies in your browser settings at any time. The editor, presets, waveform trimming and file export all continue to work."
+        }
+      ]
+    },
+    {
+      "id": "rights",
+      "title": "Your Rights and Contact",
+      "body": "Because we do not collect personal data or audio files, there is generally nothing for us to hand over, correct or delete. If you believe otherwise, or have a privacy question, send us a message; our contact address is shown on the [about page](/about/). We aim to reply within a reasonable time.",
+      "items": [
+        {
+          "title": "Changes to this policy",
+          "body": "If the product ever changes to store data on our side, we will update this page and the effective date below before the change takes effect."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Are my audio files uploaded to a server?",
+      "answer": "No. All browser audio processing happens locally on your device. The tool loads your file, applies speed, pitch, reverb and bass boost changes, and exports the WAV or MP3 without any network transfer of your audio."
+    },
+    {
+      "question": "Do you collect my email or require an account?",
+      "answer": "No. Slowed and Reverb Maker has no sign-up and no account system, so we never collect an email address, name or password."
+    },
+    {
+      "question": "What data does the site keep about me?",
+      "answer": "Only standard web server logs held by the hosting provider, such as IP address and browser type, kept for security and uptime. These logs never contain audio content or your edits."
+    },
+    {
+      "question": "Where are my saved presets stored?",
+      "answer": "In your browser's local storage on your own device. They never leave your machine and are removed when you clear your browser data."
+    },
+    {
+      "question": "Can I use copyrighted songs with the tool?",
+      "answer": "The tool is neutral: it processes whatever file you give it locally. Whether you may edit and publish a particular song depends on the rights to that song, which are yours to check before sharing the result."
+    }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Privacy Policy – Slowed and Reverb Maker",
+    "about": "How Slowed and Reverb Maker handles audio files and personal data",
+    "inLanguage": "en",
+    "dateModified": "2026-11-12"
+  }
+}
