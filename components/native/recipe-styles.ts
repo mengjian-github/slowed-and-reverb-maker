@@ -210,6 +210,24 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 
 /* ---------- console decks ---------- */
 .studio { display: grid; gap: 1rem; margin: 0; }
+/* The instrument's one status line: the same place answers idle, working,
+   error and done, so a press is never silent. */
+.studio-status { display: flex; align-items: center; gap: 0.6rem; margin: 0; padding: 0.6rem 0.85rem; border: 1px solid color-mix(in srgb, #ffe6f4 26%, transparent); border-radius: 6px; background: #4d0519; color: #edc4d8; font-size: 0.95rem; font-weight: 600; }
+.studio-status .status-dot { flex: none; width: 0.62rem; height: 0.62rem; border-radius: 50%; background: currentColor; }
+.studio-status .status-text { min-width: 0; }
+.studio-status.working { color: #ff99d3; border-color: #ff99d3; background: color-mix(in srgb, #ff99d3 14%, #4d0519); }
+.studio-status.working .status-dot { animation: status-pulse 1s ease-in-out infinite alternate; }
+.studio-status.error { color: #ffb4b4; border-color: #ffb4b4; background: color-mix(in srgb, #ef4444 20%, #4d0519); }
+.studio-status.success { color: #ffe6f4; border-color: color-mix(in srgb, #22c55e 70%, transparent); background: color-mix(in srgb, #22c55e 14%, #4d0519); }
+@keyframes status-pulse { from { opacity: 1; } to { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .studio-status.working .status-dot { animation: none; } }
+.drop[data-state="working"] { border-style: solid; border-color: #ff99d3; background: color-mix(in srgb, #ff99d3 10%, transparent); }
+.drop[data-state="error"] { border-style: solid; border-color: #ffb4b4; background: color-mix(in srgb, #ef4444 14%, transparent); }
+/* The state of the main action, printed beside the button that sets it. */
+.capability-actions { align-items: center; gap: 0.85rem; flex-wrap: wrap; }
+.action-state { font-size: 0.9rem; font-weight: 700; color: #edc4d8; }
+.action-state.working { color: #ff99d3; }
+.action-state.error { color: #ffb4b4; }
 .deck { border: 1px solid color-mix(in srgb, #ffe6f4 26%, transparent); background: #4d0519; border-radius: 8px; padding: 1.2rem 1.35rem 1.4rem; display: grid; gap: 1.05rem; animation: rise-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .deck:nth-child(2) { animation-delay: 0.07s; }
 .deck:nth-child(3) { animation-delay: 0.14s; }
