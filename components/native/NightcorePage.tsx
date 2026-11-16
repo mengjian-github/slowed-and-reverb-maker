@@ -24,7 +24,6 @@ export function NightcorePage({ content, config }: NativeRouteProps) {
     <PageShell config={config}>
       <div className="stage stage-night">
         <div className="stage-copy">
-          <p className="eyebrow"><span className="dot" aria-hidden="true" />1.25× · +4 semitones · brighter</p>
           <h1>{content.h1}</h1>
           <p className="lede"><RichText value={content.heroText} /></p>
           <CtaRow content={content} onPrimary={openFile} onSecondary={playSample} />

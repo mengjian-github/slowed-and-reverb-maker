@@ -64,6 +64,7 @@ export function SiteHeader({
   return (
     <header data-chrome="site">
       <script dangerouslySetInnerHTML={{ __html: MOTION_RUNTIME_SCRIPT }} />
+      <div className="scroll-progress" aria-hidden="true" />
       <nav data-node="nav">
         <a href="/" className="brand" aria-current={samePath("/", path) ? "page" : undefined}>
           {config.brandLogo ? <img src={config.brandLogo} alt={config.brandName} className="brand-logo" /> : null}

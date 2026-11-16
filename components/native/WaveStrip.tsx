@@ -21,7 +21,10 @@ export function WaveStrip({ note }: { note?: string }) {
   const base = height - 12;
   return (
     <figure className="wave-strip">
-      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label="A waveform decaying left to right with a reverb tail beneath it">
+      {/* preserveAspectRatio="none" so the strip fills its box and starts on the
+          hero's text edge at every width; with "meet" the 9:1 viewBox letterboxed
+          inside the 12:1 hero row and the bars floated inset from the type. */}
+      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="img" aria-label="A waveform decaying left to right with a reverb tail beneath it">
         {Array.from({ length: BARS }, (_, index) => {
           const h = barHeight(index) * (base - 4);
           return (
@@ -37,6 +40,7 @@ export function WaveStrip({ note }: { note?: string }) {
           );
         })}
         <path
+          vectorEffect="non-scaling-stroke"
           className="strip-tail"
           d={`M0 ${base + 7} C ${width * 0.2} ${base + 7}, ${width * 0.26} ${height - 2}, ${width * 0.58} ${height - 2} S ${width * 0.9} ${base + 4}, ${width} ${base + 4}`}
         />

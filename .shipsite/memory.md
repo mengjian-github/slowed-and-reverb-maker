@@ -19,4 +19,5 @@ _(none yet)_
 _(none yet)_
 
 ## Lessons
+- 2026-11-16 · Wide SVG figures (WaveStrip, meters) need preserveAspectRatio="none" and vectorEffect="non-scaling-stroke" on any hairline path; a 9:1 viewBox in a 12:1 box letterboxes and the bars read as a dotted line inset from the t — why: The hero strip rendered inset and dotted for several rounds until the viewBox fit was changed; the stretched tail path also needed non-scaling-stroke to stay a hairline. (from run_c44267f3-082)
 - 2026-11-16 · Each slider's visible value is the number input carrying data-tool-input (speed/pitch/reverb-pct/bass-db); there is no .slider-value element. Tests must read the field's inputValue(), never a value span. — why: checks/verify-live.mjs timed out on .slider-value after the slider redesign removed the duplicate value span; the deploy failed even though the tool worked. (from run_34ae1546-fa3)

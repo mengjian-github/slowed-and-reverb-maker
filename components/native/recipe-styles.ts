@@ -76,7 +76,14 @@ nav[data-node="nav"] .nav-link:hover { color: #ff99d3; }
 nav[data-node="nav"] .nav-link[aria-current="page"] { border-bottom-color: #ff99d3; color: #ff99d3; }
 nav[data-node="nav"] .mobile-nav { display: none; }
 nav[data-node="nav"] .nav-actions { margin-left: auto; }
-.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 50; background: #ff99d3; }
+/* scroll-progress motif: a hairline that fills as the page is read. Kept inside
+   @supports so a browser without scroll-driven animations never shows a full
+   bar (an untimed animation would land on its end state). */
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 50; background: #ff99d3; transform: scaleX(0); transform-origin: 0 50%; pointer-events: none; }
+@supports (animation-timeline: scroll(root block)) {
+  .scroll-progress { animation: progress-grow linear both; animation-timeline: scroll(root block); }
+}
+@keyframes progress-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 footer[data-node="footer"] {
   max-width: 1200px;
@@ -128,7 +135,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 
 /* signature: the decaying waveform strip and its reverb tail */
 .wave-strip { margin: 1.15rem 0 0; }
-.wave-strip svg { display: block; width: 100%; height: clamp(56px, 6vw, 88px); color: #ff99d3; overflow: visible; }
+.wave-strip svg { display: block; width: 100%; height: clamp(62px, 5.4vw, 92px); color: #ff99d3; overflow: visible; }
 .wave-strip .strip-bar { fill: currentColor; opacity: 0.85; transform-origin: center bottom; animation: strip-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .wave-strip .strip-tail { fill: none; stroke: currentColor; stroke-width: 1.2; opacity: 0.5; stroke-dasharray: 900; stroke-dashoffset: 900; animation: strip-draw 1.1s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .wave-strip figcaption { margin-top: 0.6rem; display: grid; gap: 0.35rem; }
@@ -328,6 +335,11 @@ th { font-size: 0.88rem; letter-spacing: 0.02em; text-transform: none; color: #e
   .cta-row .btn { min-height: 44px; font-size: 0.9rem; padding: 0.45rem 0.85rem; }
   .wave-strip { margin-top: 1rem; }
   .wave-strip figcaption { font-size: 0.8rem; }
+  /* the legend rags when it wraps by flow; two columns keep the ×-scale aligned */
+  .wave-strip .strip-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 0.28rem 0.9rem; }
+  /* "Slowed and Reverb Maker" broke onto two lines beside the menu button */
+  nav[data-node="nav"] .brand-wordmark { font-size: 0.9rem; white-space: nowrap; }
+  nav[data-node="nav"] .brand-logo { width: 1.65rem; height: 1.65rem; }
   .hero-grid, .stage { gap: 0.85rem; padding-block: 0.9rem 0; }
   .deck { gap: 0.5rem; }
   .steps { gap: 0.8rem; }
@@ -371,6 +383,25 @@ th { font-size: 0.88rem; letter-spacing: 0.02em; text-transform: none; color: #e
 .recipe-scale { height: 6px; margin-top: 0.2rem; background: #370010; border: 1px solid color-mix(in srgb, #ffe6f4 18%, transparent); }
 .recipe-scale span { display: block; height: 100%; background: #ff99d3; }
 .recipe-note { margin: 0.2rem 0 0; color: #edc4d8; font-size: 0.84rem; }
+
+/* Beat grid: the guide's own drawing — same beats at three speeds, tick
+   positions computed from each preset's number. */
+.beat-figure { margin: 1.6rem 0 0; padding: 0 0 1.5rem; display: grid; gap: 1rem; border-bottom: 1px solid color-mix(in srgb, #ffe6f4 20%, transparent); }
+.beat-figure figcaption { display: grid; gap: 0.15rem; }
+.beat-caption { font-weight: 700; font-size: 1rem; }
+.beat-legend { color: #edc4d8; font-size: 0.86rem; max-width: 62ch; }
+.beat-rows { display: grid; gap: 0.85rem; }
+.beat-row { display: grid; grid-template-columns: minmax(0, 13.5rem) 1fr; gap: 1.1rem; align-items: center; }
+.beat-label { display: grid; gap: 0.1rem; }
+.beat-label b { font-size: 0.95rem; font-weight: 700; }
+.beat-label span { color: #c77aa0; font-size: 0.79rem; font-variant-numeric: tabular-nums; }
+.beat-track { position: relative; height: 30px; background: #370010; border: 1px solid color-mix(in srgb, #ffe6f4 14%, transparent); }
+.beat-tick { position: absolute; top: 7px; bottom: 7px; width: 2px; margin-left: -1px; background: color-mix(in srgb, #ff99d3 62%, transparent); }
+.beat-tick.strong { top: 0; bottom: 0; width: 3px; margin-left: -1.5px; background: #ff99d3; }
+@media (max-width: 800px) {
+  .beat-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .beat-track { height: 26px; }
+}
 
 /* ---------- comparison: two directions on one scale ---------- */
 main section.split-band { display: grid; grid-template-columns: minmax(0, 1fr) 2rem minmax(0, 1fr); gap: 1.2rem; align-items: stretch; padding: 2rem 0 1.2rem; }

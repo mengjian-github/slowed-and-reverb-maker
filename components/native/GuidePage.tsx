@@ -9,6 +9,24 @@ type NativeRouteProps = { route: Route; content: PageContent; config: SiteConfig
 
 const CLASSIC = PRESETS.classic;
 
+/** Beat grid: a fixed 3.6 s window at 120 BPM, then the same beats at each
+ *  preset's speed. Ticks are positioned from the preset's own number, so the
+ *  drawing proves the tempo claim instead of illustrating it. */
+const WINDOW_MS = 3600;
+const SOURCE_BPM = 120;
+const BEAT_ROWS = [
+  { name: "Original", speed: 1 },
+  { name: "Classic Slowed + Reverb", speed: PRESETS.classic.speed },
+  { name: "Nightcore", speed: PRESETS.nightcore.speed },
+];
+
+function beatTicks(speed: number) {
+  const spacing = 60000 / SOURCE_BPM / speed; // ms per beat at this speed
+  const ticks: number[] = [];
+  for (let i = 0; i * spacing <= WINDOW_MS; i += 1) ticks.push(i * spacing);
+  return ticks;
+}
+
 /** The four numbers of the classic recipe, drawn as a scale so the guide opens
  *  on the actual preset the tool applies rather than another paragraph. */
 const RECIPE = [
@@ -43,6 +61,35 @@ export function GuidePage({ content, config }: NativeRouteProps) {
           ))}
         </dl>
       </section>
+
+      <figure className="beat-figure">
+        <figcaption>
+          <span className="beat-caption">Same beat, three speeds</span>
+          <span className="beat-legend">A 3.6-second window at 120 BPM. Each tick is a beat; the preset&apos;s speed moves them apart or crowds them together.</span>
+        </figcaption>
+        <div className="beat-rows">
+          {BEAT_ROWS.map((row) => {
+            const spacing = 60000 / SOURCE_BPM / row.speed;
+            return (
+              <div key={row.name} className="beat-row">
+                <span className="beat-label">
+                  <b>{row.name}</b>
+                  <span>{row.speed.toFixed(2)}× · {Math.round(SOURCE_BPM * row.speed)} BPM · {Math.round(spacing)} ms per beat</span>
+                </span>
+                <span className="beat-track" aria-hidden="true">
+                  {beatTicks(row.speed).map((tick, index) => (
+                    <span
+                      key={index}
+                      className={index % 4 === 0 ? "beat-tick strong" : "beat-tick"}
+                      style={{ left: `${(tick / WINDOW_MS) * 100}%` }}
+                    />
+                  ))}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </figure>
 
       <Sections content={content} />
       <FaqList content={content} />
