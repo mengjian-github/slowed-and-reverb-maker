@@ -161,7 +161,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 .stage-still { margin: 0; }
 .still-frame { position: relative; display: block; border-radius: 8px; overflow: hidden; background: #4d0519; }
 .still-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255, 153, 211, 0.10) 0%, rgba(55, 0, 16, 0) 45%, rgba(55, 0, 16, 0.45) 100%); pointer-events: none; }
-.stage-still img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 54% 40%; filter: saturate(0.88) contrast(1.08); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.stage-still img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 54% 40%; filter: saturate(1.02) contrast(1.04) brightness(1.08); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
 .stage-still:hover img { transform: scale(1.03); }
 .stage-still figcaption { margin-top: 0.55rem; color: #edc4d8; font-size: 0.88rem; display: grid; gap: 0.4rem; }
 .still-chip { justify-self: start; background: #4d0519; color: #ff99d3; border: 1px solid color-mix(in srgb, #ff99d3 50%, transparent); padding: 0.3rem 0.55rem; font-weight: 700; font-size: 0.84rem; font-variant-numeric: tabular-nums; }
@@ -192,13 +192,13 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 
 /* ---------- console decks ---------- */
 .studio { display: grid; gap: 1rem; margin: 0; }
-.deck { border: 1px solid color-mix(in srgb, #ffe6f4 26%, transparent); background: #4d0519; border-radius: 8px; padding: 1rem 1.05rem 1.1rem; display: grid; gap: 0.8rem; animation: rise-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.deck { border: 1px solid color-mix(in srgb, #ffe6f4 26%, transparent); background: #4d0519; border-radius: 8px; padding: 1.2rem 1.35rem 1.4rem; display: grid; gap: 1.05rem; animation: rise-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .deck:nth-child(2) { animation-delay: 0.07s; }
 .deck:nth-child(3) { animation-delay: 0.14s; }
 @keyframes rise-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-.deck-head { display: flex; align-items: baseline; gap: 0.6rem; }
-.deck-head h2 { margin: 0; font-size: 1.12rem; letter-spacing: -0.01em; text-transform: none; }
-.deck-index { color: #ff99d3; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 0.8rem; }
+.deck-head { display: flex; align-items: baseline; gap: 0.65rem; padding-bottom: 0.7rem; border-bottom: 1px solid color-mix(in srgb, #ffe6f4 14%, transparent); }
+.deck-head h2 { margin: 0; font-size: 1.26rem; letter-spacing: -0.012em; text-transform: none; }
+.deck-index { color: #ff99d3; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 0.82rem; }
 .drop { position: relative; display: grid; justify-items: center; text-align: center; gap: 0.45rem; padding: 1.5rem 1.1rem 1.4rem; border: 1.5px dashed color-mix(in srgb, #ff99d3 42%, transparent); border-radius: 8px; transition: background-color 0.18s ease, border-color 0.18s ease; }
 .drop:hover, .drop:focus-within { background: color-mix(in srgb, #ff99d3 7%, transparent); border-color: #ff99d3; }
 .drop.is-over { background: color-mix(in srgb, #ff99d3 14%, transparent); border-color: #ffe6f4; }
@@ -228,19 +228,26 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 .transport-pos { font-variant-numeric: tabular-nums; color: #edc4d8; }
 
 .preset-set, .format-set { border: 0; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
-/* micro register: 12px letterspaced labels, a step under the body copy */
-.preset-set legend, .format-set legend { font-size: 0.74rem; letter-spacing: 0.09em; text-transform: uppercase; color: #c77aa0; padding: 0; }
-.preset-row, .format-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-.preset, .format { display: grid; min-height: 44px; align-content: center; padding: 0.35rem 0.7rem; border: 1.5px solid color-mix(in srgb, #ffe6f4 28%, transparent); cursor: pointer; border-radius: 2px; transition: border-color 0.16s ease, background-color 0.16s ease; }
+/* console labels: sentence case, one readable step under the body copy — the
+   tracked 11px capitals read as a template tell, so they are gone. */
+.preset-set legend, .format-set legend { font-size: 0.9rem; letter-spacing: 0; text-transform: none; color: #edc4d8; font-weight: 600; padding: 0; }
+.preset-row, .format-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.preset, .format { display: flex; align-items: center; gap: 0.45rem; min-height: 44px; padding: 0.35rem 0.75rem; border: 1.5px solid color-mix(in srgb, #ffe6f4 28%, transparent); cursor: pointer; border-radius: 2px; transition: border-color 0.16s ease, background-color 0.16s ease, transform 0.12s ease; }
+.preset:active, .format:active { transform: scale(0.97); }
+/* each preset carries the site's mark drawn at its own reverb tail */
+.preset-glyph { flex: none; width: 30px; height: 14px; fill: currentColor; opacity: 0.9; }
 .preset:hover, .format:hover { border-color: #ff99d3; }
 .preset input, .format input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .preset input:focus-visible + span, .format input:focus-visible + span { outline: 2px solid #ffe6f4; outline-offset: 2px; }
 .preset.on, .format.on { background: #ff99d3; color: #3d0012; border-color: #ff99d3; }
 .format small { display: block; font-size: 0.8rem; opacity: 0.85; }
-.sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem 1.3rem; }
-.slider { display: grid; grid-template-columns: minmax(0, 1fr) 5.2rem; align-items: center; gap: 0.1rem 0.6rem; }
+.sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem 1.5rem; }
+.slider { display: grid; grid-template-columns: minmax(0, 1fr) 5.2rem; align-items: center; gap: 0.2rem 0.6rem; }
 .slider-top { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; }
-.slider-top span:first-child { font-size: 0.74rem; letter-spacing: 0.09em; text-transform: uppercase; color: #c77aa0; }
+.slider-top span:first-child { font-size: 0.92rem; letter-spacing: 0; text-transform: none; color: #edc4d8; font-weight: 600; transition: color 0.15s ease; }
+.slider:hover .slider-top span:first-child, .slider:focus-within .slider-top span:first-child { color: #ff99d3; }
+input[type="range"]:hover::-webkit-slider-thumb { box-shadow: 0 0 0 4px color-mix(in srgb, #ffe6f4 22%, transparent); }
+input[type="range"]::-webkit-slider-thumb { transition: box-shadow 0.15s ease; }
 .slider input[type="range"] { grid-column: 1; width: 100%; min-height: 40px; margin: 0; }
 .slider-field { position: relative; grid-column: 2; display: flex; align-items: center; }
 .slider .slider-number { width: 100%; min-width: 0; min-height: 40px; text-align: left; background: #370010; color: #ffe6f4; font-weight: 700; border: 1px solid color-mix(in srgb, #ff99d3 34%, transparent); border-radius: 2px; padding: 0 1.75rem 0 0.5rem; font: inherit; font-weight: 700; font-variant-numeric: tabular-nums; transition: border-color 0.14s ease, box-shadow 0.14s ease; }
@@ -257,7 +264,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 .capability-actions .primary { min-height: 50px; padding: 0.65rem 1.5rem; background: #ff99d3; color: #3d0012; border: 0; font: inherit; font-size: 1.02rem; font-weight: 700; letter-spacing: 0; cursor: pointer; border-radius: 2px; box-shadow: 0 0 0 1px color-mix(in srgb, #ffe6f4 32%, transparent), 0 10px 22px -14px #ff99d3; transition: background-color 0.16s ease, box-shadow 0.16s ease; }
 .capability-actions .primary:hover { background: #ffb3de; box-shadow: 0 0 0 1px #ffe6f4, 0 12px 26px -12px #ff99d3; }
 .capability-actions .primary:active { transform: scale(0.975); }
-.readout-line { display: flex; flex-wrap: wrap; gap: 0.35rem 1.05rem; margin: 0; font-variant-numeric: tabular-nums; font-weight: 700; font-size: 1rem; }
+.readout-line { display: flex; flex-wrap: wrap; gap: 0.35rem 1.05rem; margin: 0; font-variant-numeric: tabular-nums; font-weight: 700; font-size: 1rem; animation: rise-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .readout-line span:last-child { color: #ff99d3; }
 /* The shape preview is the result, so it gets the deck's full width and height. */
 .shape-meter { display: block; width: 100%; height: 84px; max-width: none; margin: 0.5rem 0 0; color: #ff99d3; overscroll-behavior: contain; }
@@ -324,24 +331,35 @@ th { font-size: 0.88rem; letter-spacing: 0.02em; text-transform: none; color: #e
   .hero-grid, .stage { grid-template-columns: 1fr; }
   .rail { order: 3; }
   .stage-still, .stage-metrics, .tempo-card { order: 4; }
+  /* Nightcore hero on a phone: the copy flattens into the stage grid so the
+     console follows the headline and the facts/metrics trail it, instead of
+     the checklist pushing the tool past the fold. */
+  .stage-copy { display: contents; }
+  .stage-copy > h1, .stage-copy > .lede, .stage-copy > .cta-row { order: 1; margin-block: 0; }
+  .stage-copy > .cta-row { margin-top: 0.2rem; }
+  .stage-tool { order: 2; }
+  .stage-copy > .stage-metrics, .stage-copy > .rail-facts { order: 3; }
+  .stage { gap: 0.75rem; }
 }
 @media (max-width: 800px) {
   body { font-size: 1rem; }
   main { padding: 0 1rem 2rem; }
-  .hero-band { padding-block: 1rem 0; }
-  .hero-band h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
-  .lede { font-size: 0.98rem; line-height: 1.55; }
-  .cta-row { gap: 0.5rem 0.9rem; margin-top: 1rem; }
-  .cta-row .btn { min-height: 44px; font-size: 0.9rem; padding: 0.45rem 0.85rem; }
-  .wave-strip { margin-top: 1rem; }
-  .wave-strip figcaption { font-size: 0.8rem; }
+  .hero-band { padding-block: 0.45rem 0; }
+  .hero-band h1 { font-size: clamp(1.7rem, 7.4vw, 2.2rem); }
+  .lede { font-size: 0.88rem; line-height: 1.42; margin-top: 0.45rem; }
+  .cta-row { gap: 0.35rem 0.9rem; margin-top: 0.7rem; }
+  .cta-row .btn { min-height: 42px; font-size: 0.88rem; padding: 0.4rem 0.8rem; }
+  .wave-strip { margin-top: 0.6rem; }
+  .wave-strip svg { height: 44px; }
+  .wave-strip figcaption { font-size: 0.72rem; gap: 0.2rem; margin-top: 0.35rem; }
+  .wave-strip .strip-note { display: none; }
   /* the legend rags when it wraps by flow; two columns keep the ×-scale aligned */
   .wave-strip .strip-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 0.28rem 0.9rem; }
   /* "Slowed and Reverb Maker" broke onto two lines beside the menu button */
   nav[data-node="nav"] .brand-wordmark { font-size: 0.9rem; white-space: nowrap; }
   nav[data-node="nav"] .brand-logo { width: 1.65rem; height: 1.65rem; }
-  .hero-grid, .stage { gap: 0.85rem; padding-block: 0.9rem 0; }
-  .deck { gap: 0.5rem; }
+  .hero-grid, .stage { gap: 0.85rem; padding-block: 0.5rem 0; }
+  .deck { gap: 0.7rem; }
   .steps { gap: 0.8rem; }
   .spec-grid { gap: 0.8rem; }
   .capability-actions { display: grid; }
@@ -353,8 +371,36 @@ th { font-size: 0.88rem; letter-spacing: 0.02em; text-transform: none; color: #e
   main .deck { background: none; border: 0; border-top: 1px solid color-mix(in srgb, #ffe6f4 20%, transparent); border-radius: 0; padding: 0.9rem 0 0; }
   main .split-panel { background: none; border: 0; border-top: 1px solid color-mix(in srgb, #ffe6f4 20%, transparent); border-radius: 0; padding: 0.9rem 0 0; }
   .band { padding-block: 1.8rem; gap: 0.9rem; }
-  .sliders { grid-template-columns: 1fr; gap: 0.55rem; }
+  .sliders { grid-template-columns: 1fr; gap: 0.9rem; }
   .shape-meter { height: 66px; }
+
+  /* The load deck is one compact row on a phone: the drop target, the two
+     buttons and the format line sit in a band about a third as tall, so the
+     shaping controls below them stay near the first screen. */
+  main .deck { padding: 0.7rem 0 0; gap: 0.55rem; }
+  .deck-head { padding-bottom: 0.45rem; }
+  .deck-head h2 { font-size: 1.06rem; }
+  main .deck-load .drop { grid-template-columns: auto minmax(0, 1fr); justify-items: start; text-align: left; gap: 0.1rem 0.7rem; padding: 0.6rem 0.75rem 0.65rem; }
+  main .deck-load .drop-icon { grid-row: 1 / span 2; width: 20px; height: 20px; align-self: center; }
+  .drop-title { font-size: 0.95rem; }
+  .drop-note { font-size: 0.76rem; }
+  .drop-actions { grid-column: 2; justify-content: flex-start; margin-top: 0.4rem; gap: 0.4rem 0.6rem; }
+  .drop-actions .btn { min-height: 40px; font-size: 0.86rem; padding: 0.3rem 0.7rem; }
+  main .deck-load .tool-output { margin-top: 0; }
+  /* the hint repeats what the drop zone already says; dropping it keeps the
+     shaping controls one scroll shorter on a phone */
+  main .deck-load .output-hint { display: none; }
+  .output-hint { font-size: 0.84rem; }
+  .wave.empty { height: 56px; }
+  /* Before a track is loaded the waveform placeholder and the transport say
+     nothing useful; hiding them on a phone brings the real controls up into
+     the first screen. Both appear the moment a file decodes. */
+  .deck-shape[data-has-track="false"] .wave,
+  .deck-shape[data-has-track="false"] .transport { display: none; }
+  /* the nightcore hero's decorative speed card would push the console off the fold */
+  .stage-copy .speed-card { display: none; }
+  .slider input[type="range"] { min-height: 34px; }
+  .trim-fields { gap: 0.55rem; }
 
   .drop { padding: 0.8rem; }
   .drop-title { font-size: 1rem; }
@@ -472,7 +518,7 @@ main section.band.faq-band { padding-bottom: 1rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .btn:active, .capability-actions .primary:active { transform: none; }
-  .wave-strip .strip-bar, .wave-strip .strip-tail, .deck { animation: none; opacity: 1; transform: none; }
+  .wave-strip .strip-bar, .wave-strip .strip-tail, .deck, .readout-line { animation: none; opacity: 1; transform: none; }
   .shape-meter .shape-bar { animation: none; opacity: 1; transform: none; }
 }
 `;

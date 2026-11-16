@@ -311,6 +311,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         data-state={decoding ? "working" : loadState}
       >
         <header className="deck-head">
+          <span className="deck-index" aria-hidden="true">01</span>
           <h2>Load a track</h2>
         </header>
         <div
@@ -365,11 +366,13 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
 
       <section
         className="deck deck-shape"
+        data-has-track={track ? "true" : "false"}
         data-capability="slowed-reverb-console"
         data-operation="tool-spec"
         data-state={shapeProblem && shapeState === "error" ? "error" : playing ? "working" : shapeState}
       >
         <header className="deck-head">
+          <span className="deck-index" aria-hidden="true">02</span>
           <h2>Shape it live</h2>
         </header>
 
@@ -406,6 +409,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
                   checked={preset === option.value}
                   onChange={() => applyPreset(option.value)}
                 />
+                {option.value === "none" ? null : <PresetGlyph preset={option.value} />}
                 <span>{option.label}</span>
               </label>
             ))}
@@ -451,7 +455,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
           {shapeProblem && shapeState === "error" ? <p className="output-error" role="alert">{shapeProblem}</p> : null}
           {/* keyed on the preset so picking one replays the wave's entrance */}
           <ShapeMeter key={preset} speed={speedShown ?? 1} pitch={parseNumber(pitch) ?? 0} reverb={parseNumber(reverb) ?? 0} bass={parseNumber(bass) ?? 0} />
-          <p className="readout-line">
+          <p className="readout-line" key={`readout-${preset}`}>
             <span>Speed {speedShown === null ? speed : speedShown}×</span>
             <span>Pitch {parseNumber(pitch) ?? pitch} st</span>
             <span>Reverb {parseNumber(reverb) ?? reverb}%</span>
@@ -470,6 +474,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         data-state={exportState}
       >
         <header className="deck-head">
+          <span className="deck-index" aria-hidden="true">03</span>
           <h2>Render and download</h2>
         </header>
         <fieldset className="format-set">
@@ -632,6 +637,24 @@ function Waveform({ peaks, duration, trimStart, trimEnd, position, onTrim }: {
       <i className="trim-mark end" style={{ left: `${endRatio * 100}%` }} />
       {position > 0 ? <i className="playhead" style={{ left: `${(startRatio + playRatio * (endRatio - startRatio)) * 100}%` }} /> : null}
     </div>
+  );
+}
+
+/** The signature mark, per preset: the same decaying bars, drawn at that
+ *  preset's own reverb tail so the chips carry the site's visual language. */
+function PresetGlyph({ preset }: { preset: Exclude<PresetId, "none"> }) {
+  const values = PRESETS[preset];
+  const tail = 0.55 + values.reverbPct / 100;
+  const bars = 6;
+  return (
+    <svg className="preset-glyph" viewBox="0 0 30 14" aria-hidden="true" focusable="false">
+      {Array.from({ length: bars }, (_, i) => {
+        const env = Math.exp(-i / (bars * tail * 0.7));
+        const ridge = 0.6 + 0.4 * Math.abs(Math.sin(i * 1.05 + values.speed * 2));
+        const h = Math.max(2.4, 13 * env * ridge);
+        return <rect key={i} x={i * 5} y={13 - h} width={3} height={h} />;
+      })}
+    </svg>
   );
 }
 
