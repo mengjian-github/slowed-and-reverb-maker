@@ -74,6 +74,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   const fileRef = useRef<HTMLInputElement>(null);
   const contextRef = useRef<AudioContext | null>(null);
   const nodesRef = useRef<GraphNodes | null>(null);
+  const sampleRef = useRef<AudioBuffer | null>(null);
   const startedAt = useRef(0);
 
   const [track, setTrack] = useState<LoadedTrack | null>(null);
@@ -98,6 +99,8 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   const [downloadFile, setDownloadFile] = useState("");
   const [renderedSummary, setRenderedSummary] = useState("");
 
+  const [shapeNote, setShapeNote] = useState("");
+  const [exportNote, setExportNote] = useState("");
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState(0);
   const [dragOver, setDragOver] = useState(false);
@@ -148,6 +151,11 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       contextRef.current = new AudioContext();
     }
     return contextRef.current;
+  }
+
+  function sampleBuffer(): AudioBuffer {
+    if (!sampleRef.current) sampleRef.current = makeSampleBuffer();
+    return sampleRef.current;
   }
 
   function stop() {
@@ -202,7 +210,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   }
 
   function loadSample() {
-    const buffer = makeSampleBuffer();
+    const buffer = sampleBuffer();
     remember({
       name: "sample-pad.wav",
       format: "WAV",
@@ -233,16 +241,25 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   }
 
   function play() {
-    if (!track) return;
     if (shapeProblem) {
       setShapeState("error");
       return;
     }
+    // No file loaded: preview the built-in pad rather than a dead button, and
+    // say which audio is playing. Choosing a file replaces it.
+    const source: LoadedTrack = track ?? {
+      name: "built-in-sample.wav",
+      format: "WAV",
+      duration: sampleBuffer().duration,
+      buffer: sampleBuffer(),
+      peaks: [],
+    };
     const audio = context();
     void audio.resume();
     stop();
-    const live = settingsFrom(preset, speed, pitch, reverb, bass, trimStart, trimEnd, track.duration);
-    const nodes = wireGraph(audio, track.buffer, live, audio.destination);
+    const live = settingsFrom(preset, speed, pitch, reverb, bass, trimStart, trimEnd, source.duration);
+    const nodes = wireGraph(audio, source.buffer, live, audio.destination);
+    if (!track) setShapeNote("No file is loaded, so this preview plays the built-in four-second sample. Choose a file to hear your own track.");
     const span = Math.max(0.05, live.trimEnd - live.trimStart);
     nodes.source.start(0, live.trimStart, span);
     nodes.source.onended = () => {
@@ -259,34 +276,42 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   }
 
   async function render() {
-    if (!track) {
-      setExportState("error");
-      setExportMessage("Load an audio file first");
-      setRenderedSummary("");
-      return;
-    }
     if (shapeProblem) {
       setExportState("error");
       setExportMessage(shapeProblem);
       setShapeState("error");
       return;
     }
+    // Render exports the loaded track; with none it answers with the tool
+    // spec's own no-file error (acceptance sample `render-no-file`) and points
+    // at the two ways to get audio in, rather than writing an empty file.
+    if (!track) {
+      stop();
+      setExportState("error");
+      setExportMessage("Load an audio file first: choose a file above, or press Try the sample to load the built-in four-second pad, then Render.");
+      setExportNote("");
+      setRenderedSummary("");
+      setProgress(0);
+      return;
+    }
+    const source: LoadedTrack = track;
     stop();
     setExportState("working");
     setProgress(0.04);
     setExportMessage("Rendering the edit offline, so the file matches the preview.");
     setRenderedSummary("");
+    setExportNote("");
     if (downloadUrl) URL.revokeObjectURL(downloadUrl);
     setDownloadUrl("");
     try {
-      const live = settingsFrom(preset, speed, pitch, reverb, bass, trimStart, trimEnd, track.duration);
-      const rendered = await renderOffline(track.buffer, live, setProgress);
+      const live = settingsFrom(preset, speed, pitch, reverb, bass, trimStart, trimEnd, source.duration);
+      const rendered = await renderOffline(source.buffer, live, setProgress);
       const blob = format === "mp3" ? await encodeMp3(rendered.buffer) : encodeWav(rendered.buffer);
       const url = URL.createObjectURL(blob);
-      const fileName = downloadName(track.name, format);
+      const fileName = downloadName(source.name, format);
       setDownloadUrl(url);
       setDownloadFile(fileName);
-      setRenderedSummary(`${track.name} · ${formatSeconds(track.duration)} in · ${formatSeconds(rendered.duration)} out · ${format === "mp3" ? "MP3" : "WAV"}`);
+      setRenderedSummary(`${source.name} · ${formatSeconds(source.duration)} in · ${formatSeconds(rendered.duration)} out · ${format === "mp3" ? "MP3" : "WAV"}`);
       setExportMessage("");
       setExportState("success");
       setProgress(1);
@@ -301,6 +326,16 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
 
   const speedShown = parseNumber(speed);
   const trimShownEnd = settings.trimEnd;
+
+  // The answer the visible defaults already give: what length this edit renders
+  // to, shown before the visitor presses anything.
+  const projectedSeconds = (() => {
+    const rate = Math.max(0.05, (parseNumber(speed) ?? 1) * Math.pow(2, (parseNumber(pitch) ?? 0) / 12));
+    const span = Math.max(0.05, (settings.trimEnd || duration || 4) - settings.trimStart);
+    const tail = (parseNumber(reverb) ?? 0) > 0 ? 1.6 : 0.05;
+    return span / rate + tail;
+  })();
+  const projectedSource = formatSeconds(duration || 4);
 
   return (
     <div className="studio" data-instrument="slowed-reverb" id={`${idPrefix}-studio`}>
@@ -357,7 +392,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
               <span className="chip">{formatSeconds(track.duration)}</span>
             </div>
           ) : null}
-          {!track && loadState !== "error" ? <p className="output-hint">Choose an audio file, or press Try the sample.</p> : null}
+          {!track && loadState !== "error" ? <p className="output-hint">Choose an audio file, or press Try the sample. Until a file is loaded, Play preview plays the built-in four-second sample; Render needs a loaded track.</p> : null}
           {loadMessage && loadState === "success" ? <p className="output-note">{loadMessage}</p> : null}
         </div>
         {decoding ? <p className="stage-line"><progress value={0.4} max={1} /> Decoding on this device…</p> : null}
@@ -388,11 +423,11 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         />
 
         <div className="transport">
-          <button type="button" className="btn solid" onClick={play} disabled={!track} aria-label="Play preview">
+          <button type="button" className="btn solid" onClick={play} aria-label="Play preview">
             {playing ? "Restart" : "Play preview"}
           </button>
           <button type="button" className="btn ghost" onClick={stop} disabled={!playing} aria-label="Stop">Stop</button>
-          <span className="transport-pos" aria-live="polite">{playing ? `${position.toFixed(1)} s` : track ? "Ready" : "No track"}</span>
+          <span className="transport-pos" aria-live="polite">{playing ? `${position.toFixed(1)} s` : track ? "Ready" : "Sample ready"}</span>
         </div>
 
         <fieldset className="preset-set">
@@ -443,14 +478,19 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
 
         <div className="capability-actions">
           <button type="button" className="primary" data-jtbd-action="slowed-reverb-console" onClick={() => {
-            if (shapeProblem) setShapeState("error");
-            else { setShapeState("success"); if (track) play(); }
+            if (shapeProblem) { setShapeState("error"); setShapeNote(""); }
+            else {
+              setShapeState("success");
+              if (track) setShapeNote("Playing the preview with the settings above.");
+              play();
+            }
           }}>
             Apply shape
           </button>
         </div>
         <div className="tool-output readout" data-tool-output data-motion="value-tick">
           {shapeProblem && shapeState === "error" ? <p className="output-error" role="alert">{shapeProblem}</p> : null}
+          {shapeNote && !(shapeProblem && shapeState === "error") ? <p className="output-note" role="status">{shapeNote}</p> : null}
           {/* keyed on the preset so picking one replays the wave's entrance */}
           <ShapeMeter key={preset} speed={speedShown ?? 1} pitch={parseNumber(pitch) ?? 0} reverb={parseNumber(reverb) ?? 0} bass={parseNumber(bass) ?? 0} />
           <p className="readout-line" key={`readout-${preset}`}>
@@ -505,13 +545,20 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         ) : null}
         <div className="tool-output" data-tool-output>
           {exportState === "error" ? <p className="output-error" role="alert">{exportMessage}</p> : null}
+          {exportNote ? <p className="output-note" role="status">{exportNote}</p> : null}
           {exportState === "success" && renderedSummary ? (
             <div className="export-ready">
               <p className="export-summary"><b>{renderedSummary}</b></p>
               <a className="btn solid download" href={downloadUrl} download={downloadFile}>Download {format === "mp3" ? "MP3" : "WAV"}</a>
             </div>
           ) : null}
-          {exportState === "idle" ? <p className="output-hint">Render writes the file you just previewed. Nothing is uploaded.</p> : null}
+          {exportState === "idle" ? (
+            <p className="output-hint">
+              With these settings a {projectedSource} clip renders to about {formatSeconds(projectedSeconds)}.{" "}
+              {format === "wav" ? "WAV is 16-bit PCM at your browser's audio rate, 44.1 kHz on most devices." : "MP3 is 192 kbps stereo."}{" "}
+              Render writes the file you just previewed; load a track above first. Nothing is uploaded.
+            </p>
+          ) : null}
         </div>
       </section>
     </div>

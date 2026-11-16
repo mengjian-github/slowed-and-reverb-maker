@@ -19,7 +19,7 @@
     {
       "id": "answer",
       "title": "The Short Answer",
-      "body": "To make a slowed and reverb edit, load the song into [Slowed and Reverb Maker](/), press the Classic Slowed + Reverb preset, listen, trim the part you want, and render. The preset is four numbers you can see on the console: speed 0.80×, pitch −2 semitones, reverb 55% and bass +4 dB. That combination is the deep, atmospheric version of a song people mean when they say slowed and reverb.\n\nOn this tool speed and pitch are separate controls, so slowing a track down does not drag its pitch with it. The preset sets both: 0.80× changes the tempo, and the −2 semitone pitch shift is what takes the vocal down without making it muddy. Start from the preset, listen to one verse, then move only the slider that feels wrong — speed first if the track drags or rushes, reverb second if the room is too small or too washy. Everything decodes, previews and renders inside your browser tab, with no upload and no account, and you can try it on the built-in sample before you pick a file."
+      "body": "To make a slowed and reverb edit, load the song into [Slowed and Reverb Maker](/), press the Classic Slowed + Reverb preset, listen, trim the part you want, and render. The preset is four numbers you can see on the console: speed 0.80×, pitch −2 semitones, reverb 55% and bass +4 dB. That combination is the deep, atmospheric version of a song people mean when they say slowed and reverb.\n\nThe two controls work together rather than independently: the speed slider slows the playback tape-style, so it drops the pitch along with the tempo — 0.80× alone is roughly four semitones down — and the pitch field then adds whole semitones on top. The preset sets both: 0.80× stretches the song out, and its −2 semitone field deepens that drop without making the vocal muddy. Start from the preset, listen to one verse, then move only the slider that feels wrong — speed first if the track drags or rushes, reverb second if the room is too small or too washy. Everything decodes, previews and renders inside your browser tab, with no upload and no account, and you can try it on the built-in sample before you pick a file."
     },
     {
       "id": "steps",
@@ -40,7 +40,7 @@
         },
         {
           "title": "Fine-tune speed and pitch",
-          "body": "Listen to the first verse at 0.80×. If it drags, try 0.85×; for the deeper classic feel go to 0.75×. Pitch moves independently in whole semitones from −12 to +12, so −1 to −2 keeps voices believable while −4 and below heads toward daycore."
+          "body": "Listen to the first verse at 0.80×. If it drags, try 0.85×; for the deeper classic feel go to 0.75×. Pitch adds whole semitones from −12 to +12 on top of the drop the speed setting already makes, so a field of −1 to −2 keeps voices believable while −4 and below heads toward daycore."
         },
         {
           "title": "Trim to the section you want",
@@ -59,11 +59,11 @@
       "items": [
         {
           "title": "Speed",
-          "body": "Speed multiplies playback tempo, from 0.5× to 1.5× in fine steps. At 0.80× a three-minute song runs about 3:45. Below 0.7× most vocals smear and the beat loses its swing, so 0.75–0.85× is where the style lives. On this tool speed changes tempo only — the pitch control is separate."
+          "body": "Speed multiplies playback tempo, from 0.5× to 1.5× in fine steps. At 0.80× a three-minute song runs about 3:45. Below 0.7× most vocals smear and the beat loses its swing, so 0.75–0.85× is where the style lives. On this tool speed also lowers pitch as it slows, about four semitones at 0.80×, so the pitch field is there to correct or deepen that drop."
         },
         {
           "title": "Pitch",
-          "body": "Pitch shifts note height from −12 to +12 semitones without changing the length. Slowing no longer forces a pitch drop, so the Classic preset applies its own −2 semitones to deepen the voice. Push further for daycore; a positive value over a slow tempo gives the odd, bright slowed sound some edits use."
+          "body": "Pitch shifts note height from −12 to +12 semitones. Slowing always drags pitch down with it, so the Classic preset's −2 semitones are added on top of the roughly four-semitone drop that 0.80× makes on its own. Push further for daycore; a positive value over a slow tempo gives the odd, bright slowed sound some edits use."
         },
         {
           "title": "Reverb",
@@ -79,7 +79,7 @@
   "faq": [
     {
       "question": "What speed is a slowed and reverb song?",
-      "answer": "Most slowed and reverb edits sit between 0.75× and 0.85× of the original speed, with 0.80× the common default. At 0.80× a three-minute song lasts roughly 3 minutes 45 seconds. On this tool the pitch does not drop by itself — the Classic preset also sets pitch to −2 semitones, which is what gives the voice its deeper tone."
+      "answer": "Most slowed and reverb edits sit between 0.75× and 0.85× of the original speed, with 0.80× the common default. At 0.80× a three-minute song lasts roughly 3 minutes 45 seconds. Slowing playback drops pitch with it, about four semitones at 0.80×, and the Classic preset adds its −2 semitones on top, which is what gives the voice its deeper tone."
     },
     {
       "question": "How much reverb should I add?",
@@ -91,11 +91,11 @@
     },
     {
       "question": "Does slowing a song change the pitch?",
-      "answer": "Not on this tool. Speed and pitch are two separate controls: the speed slider changes tempo only, and the pitch slider moves notes in whole semitones. That means a 0.80× edit keeps the original key unless you ask for a shift, and the Classic preset asks for −2 semitones so the result sounds deep rather than merely slow."
+      "answer": "Yes. The speed slider slows the playback itself, so pitch falls with it: 0.80× drops every note about four semitones before the pitch field is touched. The Classic preset then adds −2 semitones on top, so the result sounds deep rather than merely slow. Move the pitch field the other way if you want a slow edit back near its original key."
     },
     {
       "question": "What format should I export?",
-      "answer": "Render WAV when the file goes into a video editor or another audio app — it is 16-bit lossless at the source sample rate. Render MP3 when the clip is going straight to social media: it is 192 kbps and far smaller, so it uploads faster. Both are rendered offline from the same buffer you previewed, so neither surprises you."
+      "answer": "Render WAV when the file goes into a video editor or another audio app — it is 16-bit lossless at your browser's audio rate, 44.1 kHz on most devices. Render MP3 when the clip is going straight to social media: it is 192 kbps and far smaller, so it uploads faster. Both are rendered offline from the same buffer you previewed, so neither surprises you."
     },
     {
       "question": "How is slowed and reverb different from nightcore?",
@@ -130,7 +130,7 @@
           {
             "@type": "HowToStep",
             "name": "Pick the Classic Slowed + Reverb preset",
-            "text": "0.8x speed, 50% reverb mix and 20% bass boost with pitch unchanged."
+            "text": "0.8x speed with a -2 semitone pitch field, a 55% reverb mix and +4 dB of bass boost."
           },
           {
             "@type": "HowToStep",

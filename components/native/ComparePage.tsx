@@ -28,7 +28,6 @@ export function ComparePage({ content, config }: NativeRouteProps) {
       <section className="split-band" aria-label="The two presets compared">
         <div className="split-panel split-slow">
           <header>
-            <span className="split-tag">Down</span>
             <h2>Slowed + reverb</h2>
           </header>
           <ul className="split-list">
@@ -45,7 +44,6 @@ export function ComparePage({ content, config }: NativeRouteProps) {
         <div className="split-divider" aria-hidden="true" />
         <div className="split-panel split-fast">
           <header>
-            <span className="split-tag">Up</span>
             <h2>Nightcore</h2>
           </header>
           <ul className="split-list">
