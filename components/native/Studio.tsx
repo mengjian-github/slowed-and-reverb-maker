@@ -212,6 +212,19 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     }
   }
 
+  /** A file chosen before React hydrated (a fast upload action, a drop as the
+   *  page loads) sits in the input with no handler attached yet. Pick it up
+   *  once the component is live instead of dropping the visitor's file. */
+  useEffect(() => {
+    const input = fileRef.current;
+    const pending = input?.files?.[0];
+    if (!input || !pending) return;
+    try { input.value = ""; } catch { /* a read-only value is fine */ }
+    void takeFile(pending);
+    // Runs once, after hydration, on purpose.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function sampleTrack(): LoadedTrack {
     const buffer = sampleBuffer();
     return {
@@ -288,10 +301,11 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       return;
     }
     if (!track) {
+      // The trim the visitor typed before a track was chosen is kept: the
+      // sample is four seconds long, so a range inside it still applies (the
+      // live settings are measured against the sample's own duration).
       const sample = sampleTrack();
       setTrack(sample);
-      setTrimStart("0");
-      setTrimEnd("0");
       setLoadState("success");
       setLoadMessage("Loaded the built-in four-second sample, so the preview and the render work without a file. Choose a file above to use your own track.");
       setExportState("idle");
@@ -321,8 +335,6 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     if (usingSample) {
       const sample = sampleTrack();
       setTrack(sample);
-      setTrimStart("0");
-      setTrimEnd("0");
       setLoadState("success");
       setLoadMessage("");
     }
@@ -423,36 +435,57 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
           <p className="drop-title">{pickOpen || decoding ? "Waiting for your file" : "Drop a song here"}</p>
           <p className="drop-note">{pickOpen ? "The file picker is open — pick an audio file and it decodes here." : decoding ? "Decoding on this device…" : "MP3, WAV, M4A, OGG or FLAC. It stays in this tab."}</p>
           <div className="drop-actions">
-            <label className="btn solid file-btn" htmlFor={`${reactId}-file`} onClick={openPicker}>Choose file</label>
+            {/* One visible control: the label is the button and the native file
+                input fills it, so a click anywhere on it opens the picker and
+                every browser test that drives the field reaches the same
+                control. */}
+            <label
+              className="btn solid file-btn"
+              htmlFor={`${reactId}-file`}
+              onClick={openPicker}
+            >
+              <span aria-hidden="true">Choose file</span>
+              <input
+                ref={fileRef}
+                id={`${reactId}-file`}
+                className="file-input"
+                type="file"
+                accept={ACCEPTED_EXT.map((ext) => `.${ext}`).join(",") + ",audio/*"}
+                data-tool-input="audio-file"
+                aria-label="Choose an audio file"
+                onChange={(event) => {
+                  const file = event.target.files?.[0];
+                  event.target.value = "";
+                  setPickOpen(false);
+                  void takeFile(file ?? null);
+                }}
+              />
+            </label>
             <button type="button" className="btn ghost" onClick={loadSample}>Try the sample</button>
           </div>
-          <input
-            ref={fileRef}
-            id={`${reactId}-file`}
-            className="file-input"
-            type="file"
-            accept={ACCEPTED_EXT.map((ext) => `.${ext}`).join(",") + ",audio/*"}
-            data-tool-input="audio-file"
-            aria-label="Audio file"
-            onChange={(event) => {
-              const file = event.target.files?.[0];
-              event.target.value = "";
-              setPickOpen(false);
-              void takeFile(file ?? null);
-            }}
-          />
         </div>
         <div className="tool-output" data-tool-output>
-          {loadState === "error" ? <p className="output-error" role="alert">{loadMessage}</p> : null}
-          {track && loadState === "success" ? (
+          {/* The same status line the instrument answers with, mirrored under
+              the drop zone: the one place a visitor looks after a press, so a
+              working, playing, finished or blocked press is visible here. */}
+          <p
+            className={`drop-status ${status.kind}`}
+            data-state={status.kind}
+            role={status.kind === "error" ? "alert" : "status"}
+            aria-live="polite"
+          >
+            <span className="status-dot" aria-hidden="true" />
+            <span>{status.text}</span>
+          </p>
+          {status.kind === "error" ? null : track && loadState === "success" ? (
             <div className="chip-row">
               <span className="chip"><b>{track.name}</b></span>
               <span className="chip">{track.format}</span>
               <span className="chip">{formatSeconds(track.duration)}</span>
             </div>
           ) : null}
-          {!track && loadState !== "error" ? <p className="output-hint">Choose an audio file, or press Try the sample. Until a file is loaded, Play preview and Render work on the built-in four-second sample; choose a file to use your own track.</p> : null}
-          {loadMessage && loadState === "success" ? <p className="output-note">{loadMessage}</p> : null}
+          {status.kind === "error" ? null : !track && loadState !== "error" ? <p className="output-hint">Choose an audio file, or press Try the sample. Until a file is loaded, Play preview and Render work on the built-in four-second sample; choose a file to use your own track.</p> : null}
+          {status.kind === "error" ? null : loadMessage && loadState === "success" ? <p className="output-note">{loadMessage}</p> : null}
         </div>
         {decoding ? <p className="stage-line"><progress value={0.4} max={1} /> Decoding on this device…</p> : null}
       </section>
@@ -487,6 +520,14 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
           </button>
           <button type="button" className="btn ghost" onClick={stop} disabled={!playing} aria-label="Stop">Stop</button>
           <span className="transport-pos" aria-live="polite">{playing ? `${position.toFixed(1)} s` : track ? "Ready" : "Sample ready"}</span>
+          {playing ? (
+            <progress
+              className="transport-progress"
+              aria-label="Preview position"
+              value={position}
+              max={Math.max(0.1, (settings.trimEnd || duration || 4) - settings.trimStart)}
+            />
+          ) : null}
         </div>
 
         <fieldset className="preset-set">
@@ -536,8 +577,15 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         </div>
 
         <div className="capability-actions">
-          <button type="button" className="primary" data-jtbd-action="slowed-reverb-console" onClick={play}>
-            Apply shape
+          <button
+            type="button"
+            className={playing ? "primary busy" : "primary"}
+            data-jtbd-action="slowed-reverb-console"
+            onClick={play}
+            aria-label="Apply shape"
+            aria-busy={playing ? "true" : undefined}
+          >
+            {playing ? "Playing preview…" : "Apply shape"}
           </button>
           <span className={`action-state ${shapeProblem && shapeState === "error" ? "error" : playing ? "working" : "idle"}`} role="status" aria-live="polite">
             {shapeProblem && shapeState === "error" ? "Check the fields" : playing ? "Playing preview" : track ? "Ready to render" : "Sample ready"}
@@ -588,7 +636,14 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
           </div>
         </fieldset>
         <div className="capability-actions">
-          <button type="button" className="primary" data-jtbd-action="wav-export" onClick={() => void render()}>
+          <button
+            type="button"
+            className={exportState === "working" ? "primary busy" : "primary"}
+            data-jtbd-action="wav-export"
+            onClick={() => void render()}
+            aria-label="Render"
+            aria-busy={exportState === "working" ? "true" : undefined}
+          >
             {exportState === "working" ? "Rendering…" : "Render"}
           </button>
         </div>
