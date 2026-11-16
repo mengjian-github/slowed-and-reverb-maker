@@ -41,8 +41,19 @@ export function SiteHeader({
   // defaulting the miss to "/" made every inner page look like home
   // (chrome:nav:missing-current-page, 2026-08-22).
   const path = currentPath || pathWithoutLocale(pathname || "/", localeList) || "/";
+  // The published nav is one item. Every top-level page still has to be
+  // reachable from the header or the footer, so the header row lists the
+  // tool pages and the guides; legal pages stay in the footer groups.
+  const headerLinks = (config.nav ?? []).length > 1
+    ? (config.nav ?? [])
+    : [
+        { label: "Slowed + Reverb", href: "/" },
+        { label: "Nightcore", href: "/nightcore-maker/" },
+        { label: "How to", href: "/how-to-make-slowed-and-reverb/" },
+        { label: "Slowed vs Nightcore", href: "/slowed-vs-nightcore/" },
+      ];
   const drawer = [
-    ...(config.nav ?? []),
+    ...headerLinks,
     ...(config.navGroups ?? []).flatMap((group) => group.items),
   ];
   return (
@@ -54,7 +65,7 @@ export function SiteHeader({
           <span className="brand-wordmark">{config.brandName}</span>
         </a>
         <div className="nav-links">
-          {(config.nav ?? []).map((item) => (
+          {headerLinks.map((item) => (
             <a key={item.href} href={item.href} className="nav-link" aria-current={samePath(item.href, path) ? "page" : undefined}>{item.label}</a>
           ))}
           {(config.navGroups ?? []).map((group) => (

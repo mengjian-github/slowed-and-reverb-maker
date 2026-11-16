@@ -4,12 +4,9 @@ import type { Route, SiteConfig } from "@/lib/site-config";
 
 import type { PageContent } from "../../lib/content";
 
-import NativeToolHome from "./NativeToolHome";
-import FrozenCopyPage from "./FrozenCopyPage";
-
-// AUTO-COMPOSED by the per-route native authoring pass — entries are
-// merged per route from each accepted patch; hand edits are overwritten.
-// An unregistered route renders the deterministic composition.
+import { HomePage } from "./HomePage";
+import { NightcorePage } from "./NightcorePage";
+import { AboutPage, ComparePage, ContactPage, GuidePage, PrivacyPage, TermsPage } from "./GuidePage";
 
 export type NativeRouteProps = {
   route: Route;
@@ -18,13 +15,12 @@ export type NativeRouteProps = {
 };
 
 export const nativeRoutes: Record<string, ComponentType<NativeRouteProps>> = {
-  "/": NativeToolHome,
-  "/about/": FrozenCopyPage,
-  "/contact/": FrozenCopyPage,
-  "/how-to-make-slowed-and-reverb/": FrozenCopyPage,
-  "/nightcore-maker/": NativeToolHome,
-  "/privacy/": FrozenCopyPage,
-  "/slowed-vs-nightcore/": FrozenCopyPage,
-  "/terms/": FrozenCopyPage,
+  "/": HomePage,
+  "/nightcore-maker/": NightcorePage,
+  "/how-to-make-slowed-and-reverb/": GuidePage,
+  "/slowed-vs-nightcore/": ComparePage,
+  "/about/": AboutPage,
+  "/privacy/": PrivacyPage,
+  "/terms/": TermsPage,
+  "/contact/": ContactPage,
 };
-

@@ -1,1 +1,182 @@
-{}
+{
+  "/images/about-flow.png": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/images/derived/about-flow.w480.avif",
+        "width": 480,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/about-flow.w960.avif",
+        "width": 960,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/about-flow.w1440.avif",
+        "width": 1440,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/about-flow.w480.webp",
+        "width": 480,
+        "format": "webp"
+      },
+      {
+        "src": "/images/derived/about-flow.w960.webp",
+        "width": 960,
+        "format": "webp"
+      },
+      {
+        "src": "/images/derived/about-flow.w1440.webp",
+        "width": 1440,
+        "format": "webp"
+      }
+    ]
+  },
+  "/images/home-faq.png": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/images/derived/home-faq.w480.avif",
+        "width": 480,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/home-faq.w960.avif",
+        "width": 960,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/home-faq.w1440.avif",
+        "width": 1440,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/home-faq.w480.webp",
+        "width": 480,
+        "format": "webp"
+      },
+      {
+        "src": "/images/derived/home-faq.w960.webp",
+        "width": 960,
+        "format": "webp"
+      },
+      {
+        "src": "/images/derived/home-faq.w1440.webp",
+        "width": 1440,
+        "format": "webp"
+      }
+    ]
+  },
+  "/images/home-formats.png": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/images/derived/home-formats.w480.avif",
+        "width": 480,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/home-formats.w960.avif",
+        "width": 960,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/home-formats.w1440.avif",
+        "width": 1440,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/home-formats.w480.webp",
+        "width": 480,
+        "format": "webp"
+      },
+      {
+        "src": "/images/derived/home-formats.w960.webp",
+        "width": 960,
+        "format": "webp"
+      },
+      {
+        "src": "/images/derived/home-formats.w1440.webp",
+        "width": 1440,
+        "format": "webp"
+      }
+    ]
+  },
+  "/images/slots/home-tool.png": {
+    "width": 2496,
+    "height": 1664,
+    "variants": [
+      {
+        "src": "/images/derived/slots/home-tool.w480.avif",
+        "width": 480,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/slots/home-tool.w960.avif",
+        "width": 960,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/slots/home-tool.w1440.avif",
+        "width": 1440,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/slots/home-tool.w480.webp",
+        "width": 480,
+        "format": "webp"
+      },
+      {
+        "src": "/images/derived/slots/home-tool.w960.webp",
+        "width": 960,
+        "format": "webp"
+      },
+      {
+        "src": "/images/derived/slots/home-tool.w1440.webp",
+        "width": 1440,
+        "format": "webp"
+      }
+    ]
+  },
+  "/images/split-styles.png": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/images/derived/split-styles.w480.avif",
+        "width": 480,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/split-styles.w960.avif",
+        "width": 960,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/split-styles.w1440.avif",
+        "width": 1440,
+        "format": "avif"
+      },
+      {
+        "src": "/images/derived/split-styles.w480.webp",
+        "width": 480,
+        "format": "webp"
+      },
+      {
+        "src": "/images/derived/split-styles.w960.webp",
+        "width": 960,
+        "format": "webp"
+      },
+      {
+        "src": "/images/derived/split-styles.w1440.webp",
+        "width": 1440,
+        "format": "webp"
+      }
+    ]
+  }
+}

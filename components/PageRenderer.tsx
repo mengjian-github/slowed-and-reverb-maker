@@ -327,6 +327,7 @@ export function PageRenderer({ route, content, config, locale }: { route: Route;
         <meta name="shipsite-version" content={deployedVersionId} />
         <link rel="canonical" href={canonical} />
         {alternates.map((alt) => <link key={alt.hrefLang} rel="alternate" hrefLang={alt.hrefLang} href={alt.href} />)}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content={preview ? "noindex, nofollow" : route.index ? "index, follow" : "noindex, follow"} />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
