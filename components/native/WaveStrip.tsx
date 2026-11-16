@@ -45,6 +45,7 @@ export function WaveStrip({ note }: { note?: string }) {
           d={`M0 ${base + 7} C ${width * 0.2} ${base + 7}, ${width * 0.26} ${height - 2}, ${width * 0.58} ${height - 2} S ${width * 0.9} ${base + 4}, ${width} ${base + 4}`}
         />
       </svg>
+      <span className="strip-playhead" aria-hidden="true" />
       <figcaption>
         {note ? <span className="strip-note">{note}</span> : null}
         <span className="strip-legend">

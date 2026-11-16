@@ -110,7 +110,7 @@ footer[data-node="footer"] .footer-brand { color: #ffe6f4 !important; }
 footer[data-node="footer"] .footer-group a:hover { color: #ff99d3 !important; }
 
 /* ---------- hero ---------- */
-main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
+main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .hero-band { padding-block: clamp(1.2rem, 2.6vw, 2.2rem) 0; display: grid; }
 .eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0; color: #ff99d3; font-weight: 700; font-size: 0.86rem; letter-spacing: 0.02em; }
 .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff99d3; box-shadow: 0 0 0 4px color-mix(in srgb, #ff99d3 18%, transparent); }
@@ -134,7 +134,12 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
 /* signature: the decaying waveform strip and its reverb tail */
-.wave-strip { margin: 1.15rem 0 0; }
+.wave-strip { margin: 1.15rem 0 0; position: relative; }
+/* a playhead crossing the strip, so the hero reads as a track playing rather
+   than a decorative chart */
+.wave-strip .strip-playhead { position: absolute; top: 0; left: 0; width: 1px; height: clamp(62px, 5.4vw, 92px); background: linear-gradient(to bottom, transparent, #ffe6f4 30%, #ffe6f4 70%, transparent); box-shadow: 0 0 10px 1px color-mix(in srgb, #ff99d3 70%, transparent); animation: strip-scan 7.5s cubic-bezier(0.5, 0, 0.5, 1) 1.4s infinite; pointer-events: none; }
+@keyframes strip-scan { 0% { left: 0; opacity: 0; } 8% { opacity: 0.85; } 88% { opacity: 0.85; } 100% { left: 100%; opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .wave-strip .strip-playhead { display: none; } }
 .wave-strip svg { display: block; width: 100%; height: clamp(62px, 5.4vw, 92px); color: #ff99d3; overflow: visible; }
 .wave-strip .strip-bar { fill: currentColor; opacity: 0.85; transform-origin: center bottom; animation: strip-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .wave-strip .strip-tail { fill: none; stroke: currentColor; stroke-width: 1.2; opacity: 0.5; stroke-dasharray: 900; stroke-dashoffset: 900; animation: strip-draw 1.1s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both; }
@@ -145,7 +150,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 @keyframes strip-in { from { transform: scaleY(0.08); opacity: 0; } to { transform: none; opacity: 0.85; } }
 @keyframes strip-draw { to { stroke-dashoffset: 0; } }
 
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 1.4rem; align-items: start; padding-block: 1.4rem 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 372px); gap: 1.4rem; align-items: start; padding-block: 1.4rem 0; }
 /* Wider screens: the console panel and the split board bleed into the gutter so
    the first line of their copy sits on the same edge as the header and bands. */
 @media (min-width: 1280px) {
@@ -198,7 +203,6 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 @keyframes rise-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 .deck-head { display: flex; align-items: baseline; gap: 0.65rem; padding-bottom: 0.7rem; border-bottom: 1px solid color-mix(in srgb, #ffe6f4 14%, transparent); }
 .deck-head h2 { margin: 0; font-size: 1.26rem; letter-spacing: -0.012em; text-transform: none; }
-.deck-index { color: #ff99d3; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 0.82rem; }
 .drop { position: relative; display: grid; justify-items: center; text-align: center; gap: 0.45rem; padding: 1.5rem 1.1rem 1.4rem; border: 1.5px dashed color-mix(in srgb, #ff99d3 42%, transparent); border-radius: 8px; transition: background-color 0.18s ease, border-color 0.18s ease; }
 .drop:hover, .drop:focus-within { background: color-mix(in srgb, #ff99d3 7%, transparent); border-color: #ff99d3; }
 .drop.is-over { background: color-mix(in srgb, #ff99d3 14%, transparent); border-color: #ffe6f4; }
@@ -236,10 +240,13 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 3rem; }
 .preset:active, .format:active { transform: scale(0.97); }
 /* each preset carries the site's mark drawn at its own reverb tail */
 .preset-glyph { flex: none; width: 30px; height: 14px; fill: currentColor; opacity: 0.9; }
-.preset:hover, .format:hover { border-color: #ff99d3; }
+.preset:hover, .format:hover { border-color: #ff99d3; background: color-mix(in srgb, #ff99d3 9%, transparent); transform: translateY(-1px); }
+.preset input:focus-visible + span, .format input:focus-visible + span { outline: 2px solid #ffe6f4; outline-offset: 2px; }
+.preset:has(input:focus-visible), .format:has(input:focus-visible) { outline: 2px solid #ffe6f4; outline-offset: 2px; }
 .preset input, .format input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .preset input:focus-visible + span, .format input:focus-visible + span { outline: 2px solid #ffe6f4; outline-offset: 2px; }
-.preset.on, .format.on { background: #ff99d3; color: #3d0012; border-color: #ff99d3; }
+.preset.on, .format.on { background: #ff99d3; color: #3d0012; border-color: #ff99d3; animation: preset-set 0.42s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes preset-set { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, #ff99d3 70%, transparent); } 100% { box-shadow: 0 0 0 10px transparent; } }
 .format small { display: block; font-size: 0.8rem; opacity: 0.85; }
 .sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem 1.5rem; }
 .slider { display: grid; grid-template-columns: minmax(0, 1fr) 5.2rem; align-items: center; gap: 0.2rem 0.6rem; }
@@ -295,8 +302,8 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px
 @media (min-width: 1000px) {
   /* A heading over a 70ch column leaves the right third of every band empty.
      Put the heading in its own column and the lead beside it. */
-  .band-head { grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr); gap: 0.4rem 2.6rem; align-items: start; max-width: none; }
-  .band-head .band-lead { max-width: 62ch; }
+  .band-head { grid-template-columns: minmax(0, 0.56fr) minmax(0, 1fr); gap: 0.4rem 2rem; align-items: start; max-width: none; }
+  .band-head .band-lead { max-width: 66ch; }
 }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.35rem; counter-reset: step; }
 .steps li { display: grid; grid-template-columns: 2.3rem minmax(0, 1fr); gap: 0.95rem; border: 0; padding: 0.9rem 1rem; align-items: start; }

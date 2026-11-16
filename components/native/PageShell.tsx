@@ -130,7 +130,7 @@ export function SectionBlock({ section }: { section: PageSection }) {
       ) : null}
       {section.image ? (
         <figure className="band-figure">
-          <img src={section.image.src} alt={section.image.alt} loading="lazy" />
+          <img src={section.image.src} alt={section.image.alt} decoding="async" />
           {section.image.caption ? <figcaption>{section.image.caption}</figcaption> : null}
           {section.image.credit ? (
             <p className="figure-credit">

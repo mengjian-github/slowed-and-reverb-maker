@@ -311,7 +311,6 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         data-state={decoding ? "working" : loadState}
       >
         <header className="deck-head">
-          <span className="deck-index" aria-hidden="true">01</span>
           <h2>Load a track</h2>
         </header>
         <div
@@ -372,7 +371,6 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         data-state={shapeProblem && shapeState === "error" ? "error" : playing ? "working" : shapeState}
       >
         <header className="deck-head">
-          <span className="deck-index" aria-hidden="true">02</span>
           <h2>Shape it live</h2>
         </header>
 
@@ -474,7 +472,6 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         data-state={exportState}
       >
         <header className="deck-head">
-          <span className="deck-index" aria-hidden="true">03</span>
           <h2>Render and download</h2>
         </header>
         <fieldset className="format-set">
