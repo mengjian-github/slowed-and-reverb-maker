@@ -43,10 +43,20 @@ export function HomePage({ content, config }: NativeRouteProps) {
         </div>
         <aside className="rail">
           <figure className="stage-still">
-            <img src="/images/slots/home-tool.png" alt={content.hero?.alt ?? "A producer working late at night in a dim bedroom studio, reaching toward a glowing laptop"} />
+            <img
+              src={content.hero?.src ?? "/images/slots/home-tool.png"}
+              alt={content.hero?.alt ?? "A producer working late at night in a dim bedroom studio, reaching toward a glowing laptop"}
+            />
             <figcaption>
               <span className="still-chip">0.80× · reverb 55% · +4 dB</span>
               {content.hero?.caption ?? "Late-night sessions are where most slowed edits are born."}
+              {content.hero?.credit ? (
+                <span className="still-credit">
+                  {content.hero.sourceUrl
+                    ? <a href={content.hero.sourceUrl} rel="nofollow noopener" target="_blank">{content.hero.credit}</a>
+                    : content.hero.credit}
+                </span>
+              ) : null}
             </figcaption>
           </figure>
           <dl className="stage-metrics">

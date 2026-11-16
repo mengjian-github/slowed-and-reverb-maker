@@ -246,12 +246,22 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px
 .band-head { display: grid; gap: 0.55rem; max-width: 70ch; }
 .band h2 { margin: 0; font-size: clamp(1.5rem, 1.15rem + 1.5vw, 2.35rem); }
 .band-lead { margin: 0; color: #edc4d8; max-width: 70ch; }
+/* ProseBlock: approved copy's blank lines become real paragraphs. */
+.lede > p, .band-lead > p, .faq > div > p { margin: 0 0 0.7rem; max-width: none; }
+.lede > p:last-child, .band-lead > p:last-child, .faq > div > p:last-child { margin-bottom: 0; }
+@media (min-width: 1000px) {
+  /* A heading over a 70ch column leaves the right third of every band empty.
+     Put the heading in its own column and the lead beside it. */
+  .band-head { grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr); gap: 0.4rem 2.6rem; align-items: start; max-width: none; }
+  .band-head .band-lead { max-width: 62ch; }
+}
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.35rem; counter-reset: step; }
 .steps li { display: grid; grid-template-columns: 2.3rem minmax(0, 1fr); gap: 0.95rem; border: 0; padding: 0; align-items: start; }
 .step-no { display: grid; place-items: center; width: 2.3rem; height: 2.3rem; border: 1.5px solid #ff99d3; border-radius: 50%; color: #ff99d3; font-weight: 700; font-variant-numeric: tabular-nums; counter-increment: step; }
 .step-no::before { content: counter(step); }
 .steps h3, .spec-grid h3 { margin: 0 0 0.35rem; font-size: 1.1rem; }
 .steps p, .spec-grid p { margin: 0; color: #edc4d8; }
+.steps p:not(:last-child), .spec-grid p:not(:last-child) { margin-bottom: 0.6rem; }
 .spec-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.4rem 1.8rem; }
 .spec-grid li { border: 0; border-top: 1px solid color-mix(in srgb, #ffe6f4 22%, transparent); padding: 0.85rem 0 0; }
 .table-wrap { overflow-x: auto; padding: 1rem 1.1rem; background: #4d0519; border: 1px solid color-mix(in srgb, #ffe6f4 14%, transparent); border-radius: 8px; }
@@ -260,9 +270,11 @@ caption { text-align: left; font-weight: 700; margin-bottom: 0.6rem; }
 th, td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid color-mix(in srgb, #ffe6f4 14%, transparent); vertical-align: top; }
 th { font-size: 0.88rem; letter-spacing: 0.02em; text-transform: none; color: #edc4d8; font-weight: 700; }
 .checked { color: #edc4d8; font-size: 0.88rem; margin: 0.6rem 0 0; }
-.band-figure { margin: 0; }
-.band-figure img { width: 100%; height: auto; max-height: 420px; object-fit: cover; border-radius: 8px; filter: saturate(1.05); }
+.band-figure { margin: 0; max-width: 920px; }
+.band-figure img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; filter: saturate(1.05); }
 .band-figure figcaption { margin-top: 0.5rem; color: #edc4d8; font-size: 0.88rem; }
+.figure-credit, .still-credit { margin: 0.25rem 0 0; color: #edc4d8; font-size: 0.78rem; opacity: 0.85; }
+.figure-credit a, .still-credit a { color: inherit; }
 .faq-band { padding-bottom: clamp(1.5rem, 3vw, 2.5rem); }
 .faq { border-bottom: 1px solid color-mix(in srgb, #ffe6f4 16%, transparent); }
 .faq h3 { margin: 0; font-size: 1.02rem; }

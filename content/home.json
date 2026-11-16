@@ -3,6 +3,11 @@
   "description": "Free online slowed and reverb maker. Upload an audio file, adjust speed, pitch and reverb live in your browser, and export MP3 or WAV. No signup, no watermark.",
   "h1": "Slowed and Reverb Maker",
   "heroText": "Turn any song on your device into a slowed and reverb version in about a minute. This free tool loads your audio in the browser, plays the effect live as you adjust speed, pitch, reverb and bass, then renders the finished track for download. No signup, no watermark, and your file never leaves your device.",
+  "hero": {
+    "src": "/images/slots/home-tool.png",
+    "alt": "A producer working late at night in a dim bedroom studio, reaching toward a glowing laptop",
+    "caption": "Late-night sessions are where most slowed edits are born — one laptop, one track, no studio."
+  },
   "ctas": [
     {
       "label": "Load an audio file",
@@ -223,10 +228,5 @@
       }
     ],
     "dateModified": "2026-11-12"
-  },
-  "hero": {
-    "src": "/images/slots/home-tool.png",
-    "alt": "A producer working late at night in a dim bedroom studio, reaching toward a glowing laptop",
-    "caption": "Late-night sessions are where most slowed edits are born — one laptop, one track, no studio."
   }
 }

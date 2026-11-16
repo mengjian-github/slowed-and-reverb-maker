@@ -19,12 +19,31 @@ export function PageShell({ config, children }: { config: SiteConfig; children: 
   );
 }
 
+/** Approved copy separates paragraphs with a blank line. RichText renders one
+ *  inline run, so a body with three paragraphs printed as a single 1,200-char
+ *  wall (the guide's short answer, 2026-11-16). Split on blank lines and give
+ *  each its own <p>; a one-paragraph body is unchanged. */
+export function ProseBlock({ value, className }: { value?: string | null; className?: string }) {
+  const parts = (value ?? "")
+    .split(/\n\s*\n/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  if (!parts.length) return null;
+  return (
+    <div className={className}>
+      {parts.map((part, index) => (
+        <p key={index}><RichText value={part} /></p>
+      ))}
+    </div>
+  );
+}
+
 export function HeroCopy({ content, kicker }: { content: PageContent; kicker?: string }) {
   return (
     <div className="hero-copy">
       {kicker ? <p className="eyebrow"><span className="dot" aria-hidden="true" />{kicker}</p> : null}
       <h1>{content.h1}</h1>
-      <p className="lede"><RichText value={content.heroText} /></p>
+      <ProseBlock className="lede" value={content.heroText} />
     </div>
   );
 }
@@ -62,7 +81,7 @@ export function SectionBlock({ section }: { section: PageSection }) {
     <section id={section.id} className="band">
       <header className="band-head">
         <h2>{section.title}</h2>
-        {section.body ? <p className="band-lead"><RichText value={section.body} /></p> : null}
+        {section.body ? <ProseBlock className="band-lead" value={section.body} /> : null}
       </header>
       {section.steps?.length ? (
         <ol className="steps">
@@ -71,7 +90,7 @@ export function SectionBlock({ section }: { section: PageSection }) {
               <span className="step-no" aria-hidden="true" />
               <div>
                 <h3>{step.title}</h3>
-                <p><RichText value={step.body} /></p>
+                <ProseBlock value={step.body} />
               </div>
             </li>
           ))}
@@ -82,7 +101,7 @@ export function SectionBlock({ section }: { section: PageSection }) {
           {section.items.map((item) => (
             <li key={item.title}>
               <h3>{item.title}</h3>
-              <p><RichText value={item.body} /></p>
+              <ProseBlock value={item.body} />
             </li>
           ))}
         </ul>
@@ -113,6 +132,13 @@ export function SectionBlock({ section }: { section: PageSection }) {
         <figure className="band-figure">
           <img src={section.image.src} alt={section.image.alt} loading="lazy" />
           {section.image.caption ? <figcaption>{section.image.caption}</figcaption> : null}
+          {section.image.credit ? (
+            <p className="figure-credit">
+              {section.image.sourceUrl
+                ? <a href={section.image.sourceUrl} rel="nofollow noopener" target="_blank">{section.image.credit}</a>
+                : section.image.credit}
+            </p>
+          ) : null}
         </figure>
       ) : null}
     </section>
@@ -147,7 +173,7 @@ export function FaqList({ content }: { content: PageContent }) {
                   <span aria-hidden="true">{shown ? "–" : "+"}</span>
                 </button>
               </h3>
-              {shown ? <p><RichText value={entry.answer} /></p> : null}
+              {shown ? <ProseBlock value={entry.answer} /> : null}
             </div>
           );
         })}

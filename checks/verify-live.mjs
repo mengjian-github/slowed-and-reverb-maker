@@ -67,15 +67,28 @@ function watch(page) {
   });
   page.on("requestfailed", (req) => {
     if (BASE && !req.url().startsWith(BASE)) return;
-    out.failedRequests.push(`failed ${req.url().slice(BASE.length)} ${req.failure()?.errorText ?? ""}`.slice(0, 200));
+    // A navigation cancels in-flight image and manifest loads; the browser
+    // reports those as failures even though the request was never needed.
+    const why = req.failure()?.errorText ?? "";
+    if (/cancelled|ERR_ABORTED|NS_BINDING_ABORTED/i.test(why)) return;
+    out.failedRequests.push(`failed ${req.url().slice(BASE.length)} ${why}`.slice(0, 200));
   });
 }
 
 async function downloadOf(page, link) {
-  const [download] = await Promise.all([page.waitForEvent("download", { timeout: 150000 }), link.click()]);
-  const path = await download.path();
-  const bytes = await readFile(path);
-  return { name: download.suggestedFilename(), bytes };
+  // The download event occasionally arrives late when two browsers run side by
+  // side on a loaded machine, so wait for it on its own and retry the click.
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const waiting = page.waitForEvent("download", { timeout: 60000 }).catch(() => null);
+    await link.click({ timeout: 20000 }).catch(() => {});
+    const download = await waiting;
+    if (download) {
+      const bytes = await readFile(await download.path());
+      return { name: download.suggestedFilename(), bytes };
+    }
+    await page.waitForTimeout(700);
+  }
+  throw new Error(`no download event for ${(await link.innerText().catch(() => "download link")).slice(0, 40)}`);
 }
 
 function headerOf(bytes) {
@@ -85,9 +98,46 @@ function headerOf(bytes) {
   return `unknown:${bytes.subarray(0, 4).toString("hex")}`;
 }
 
+async function loadFile(page) {
+  // A file set before React hydrates is dropped when the client takes over, so
+  // try again; the chip under the drop zone is the visible proof it landed.
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    await page.locator('[data-tool-input="audio-file"]').setInputFiles(FILE);
+    try {
+      await page.waitForFunction(() => /verify-tone/.test(document.querySelector(".chip-row b")?.textContent || ""), null, { timeout: 20000 });
+      return true;
+    } catch {
+      await page.waitForTimeout(700);
+    }
+  }
+  return false;
+}
+
+async function openTool(page, url) {
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+  await page.waitForSelector('[data-tool-input="audio-file"]', { state: "attached", timeout: 45000 });
+  // Next.js hydrates after the HTML arrives; a click before the bundle runs is
+  // a no-op, so let the page settle (deployed Workers are slower than a local
+  // server) and give up waiting rather than fail if a request trickles.
+  await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
+  await page.waitForTimeout(300);
+}
+
+async function loadSample(page) {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    await page.getByRole("button", { name: /Try the sample/i }).first().click();
+    try {
+      await page.waitForSelector(".chip-row b", { timeout: 12000 });
+      return true;
+    } catch {
+      await page.waitForTimeout(500);
+    }
+  }
+  return false;
+}
+
 async function driveTool(page, label, opts = {}) {
-  await page.goto(`${BASE}${opts.path || "/"}`, { waitUntil: "networkidle", timeout: 60000 });
-  await page.waitForSelector('[data-tool-input="audio-file"]', { state: "attached", timeout: 30000 });
+  await openTool(page, `${BASE}${opts.path || "/"}`);
 
   // preset preloaded state
   if (opts.expectPreset) {
@@ -96,19 +146,14 @@ async function driveTool(page, label, opts = {}) {
   }
 
   // 1. sample audio
-  await page.getByRole("button", { name: /Try the sample/i }).first().click();
-  await page.waitForSelector(".chip-row b", { timeout: 30000 });
-  const sampleChip = await page.locator(".chip-row").first().innerText();
-  rec(`${label} sample loads`, /\.wav/.test(sampleChip) && /4 s/.test(sampleChip), sampleChip);
+  const sampleOk = await loadSample(page);
+  const sampleChip = sampleOk ? await page.locator(".chip-row").first().innerText() : "no chip appeared";
+  rec(`${label} sample loads`, sampleOk && /\.wav/.test(sampleChip) && /4 s/.test(sampleChip), sampleChip);
 
   // 2. real file load
-  await page.locator('[data-tool-input="audio-file"]').setInputFiles(FILE);
-  await page.waitForFunction(() => {
-    const chip = document.querySelector(".chip-row b");
-    return chip && /verify-tone/.test(chip.textContent || "");
-  }, null, { timeout: 40000 });
+  const loaded = await loadFile(page);
   const fileChip = await page.locator(".chip-row").first().innerText();
-  rec(`${label} file loads`, /verify-tone\.wav/.test(fileChip) && /2 s/.test(fileChip), fileChip);
+  rec(`${label} file loads`, loaded && /verify-tone\.wav/.test(fileChip) && /2 s/.test(fileChip), fileChip);
 
   // 3. preset applies its numbers
   if (label === "slowed") {
@@ -128,7 +173,9 @@ async function driveTool(page, label, opts = {}) {
   await speed.fill("0.75");
   await speed.dispatchEvent("input");
   await page.waitForTimeout(150);
-  const value = await page.locator(".slider-value").first().innerText();
+  // The number box beside each range is the one visible value (the plain
+  // readout is sr-only), so read it back from the field itself.
+  const value = await speed.inputValue();
   const readout = await page.locator(".readout-line").innerText();
   rec(`${label} speed slider`, /0\.75/.test(value) && /Speed 0\.75×/.test(readout), `${value} | ${readout.slice(0, 60)}`);
 
@@ -143,12 +190,18 @@ async function driveTool(page, label, opts = {}) {
   await speed.dispatchEvent("input");
   await page.waitForTimeout(120);
 
-  // 6. transport
+  // 6. transport: Play must actually start, which shows as Stop enabling.
+  // WebKit starts its audio context asynchronously, so poll instead of
+  // assuming it is running after a fixed pause.
   await page.getByRole("button", { name: "Play preview" }).click();
-  await page.waitForTimeout(400);
-  const stopEnabled = await page.getByRole("button", { name: "Stop" }).isEnabled();
+  const stop = page.getByRole("button", { name: "Stop" });
+  let stopEnabled = false;
+  for (let tick = 0; tick < 30 && !stopEnabled; tick += 1) {
+    await page.waitForTimeout(250);
+    stopEnabled = await stop.isEnabled().catch(() => false);
+  }
   rec(`${label} preview plays`, stopEnabled, `stop enabled: ${stopEnabled}`);
-  await page.getByRole("button", { name: "Stop" }).click();
+  if (stopEnabled) await stop.click({ timeout: 10000 }).catch(() => {});
 
   // 7. trim bounds reach the readout
   await page.locator('[data-tool-input="trim-end"]').fill("1");
@@ -178,7 +231,7 @@ async function driveTool(page, label, opts = {}) {
 }
 
 async function measureOverflow(page, route) {
-  await page.goto(`${BASE}${route}`, { waitUntil: "networkidle", timeout: 60000 });
+  await page.goto(`${BASE}${route}`, { waitUntil: "domcontentloaded", timeout: 60000 });
   await page.waitForTimeout(250);
   const width = await page.evaluate(() => ({
     scroll: document.documentElement.scrollWidth,
@@ -198,7 +251,7 @@ try {
 
   // every route's headline renders and the page has its own title
   for (const route of ROUTES) {
-    await page.goto(`${BASE}${route}`, { waitUntil: "networkidle", timeout: 60000 });
+    await page.goto(`${BASE}${route}`, { waitUntil: "domcontentloaded", timeout: 60000 });
     const h1 = (await page.locator("h1").first().innerText().catch(() => "")).trim();
     rec(`route ${route}`, h1.length > 2, `h1: ${h1.slice(0, 60)}`);
   }
@@ -208,10 +261,9 @@ try {
   const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true, acceptDownloads: true });
   const mp = await phone.newPage();
   watch(mp);
-  await mp.goto(`${BASE}/`, { waitUntil: "networkidle", timeout: 60000 });
-  await mp.locator('[data-tool-input="audio-file"]').setInputFiles(FILE);
-  await mp.waitForFunction(() => /verify-tone/.test(document.querySelector(".chip-row b")?.textContent || ""), null, { timeout: 40000 });
-  rec("phone file load", true, "verify-tone.wav loaded at 390");
+  await openTool(mp, `${BASE}/`);
+  const phoneLoaded = await loadFile(mp);
+  rec("phone file load", phoneLoaded, phoneLoaded ? "verify-tone.wav loaded at 390" : "the file never reached the loader at 390");
   await mp.locator(".preset", { hasText: "Classic Slowed + Reverb" }).click();
   const phoneReadout = await mp.locator(".readout-line").innerText();
   rec("phone preset", /Classic Slowed \+ Reverb/.test(phoneReadout), phoneReadout.slice(0, 80));
