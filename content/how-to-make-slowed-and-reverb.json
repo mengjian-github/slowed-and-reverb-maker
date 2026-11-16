@@ -95,7 +95,7 @@
     },
     {
       "question": "What format should I export?",
-      "answer": "Render WAV when the file goes into a video editor or another audio app — it is 16-bit lossless at your browser's audio rate, 44.1 kHz on most devices. Render MP3 when the clip is going straight to social media: it is 192 kbps and far smaller, so it uploads faster. Both are rendered offline from the same buffer you previewed, so neither surprises you."
+      "answer": "Render WAV when the file goes into a video editor or another audio app — it is 16-bit lossless at your browser's audio sample rate. Render MP3 when the clip is going straight to social media: it is 192 kbps and far smaller, so it uploads faster. Both are rendered offline from the same buffer you previewed, so neither surprises you."
     },
     {
       "question": "How is slowed and reverb different from nightcore?",

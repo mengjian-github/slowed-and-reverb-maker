@@ -55,7 +55,7 @@ export function NightcorePage({ content, config }: NativeRouteProps) {
             </li>
             <li>
               <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-              <span>Move speed and pitch apart for a plain sped-up version that keeps the original vocal depth.</span>
+              <span>Speed and pitch move together tape-style on this engine, so a plain sped-up take is a smaller speed lift at pitch 0; pulling the pitch field down toward −2 st takes part of that lift back out.</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>

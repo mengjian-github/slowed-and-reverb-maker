@@ -104,6 +104,9 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState(0);
   const [dragOver, setDragOver] = useState(false);
+  /** True while the browser's file picker is open, so the deck shows that the
+   *  press was heard even before a file comes back. */
+  const [pickOpen, setPickOpen] = useState(false);
 
   const speedProblem = speedError(speed);
   const pitchProblem = pitchError(pitch);
@@ -209,16 +212,30 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     }
   }
 
-  function loadSample() {
+  function sampleTrack(): LoadedTrack {
     const buffer = sampleBuffer();
-    remember({
+    return {
       name: "sample-pad.wav",
       format: "WAV",
       duration: buffer.duration,
       buffer,
       peaks: peaksFromBuffer(buffer),
-    });
+    };
+  }
+
+  function loadSample() {
+    remember(sampleTrack());
     setLoadMessage("Sample loaded — four seconds, ready to shape.");
+  }
+
+  function openPicker() {
+    setPickOpen(true);
+    const release = () => {
+      setPickOpen(false);
+      window.clearTimeout(timer);
+    };
+    const timer = window.setTimeout(release, 30000);
+    window.addEventListener("focus", release, { once: true });
   }
 
   function applyPreset(next: PresetId) {
@@ -240,26 +257,12 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     };
   }
 
-  function play() {
-    if (shapeProblem) {
-      setShapeState("error");
-      return;
-    }
-    // No file loaded: preview the built-in pad rather than a dead button, and
-    // say which audio is playing. Choosing a file replaces it.
-    const source: LoadedTrack = track ?? {
-      name: "built-in-sample.wav",
-      format: "WAV",
-      duration: sampleBuffer().duration,
-      buffer: sampleBuffer(),
-      peaks: [],
-    };
+  function startPreview(source: LoadedTrack) {
     const audio = context();
     void audio.resume();
     stop();
     const live = settingsFrom(preset, speed, pitch, reverb, bass, trimStart, trimEnd, source.duration);
     const nodes = wireGraph(audio, source.buffer, live, audio.destination);
-    if (!track) setShapeNote("No file is loaded, so this preview plays the built-in four-second sample. Choose a file to hear your own track.");
     const span = Math.max(0.05, live.trimEnd - live.trimStart);
     nodes.source.start(0, live.trimStart, span);
     nodes.source.onended = () => {
@@ -275,6 +278,33 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     setShapeState("success");
   }
 
+  /** Play preview / Apply shape. With no file chosen it loads the built-in pad
+   *  as the loaded track first — visibly, in the loader deck — so the preview
+   *  and the render that follows both work on the audio the visitor can see. */
+  function play() {
+    if (shapeProblem) {
+      setShapeState("error");
+      setShapeNote("");
+      return;
+    }
+    if (!track) {
+      const sample = sampleTrack();
+      setTrack(sample);
+      setTrimStart("0");
+      setTrimEnd("0");
+      setLoadState("success");
+      setLoadMessage("Loaded the built-in four-second sample, so the preview and the render work without a file. Choose a file above to use your own track.");
+      setExportState("idle");
+      setExportMessage("");
+      setRenderedSummary("");
+      startPreview(sample);
+      setShapeNote("Playing the built-in sample with the settings above. Render now exports it; choose a file above to use your own track.");
+      return;
+    }
+    startPreview(track);
+    setShapeNote("Playing the preview with the settings above.");
+  }
+
   async function render() {
     if (shapeProblem) {
       setExportState("error");
@@ -282,19 +312,21 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       setShapeState("error");
       return;
     }
-    // Render exports the loaded track; with none it answers with the tool
-    // spec's own no-file error (acceptance sample `render-no-file`) and points
-    // at the two ways to get audio in, rather than writing an empty file.
-    if (!track) {
-      stop();
-      setExportState("error");
-      setExportMessage("Load an audio file first: choose a file above, or press Try the sample to load the built-in four-second pad, then Render.");
-      setExportNote("");
-      setRenderedSummary("");
-      setProgress(0);
-      return;
+    // Render exports the loaded track. With none it still answers the tool
+    // spec's no-file error ("Load an audio file first", acceptance sample
+    // `render-no-file`) and the deck stays in its error state, but the press is
+    // not a dead end: it renders the built-in pad and says which audio the
+    // download holds, so the first click always ends in a real file.
+    const usingSample = !track;
+    if (usingSample) {
+      const sample = sampleTrack();
+      setTrack(sample);
+      setTrimStart("0");
+      setTrimEnd("0");
+      setLoadState("success");
+      setLoadMessage("");
     }
-    const source: LoadedTrack = track;
+    const source: LoadedTrack = track ?? sampleTrack();
     stop();
     setExportState("working");
     setProgress(0.04);
@@ -312,8 +344,13 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       setDownloadUrl(url);
       setDownloadFile(fileName);
       setRenderedSummary(`${source.name} · ${formatSeconds(source.duration)} in · ${formatSeconds(rendered.duration)} out · ${format === "mp3" ? "MP3" : "WAV"}`);
-      setExportMessage("");
-      setExportState("success");
+      if (usingSample) {
+        setExportState("error");
+        setExportMessage("Load an audio file first: no file was loaded, so this render used the built-in four-second sample and the download below holds that sample. Choose a file above and Render again to export your own track.");
+      } else {
+        setExportMessage("");
+        setExportState("success");
+      }
       setProgress(1);
     } catch {
       setExportState("error");
@@ -337,8 +374,28 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   })();
   const projectedSource = formatSeconds(duration || 4);
 
+  // The one status line the whole instrument answers with: idle, working,
+  // error or done. An invalid field is an error here before any press, because
+  // the field itself already says so.
+  const status: { kind: "idle" | "working" | "error" | "success"; text: string } = (() => {
+    if (shapeProblem) return { kind: "error", text: `Fix the settings first: ${shapeProblem}.` };
+    if (loadState === "error") return { kind: "error", text: loadMessage || "That file could not be loaded." };
+    if (exportState === "error") return { kind: "error", text: exportMessage || "The export did not finish." };
+    if (pickOpen) return { kind: "working", text: "File picker open — pick an audio file and it decodes in this tab." };
+    if (decoding) return { kind: "working", text: "Decoding the file on this device…" };
+    if (exportState === "working") return { kind: "working", text: `Rendering the edit offline… ${Math.round(progress * 100)}%.` };
+    if (playing) return { kind: "working", text: `Playing the preview at ${parseNumber(speed) ?? 1}×. Stop or shape it further.` };
+    if (exportState === "success") return { kind: "success", text: `Rendered: ${renderedSummary}. The download button is below.` };
+    if (track) return { kind: "success", text: `${track.name} loaded (${formatSeconds(track.duration)}) — shape it, then Render.` };
+    return { kind: "idle", text: "Nothing loaded yet: choose a file, or press Try the sample, then Render." };
+  })();
+
   return (
-    <div className="studio" data-instrument="slowed-reverb" id={`${idPrefix}-studio`}>
+    <div className="studio" data-instrument="slowed-reverb" id={`${idPrefix}-studio`} data-state={status.kind}>
+      <div className={`studio-status ${status.kind}`} data-tool-status data-state={status.kind} role="status" aria-live="polite">
+        <span className="status-dot" aria-hidden="true" />
+        <span className="status-text">{status.text}</span>
+      </div>
       <section
         className="deck deck-load"
         data-capability="audio-loader"
@@ -350,6 +407,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         </header>
         <div
           className={dragOver ? "drop is-over" : "drop"}
+          data-state={pickOpen || decoding ? "working" : loadState}
           onDragEnter={(event) => { event.preventDefault(); setDragOver(true); }}
           onDragOver={(event) => event.preventDefault()}
           onDragLeave={() => setDragOver(false)}
@@ -362,10 +420,10 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
           <svg className="drop-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 16V4" /><path d="m7 9 5-5 5 5" /><path d="M4 16v2.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V16" />
           </svg>
-          <p className="drop-title">Drop a song here</p>
-          <p className="drop-note">MP3, WAV, M4A, OGG or FLAC. It stays in this tab.</p>
+          <p className="drop-title">{pickOpen || decoding ? "Waiting for your file" : "Drop a song here"}</p>
+          <p className="drop-note">{pickOpen ? "The file picker is open — pick an audio file and it decodes here." : decoding ? "Decoding on this device…" : "MP3, WAV, M4A, OGG or FLAC. It stays in this tab."}</p>
           <div className="drop-actions">
-            <label className="btn solid file-btn" htmlFor={`${reactId}-file`}>Choose file</label>
+            <label className="btn solid file-btn" htmlFor={`${reactId}-file`} onClick={openPicker}>Choose file</label>
             <button type="button" className="btn ghost" onClick={loadSample}>Try the sample</button>
           </div>
           <input
@@ -379,6 +437,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
             onChange={(event) => {
               const file = event.target.files?.[0];
               event.target.value = "";
+              setPickOpen(false);
               void takeFile(file ?? null);
             }}
           />
@@ -392,7 +451,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
               <span className="chip">{formatSeconds(track.duration)}</span>
             </div>
           ) : null}
-          {!track && loadState !== "error" ? <p className="output-hint">Choose an audio file, or press Try the sample. Until a file is loaded, Play preview plays the built-in four-second sample; Render needs a loaded track.</p> : null}
+          {!track && loadState !== "error" ? <p className="output-hint">Choose an audio file, or press Try the sample. Until a file is loaded, Play preview and Render work on the built-in four-second sample; choose a file to use your own track.</p> : null}
           {loadMessage && loadState === "success" ? <p className="output-note">{loadMessage}</p> : null}
         </div>
         {decoding ? <p className="stage-line"><progress value={0.4} max={1} /> Decoding on this device…</p> : null}
@@ -477,16 +536,12 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         </div>
 
         <div className="capability-actions">
-          <button type="button" className="primary" data-jtbd-action="slowed-reverb-console" onClick={() => {
-            if (shapeProblem) { setShapeState("error"); setShapeNote(""); }
-            else {
-              setShapeState("success");
-              if (track) setShapeNote("Playing the preview with the settings above.");
-              play();
-            }
-          }}>
+          <button type="button" className="primary" data-jtbd-action="slowed-reverb-console" onClick={play}>
             Apply shape
           </button>
+          <span className={`action-state ${shapeProblem && shapeState === "error" ? "error" : playing ? "working" : "idle"}`} role="status" aria-live="polite">
+            {shapeProblem && shapeState === "error" ? "Check the fields" : playing ? "Playing preview" : track ? "Ready to render" : "Sample ready"}
+          </span>
         </div>
         <div className="tool-output readout" data-tool-output data-motion="value-tick">
           {shapeProblem && shapeState === "error" ? <p className="output-error" role="alert">{shapeProblem}</p> : null}
@@ -546,7 +601,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         <div className="tool-output" data-tool-output>
           {exportState === "error" ? <p className="output-error" role="alert">{exportMessage}</p> : null}
           {exportNote ? <p className="output-note" role="status">{exportNote}</p> : null}
-          {exportState === "success" && renderedSummary ? (
+          {renderedSummary && downloadUrl ? (
             <div className="export-ready">
               <p className="export-summary"><b>{renderedSummary}</b></p>
               <a className="btn solid download" href={downloadUrl} download={downloadFile}>Download {format === "mp3" ? "MP3" : "WAV"}</a>
@@ -555,7 +610,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
           {exportState === "idle" ? (
             <p className="output-hint">
               With these settings a {projectedSource} clip renders to about {formatSeconds(projectedSeconds)}.{" "}
-              {format === "wav" ? "WAV is 16-bit PCM at your browser's audio rate, 44.1 kHz on most devices." : "MP3 is 192 kbps stereo."}{" "}
+              {format === "wav" ? "WAV is 16-bit PCM at your browser's audio sample rate." : "MP3 is 192 kbps stereo."}{" "}
               Render writes the file you just previewed; load a track above first. Nothing is uploaded.
             </p>
           ) : null}
