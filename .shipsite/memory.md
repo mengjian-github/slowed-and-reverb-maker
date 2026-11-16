@@ -10,7 +10,7 @@ One line per entry: `- date · what — why: reason (from where)`.
 _(none yet)_
 
 ## Never do
-_(none yet)_
+- 2026-11-16 · Press Render with no file loaded must answer the tool spec's error "Load an audio file first" (acceptance sample wav-export/render-no-file); only Play preview falls back to the built-in sample. — why: A repair made Render render the built-in sample to answer a QA e2e note about a dead-end first click, and the gate then failed tool-sample wav-export/render-no-file (expected state error). An earlier editor's `git checkout content/slowed-vs-nightcore.json` als (from run_f11b8fcf-40f)
 
 ## Product decisions
 - 2026-11-16 · Presets are the source of truth: Classic Slowed + Reverb 0.80×/−2 st/55%/+4 dB, Nightcore 1.25×/+4 st/12%/0 dB, Daycore 0.75×/−5 st/40%/+4 dB, set in lib/audio-engine.ts PRESETS and printed on the guide and comparison pa — why: Approved long copy and the compare board quote these numbers; changing a preset must change the copy that cites it. (from run_34ae1546-fa3)

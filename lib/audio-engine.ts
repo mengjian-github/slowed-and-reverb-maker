@@ -213,7 +213,7 @@ export function wireGraph(context: BaseAudioContext, buffer: AudioBuffer, settin
 
   const bass = context.createBiquadFilter();
   bass.type = "lowshelf";
-  bass.frequency.value = 150;
+  bass.frequency.value = 120;
   bass.gain.value = settings.bassDb;
 
   const dry = context.createGain();
@@ -263,7 +263,12 @@ export interface RenderedAudio {
 export async function renderOffline(source: AudioBuffer, settings: ShapeSettings, onProgress?: (ratio: number) => void): Promise<RenderedAudio> {
   const span = Math.max(0.05, settings.trimEnd - settings.trimStart);
   const tail = settings.reverbPct > 0 ? 1.6 : 0.05;
-  const duration = span / Math.max(settings.speed, 0.05) + tail;
+  // The rendered source plays at speed × 2^(pitch/12) (see wireGraph), so the
+  // buffer must be sized by that rate: a raised pitch shortens the song and a
+  // dropped pitch lengthens it. Sizing by speed alone cut slowed renders
+  // mid-note and padded sped-up ones with digital silence.
+  const rate = Math.max(0.05, settings.speed * Math.pow(2, settings.pitch / 12));
+  const duration = span / rate + tail;
   const length = Math.ceil(duration * source.sampleRate);
   const context = new OfflineAudioContext(source.numberOfChannels, length, source.sampleRate);
   const trimmed = sliceBuffer(source, settings.trimStart, settings.trimEnd);

@@ -37,6 +37,37 @@ export function ProseBlock({ value, className }: { value?: string | null; classN
   );
 }
 
+/** The most recent check date the page's own content carries (JSON-LD dates and
+ *  any table's checked date). The structured data publishes it, so the page has
+ *  to show it too: tech-seo fails a datePublished/dateModified with no visible
+ *  time.last-checked (about, privacy, terms, 2026-11-16). */
+export function latestCheckedAt(content: PageContent): string {
+  const found: string[] = [];
+  const add = (value: unknown) => {
+    if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}/.test(value)) found.push(value.slice(0, 10));
+  };
+  const schema = content.schema as Record<string, unknown> | undefined;
+  add(schema?.dateModified);
+  add(schema?.datePublished);
+  const graph = schema?.["@graph"];
+  if (Array.isArray(graph)) {
+    for (const node of graph) {
+      add((node as Record<string, unknown>)?.datePublished);
+      add((node as Record<string, unknown>)?.dateModified);
+    }
+  }
+  for (const section of content.sections ?? []) add(section.table?.lastCheckedAt);
+  return found.sort().at(-1) ?? "";
+}
+
+export function CheckedLine({ content, label = "Last checked" }: { content: PageContent; label?: string }) {
+  const date = latestCheckedAt(content);
+  if (!date) return null;
+  return (
+    <p className="last-checked last-updated">{label} <time className="last-checked last-updated" dateTime={date}>{date}</time></p>
+  );
+}
+
 export function HeroCopy({ content, kicker }: { content: PageContent; kicker?: string }) {
   return (
     <div className="hero-copy">

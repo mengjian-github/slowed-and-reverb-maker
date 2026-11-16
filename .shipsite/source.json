@@ -1,8 +1,8 @@
 {
   "contract": "shipsite.owner-source.v1",
   "projectId": "prj_d2592157-71b",
-  "versionId": "ver_c44267f3-082",
-  "sourceSha256": "75dd6ebd29c042fa18a6b94495891c4ef4499a66cb9ffb73ce173a6c27539f8d",
-  "sourceCommit": "3693fd91f9c084027d7027fcd47426dfaa3eece8",
-  "generatedAt": "2026-11-16T19:42:26.795Z"
+  "versionId": "ver_f11b8fcf-40f",
+  "sourceSha256": "d1396881158b83a407aa014553dd73708350bfefd5739362edee027c4cd8f49a",
+  "sourceCommit": "2a7f67dd9395b09e1324ecf6b5bc33bd5a180198",
+  "generatedAt": "2026-11-16T20:41:32.579Z"
 }

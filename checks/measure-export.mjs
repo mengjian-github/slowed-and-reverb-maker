@@ -60,9 +60,9 @@ function readWav(bytes) {
 }
 
 const PRESETS = [
-  { label: "Classic Slowed + Reverb", speed: 0.8 },
-  { label: "Nightcore", speed: 1.25 },
-  { label: "Daycore", speed: 0.75 },
+  { label: "Classic Slowed + Reverb", speed: 0.8, pitch: -2 },
+  { label: "Nightcore", speed: 1.25, pitch: 4 },
+  { label: "Daycore", speed: 0.75, pitch: -5 },
 ];
 
 const browser = await chromium.launch();
@@ -83,9 +83,12 @@ try {
     const bytes = await readFile(await download.path());
     const wav = readWav(bytes);
     const peakDb = 20 * Math.log10(wav.peak || 1e-9);
-    const expected = 2 / preset.speed + 1.6;
+    // The source plays at speed * 2^(pitch/12) (detune), so both the content
+    // length and the absence of a silent tail depend on that real rate.
+    const rate = preset.speed * Math.pow(2, preset.pitch / 12);
+    const expected = 2 / rate + 1.6;
     measure(`${preset.label} peak`, peakDb < -0.1 && peakDb > -30, Number(peakDb.toFixed(2)), "dBFS", "bounds -30..-0.1");
-    measure(`${preset.label} length`, Math.abs(wav.seconds - expected) < 0.35, Number(wav.seconds.toFixed(2)), "s", `expected ${expected.toFixed(2)} s (2 s / ${preset.speed} + 1.6 s tail)`);
+    measure(`${preset.label} length`, Math.abs(wav.seconds - expected) < 0.35, Number(wav.seconds.toFixed(2)), "s", `expected ${expected.toFixed(2)} s (2 s / ${rate.toFixed(3)} + 1.6 s tail)`);
     measure(`${preset.label} sample rate`, wav.rate === 44100 && wav.bits === 16, wav.rate, "Hz", `16-bit, ${wav.channels} ch`);
   }
 } finally {

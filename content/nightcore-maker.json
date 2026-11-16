@@ -27,7 +27,7 @@
         },
         {
           "title": "Sped up version, your way",
-          "body": "Prefer a mild lift for a reel or the full 1.5x for an energetic edit? Move speed across 0.5x to 1.5x and pitch across 12 semitones each way, independently. Play preview follows each change so you hear the result before rendering."
+          "body": "Prefer a mild lift for a reel or the full 1.5x for an energetic edit? Move speed across 0.5x to 1.5x and pitch across 12 semitones each way; the pitch field adds to the lift the speed itself gives the track. Play preview follows each change so you hear the result before rendering."
         },
         {
           "title": "Daycore, the opposite direction",
@@ -61,7 +61,7 @@
     {
       "id": "styles",
       "title": "Nightcore, daycore and slowed and reverb",
-      "body": "All three styles come from the same two numbers, speed and pitch. What changes is the direction and how far you push them. Every row in this table is one press of a preset on this page.",
+      "body": "All three styles come from the same two numbers, speed and pitch. What changes is the direction and how far you push them. Each row is a style the presets on this page reach: press one, then move the sliders along that range.",
       "items": [
         {
           "title": "Which one should you make?",
@@ -79,7 +79,7 @@
           {
             "cells": [
               "Nightcore (sped up)",
-              "1.2x to 1.3x",
+              "Up to 1.5x",
               "Raised with the tempo"
             ],
             "status": "working",
@@ -88,13 +88,13 @@
               "ev_001"
             ],
             "observedAt": "2026-11-12",
-            "sourceUrl": "https://slowedgenerator.com/"
+            "sourceUrl": "https://slowedgenerator.com/guide"
           },
           {
             "cells": [
               "Slowed and reverb",
-              "0.8x to 0.9x",
-              "Unchanged, with reverb and bass boost"
+              "0.8x",
+              "Lowered with the tempo, plus reverb and bass boost"
             ],
             "status": "working",
             "recordKey": "style-slowed",
@@ -102,12 +102,12 @@
               "ev_002"
             ],
             "observedAt": "2026-11-12",
-            "sourceUrl": "https://slowedgenerator.com/"
+            "sourceUrl": "https://slowedgenerator.com/guide"
           },
           {
             "cells": [
               "Daycore",
-              "0.75x to 0.85x",
+              "0.5x to 0.8x",
               "Lowered with the tempo"
             ],
             "status": "working",
@@ -116,7 +116,7 @@
               "ev_003"
             ],
             "observedAt": "2026-11-12",
-            "sourceUrl": "https://slowedgenerator.com/"
+            "sourceUrl": "https://slowedgenerator.com/guide"
           }
         ],
         "lastCheckedAt": "2026-11-12"
@@ -135,11 +135,11 @@
     },
     {
       "question": "Is nightcore the same as a sped up version?",
-      "answer": "Not quite. A plain sped-up version raises tempo while leaving pitch where it was, so the vocal keeps its depth. Nightcore lifts both. This tool does either: keep the Nightcore preset for the classic sound, or move the pitch field independently to speed a track up without the chipmunk lift."
+      "answer": "Not quite. A plain sped-up version raises tempo while leaving pitch roughly where it was, so the vocal keeps its depth; nightcore lifts both. This tool's speed slider raises tempo and pitch together tape-style, so set speed to 1.15x and pull the pitch field down toward −2 st when you want a sped-up take with a milder lift."
     },
     {
       "question": "How much should I speed a song up for nightcore?",
-      "answer": "Most edits sit between 1.2x and 1.3x, and the preset lands at 1.25x. Past about 1.4x vocals start to sound thin and lyrics get hard to follow. Preview each step with Play preview and trust your ears over any fixed number."
+      "answer": "Most edits sit between 1.2x and 1.3x, and the preset lands at 1.25x. Past about 1.4x vocals start to sound thin and lyrics get hard to follow. Load a track and press Play preview after each step, and trust your ears over any fixed number."
     },
     {
       "question": "Does the nightcore maker cost anything or need an account?",

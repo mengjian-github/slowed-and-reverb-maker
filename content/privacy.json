@@ -30,8 +30,8 @@
           "body": "Slowed and Reverb Maker has no sign-in, so we hold no names, emails or passwords. There is no upload queue and no stored project library, because nothing is sent anywhere in the first place."
         },
         {
-          "title": "Saved settings stay local",
-          "body": "If you save a preset such as Classic Slowed + Reverb or Nightcore, that choice is stored in your own browser's local storage. Clearing your browser data removes it. It is not synced or shared."
+          "title": "Your settings stay in the tab",
+          "body": "Choosing a preset such as Classic Slowed + Reverb or Nightcore only changes the values on the console in the page you have open. Nothing is written to local storage, to a cookie or to a server, so reloading the page returns the console to its default preset."
         },
         {
           "title": "Server requests we do make",
@@ -76,8 +76,8 @@
       "answer": "Only standard web server logs held by the hosting provider, such as IP address and browser type, kept for security and uptime. These logs never contain audio content or your edits."
     },
     {
-      "question": "Where are my saved presets stored?",
-      "answer": "In your browser's local storage on your own device. They never leave your machine and are removed when you clear your browser data."
+      "question": "Are my presets saved between visits?",
+      "answer": "No. The presets are buttons on the console: pressing one applies its numbers for the current tab only, and nothing is stored. Reload the page and the console returns to the default preset, with nothing left behind in your browser or on a server."
     },
     {
       "question": "Can I use copyrighted songs with the tool?",

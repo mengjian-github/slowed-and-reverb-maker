@@ -32,7 +32,7 @@
         },
         {
           "title": "Deck 2: shape it live",
-          "body": "Four presets set the numbers for you: Classic Slowed + Reverb (0.80x, -2 semitones, 55% reverb, +4 dB bass), Daycore (0.75x, -5, 40%, +4 dB) and Nightcore (1.25x, +4, 12%, 0 dB). Or drag speed anywhere from 0.5x to 1.5x, pitch across 12 semitones each way, reverb from 0% to 100% and bass from 0 to 12 dB yourself. Play preview follows every change, and the trim fields keep only the seconds you choose."
+          "body": "Three presets set the numbers for you: Classic Slowed + Reverb (0.80x, -2 semitones, 55% reverb, +4 dB bass), Daycore (0.75x, -5, 40%, +4 dB) and Nightcore (1.25x, +4, 12%, 0 dB). Or drag speed anywhere from 0.5x to 1.5x, pitch across 12 semitones each way, reverb from 0% to 100% and bass from 0 to 12 dB yourself. Play preview follows every change once a track is loaded, and the trim fields keep only the seconds you choose."
         },
         {
           "title": "Deck 3: render and download",
@@ -51,7 +51,7 @@
         },
         {
           "title": "Slow it down and shape the sound",
-          "body": "Apply Classic Slowed + Reverb, or set speed and pitch separately: slowing playback without pitch shift keeps the vocal in its original key, while the pitch field moves it independently. Reverb runs through a decaying room impulse, bass through a low-shelf boost at 120 Hz. Trim start and trim end cut the file to the section you want before any of that applies."
+          "body": "Apply Classic Slowed + Reverb, or set speed and pitch yourself. The speed control plays the track slower tape-style, so the pitch falls with it — 0.80x lands about four semitones down on its own — and the pitch field adds whole semitones on top of that drop. Reverb runs through a decaying room impulse, bass through a low-shelf boost at 120 Hz. Trim start and trim end cut the file to the section you want before any of that applies."
         },
         {
           "title": "Export the finished track",
@@ -66,7 +66,7 @@
       "items": [
         {
           "title": "WAV when quality matters",
-          "body": "The WAV export is uncompressed 16-bit PCM at the source file's sample rate, so it opens cleanly in an editor or a video timeline and loses nothing in a second pass."
+          "body": "The WAV export is uncompressed 16-bit PCM at your browser's audio rate, 44.1 kHz on most devices, so it opens cleanly in an editor or a video timeline and loses nothing in a second pass."
         },
         {
           "title": "MP3 when it has to travel",
@@ -146,7 +146,7 @@
   "faq": [
     {
       "question": "Is this slowed and reverb maker really free?",
-      "answer": "Yes. Loading a file, all four presets, every slider, the trim fields, and both WAV and MP3 export are free, with no account, no quota and no watermark. The processing runs on your own device, so there is nothing for us to meter or charge."
+      "answer": "Yes. Loading a file, all three presets, every slider, the trim fields, and both WAV and MP3 export are free, with no account, no quota and no watermark. The processing runs on your own device, so there is nothing for us to meter or charge."
     },
     {
       "question": "What settings make the classic slowed and reverb sound?",

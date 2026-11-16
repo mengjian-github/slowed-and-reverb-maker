@@ -2,7 +2,7 @@
 
 import type { Route, SiteConfig } from "@/lib/site-config";
 import type { PageContent } from "@/lib/content";
-import { CtaRow, FaqList, HeroCopy, PageShell, Sections } from "./PageShell";
+import { CheckedLine, CtaRow, FaqList, HeroCopy, PageShell, Sections } from "./PageShell";
 
 type NativeRouteProps = { route: Route; content: PageContent; config: SiteConfig };
 
@@ -18,6 +18,7 @@ export function AboutPage({ content, config }: NativeRouteProps) {
       <section className="hero-band">
         <HeroCopy content={content} />
         <CtaRow content={content} />
+        <CheckedLine content={content} />
       </section>
 
       <section className="flow-band" aria-label="Where your audio goes">

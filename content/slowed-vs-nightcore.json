@@ -22,7 +22,7 @@
    "body": "Slowed and nightcore are opposite directions from the same starting point: the original recording. One drops the tempo and darkens it, the other lifts the tempo and brightens it.",
    "items": [
     {
-     "body": "Speed drops to roughly 0.75–0.85× of the original and pitch is nudged down a semitone or two, with 40–60% reverb. This tool's Classic preset is 0.80× speed, −2 semitones, 55% reverb and +4 dB bass. The mood is calm, hazy and late-night.",
+     "body": "Speed drops to roughly 0.75–0.85× of the original, which takes the pitch down about four semitones on its own, and the pitch field nudges it a semitone or two further, with 40–60% reverb. This tool's Classic preset is 0.80× speed, −2 semitones, 55% reverb and +4 dB bass. The mood is calm, hazy and late-night.",
      "title": "Slowed"
     },
     {
@@ -30,7 +30,7 @@
      "title": "Nightcore"
     },
     {
-     "body": "Both styles move tempo away from 1× and both take the pitch with them, which is why a slowed track sounds deeper and a nightcore track sounds younger. On this tool they are two separate controls — the speed slider sets tempo, the pitch slider sets key in whole semitones — and the presets set both at once, in opposite directions.",
+     "body": "Both styles move tempo away from 1× and both take the pitch with them, which is why a slowed track sounds deeper and a nightcore track sounds younger. On this tool the speed slider sets the pace and drags the pitch down with it, while the pitch slider adds whole semitones on top of that drop. The presets set both at once, in opposite directions.",
      "title": "Why they differ so much"
     }
    ]
@@ -61,7 +61,7 @@
       "cells": [
        "Speed",
        "About 0.8x of the original",
-       "About 1.25x of the original"
+       "Faster, up to 1.5x"
       ],
       "status": "working",
       "recordKey": "cmp-speed",
@@ -69,7 +69,7 @@
        "ev_119"
       ],
       "observedAt": "2026-11-12",
-      "sourceUrl": "https://slowedgenerator.com/"
+      "sourceUrl": "https://slowedgenerator.com/guide"
      },
      {
       "cells": [
@@ -160,7 +160,7 @@
      "title": "Choose slowed when the song is slow already"
     },
     {
-     "body": "Pop, dance and hyperpop survive a sped-up version best. The vocals rise but the rhythm tightens, which is the effect nightcore fans are after. The preset's +4 semitones are what make it read as nightcore rather than a record played fast.",
+     "body": "Pop, dance and hyperpop survive a sped-up version best. The vocals rise but the rhythm tightens, which is the effect nightcore fans are after. The preset's +4 semitones, added to the lift the speed itself gives the track, are what make it read as nightcore rather than a record played fast.",
      "title": "Choose nightcore for fast, rhythmic tracks"
     },
     {
@@ -179,7 +179,7 @@
    "body": "Small moves survive different speakers and platforms better than extreme ones. These are the values the presets apply, and the ranges you can push them to.",
    "steps": [
     {
-     "body": "Speed 0.80×, pitch −2 st, reverb 55%, bass +4 dB — press Classic Slowed + Reverb. Keep within 0.75–0.85× or lyrics start to smear; go to −4 st and 65% reverb only if the song is sparse.",
+     "body": "Press Classic Slowed + Reverb for speed 0.80×, a pitch field of −2 st, reverb 55% and bass +4 dB. The 0.80× speed already lowers the pitch about four semitones by itself; the field's −2 st lands the voice roughly six semitones below the original. Keep speed within 0.75–0.85× or lyrics start to smear, and go to a −4 st field with 65% reverb only if the song is sparse.",
      "title": "Slowed recipe"
     },
     {
@@ -212,7 +212,7 @@
   },
   {
    "question": "Do I need to change pitch separately from speed?",
-   "answer": "On this tool, yes — speed and pitch are two independent controls. The speed slider changes tempo only, so a 0.80× track stays in its original key until you move the pitch slider. The presets do both at once: Classic slowed sets −2 semitones, Nightcore sets +4. If you move speed by hand, adjust pitch until the voice sounds natural."
+   "answer": "They are separate controls, but not independent: the speed slider slows the playback itself, so a 0.80× track drops about four semitones before the pitch field is touched, and the field then adds whole semitones on top. The presets set both — Classic slowed pairs 0.80× with a −2 st field, Nightcore pairs 1.25× with +4 st. If you move speed by hand, adjust pitch until the voice sounds natural."
   },
   {
    "question": "Can I convert between the two styles?",
