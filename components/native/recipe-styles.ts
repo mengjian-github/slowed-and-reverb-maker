@@ -44,7 +44,7 @@ body[data-atmosphere="true"]::before {
 }
 /* Two registers: the display line is the only all-caps type on the page; section
    heads drop to sentence case so the eye gets a second step between 5rem and 12px. */
-h1 { text-transform: uppercase; line-height: 0.92; letter-spacing: -0.015em; font-weight: 700; }
+h1 { text-transform: uppercase; line-height: 0.9; letter-spacing: -0.02em; font-weight: 700; }
 h2 { text-transform: none; letter-spacing: -0.012em; font-weight: 700; }
 h3 { text-transform: none; letter-spacing: -0.005em; font-weight: 700; }
 p { line-height: 1.6; }
@@ -112,9 +112,9 @@ footer[data-node="footer"] .footer-group a:hover { color: #ff99d3 !important; }
 /* ---------- hero ---------- */
 main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .hero-band { padding-block: clamp(1.2rem, 2.6vw, 2.2rem) 0; display: grid; }
-.eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0; color: #ff99d3; font-weight: 700; font-size: 0.86rem; letter-spacing: 0.02em; }
+.eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0; color: #ff99d3; font-weight: 700; font-size: 0.875rem; letter-spacing: 0.02em; }
 .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff99d3; box-shadow: 0 0 0 4px color-mix(in srgb, #ff99d3 18%, transparent); }
-.hero-band h1 { margin: 0.55rem 0 0; font-size: clamp(2.4rem, 1.3rem + 5vw, 5rem); max-width: 20ch; }
+.hero-band h1 { margin: 0.35rem 0 0; font-size: clamp(2.4rem, 0.9rem + 6vw, 6rem); max-width: 18ch; }
 .lede { margin: 0.9rem 0 0; max-width: 64ch; font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem); line-height: 1.62; color: #edc4d8; }
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem 1.2rem; margin-top: 1.3rem; }
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0.55rem 1.1rem; border: 1.5px solid #ff99d3; background: transparent; color: #ffe6f4; font: inherit; font-weight: 700; letter-spacing: 0; text-transform: none; text-decoration: none; cursor: pointer; border-radius: 2px; transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease; }
@@ -144,12 +144,22 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .wave-strip .strip-bar { fill: currentColor; opacity: 0.85; transform-origin: center bottom; animation: strip-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .wave-strip .strip-tail { fill: none; stroke: currentColor; stroke-width: 1.2; opacity: 0.5; stroke-dasharray: 900; stroke-dashoffset: 900; animation: strip-draw 1.1s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .wave-strip figcaption { margin-top: 0.6rem; display: grid; gap: 0.35rem; }
-.wave-strip .strip-note { color: #edc4d8; font-size: 0.86rem; }
-.wave-strip .strip-legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.25rem; color: #edc4d8; font-size: 0.86rem; }
+.wave-strip .strip-note { color: #edc4d8; font-size: 0.875rem; }
+.wave-strip .strip-legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.25rem; color: #edc4d8; font-size: 0.875rem; }
 .wave-strip .strip-legend b { color: #ff99d3; font-variant-numeric: tabular-nums; }
 @keyframes strip-in { from { transform: scaleY(0.08); opacity: 0; } to { transform: none; opacity: 0.85; } }
 @keyframes strip-draw { to { stroke-dashoffset: 0; } }
 
+/* Hero: the signature waveform in the tool's own deck frame */
+.deck-signal { margin-top: 0.9rem; padding: 0.7rem 1rem 0.8rem; }
+.deck-signal .deck-head { align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.35rem 0.9rem; padding-bottom: 0.55rem; }
+.deck-signal .deck-head h2 { font-size: 0.98rem; letter-spacing: -0.005em; }
+.deck-signal .wave-strip { margin-top: 0.45rem; }
+.deck-signal .wave-strip svg { height: clamp(58px, 4.6vw, 76px); }
+.signal-values { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.875rem; font-weight: 700; color: #ff99d3; font-variant-numeric: tabular-nums; }
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: #ff99d3; animation: live-pulse 2.4s ease-in-out infinite; }
+@keyframes live-pulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, #ff99d3 55%, transparent); opacity: 1; } 50% { box-shadow: 0 0 0 5px color-mix(in srgb, #ff99d3 0%, transparent); opacity: 0.7; } }
+@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 372px); gap: 1.4rem; align-items: start; padding-block: 1.4rem 0; }
 /* Wider screens: the console panel and the split board bleed into the gutter so
    the first line of their copy sits on the same edge as the header and bands. */
@@ -168,8 +178,8 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .still-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255, 153, 211, 0.10) 0%, rgba(55, 0, 16, 0) 45%, rgba(55, 0, 16, 0.45) 100%); pointer-events: none; }
 .stage-still img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 54% 40%; filter: saturate(1.02) contrast(1.04) brightness(1.08); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
 .stage-still:hover img { transform: scale(1.03); }
-.stage-still figcaption { margin-top: 0.55rem; color: #edc4d8; font-size: 0.88rem; display: grid; gap: 0.4rem; }
-.still-chip { justify-self: start; background: #4d0519; color: #ff99d3; border: 1px solid color-mix(in srgb, #ff99d3 50%, transparent); padding: 0.3rem 0.55rem; font-weight: 700; font-size: 0.84rem; font-variant-numeric: tabular-nums; }
+.stage-still figcaption { margin-top: 0.55rem; color: #edc4d8; font-size: 0.875rem; display: grid; gap: 0.4rem; }
+.still-chip { justify-self: start; background: #4d0519; color: #ff99d3; border: 1px solid color-mix(in srgb, #ff99d3 50%, transparent); padding: 0.3rem 0.55rem; font-weight: 700; font-size: 0.875rem; font-variant-numeric: tabular-nums; }
 .stage-metrics { display: flex; flex-wrap: wrap; gap: 0.9rem 1.6rem; margin: 0; padding: 0.85rem 0 0; border-top: 1px solid color-mix(in srgb, #ffe6f4 16%, transparent); }
 .stage-metrics div { display: grid; gap: 0.1rem; }
 .stage-metrics dt { font-size: 0.8rem; letter-spacing: 0; text-transform: none; color: #edc4d8; }
@@ -193,7 +203,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .speed-card { margin-top: 1.5rem; border: 1.5px solid color-mix(in srgb, #ffe6f4 26%, transparent); border-radius: 8px; padding: 0.9rem 1rem; color: #ff99d3; background: #4d0519; }
 .speed-card svg { width: 100%; height: auto; display: block; }
 .speed-card text { fill: currentColor; font-family: Chivo, system-ui, sans-serif; }
-.speed-card p { margin: 0.45rem 0 0; color: #edc4d8; font-size: 0.88rem; }
+.speed-card p { margin: 0.45rem 0 0; color: #edc4d8; font-size: 0.875rem; }
 
 /* ---------- console decks ---------- */
 .studio { display: grid; gap: 1rem; margin: 0; }
@@ -214,7 +224,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .file-input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
 .file-btn { cursor: pointer; }
 .chip-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-.chip { border: 1px solid color-mix(in srgb, #ffe6f4 26%, transparent); padding: 0.28rem 0.5rem; font-size: 0.86rem; }
+.chip { border: 1px solid color-mix(in srgb, #ffe6f4 26%, transparent); padding: 0.28rem 0.5rem; font-size: 0.875rem; }
 .chip b { font-weight: 700; }
 .output-error { margin: 0; color: #ffb4b4; font-weight: 700; }
 .output-hint, .output-note { margin: 0; color: #edc4d8; font-size: 0.94rem; }
@@ -223,7 +233,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 
 .wave { position: relative; display: flex; align-items: center; gap: 2px; height: 92px; padding: 0.4rem; background: #370010; border-radius: 4px; cursor: ew-resize; touch-action: none; }
 .wave.empty { display: flex; align-items: center; justify-content: center; border: 1px dashed color-mix(in srgb, #ffe6f4 22%, transparent); background: #370010; }
-.wave-empty-label { color: #edc4d8; font-size: 0.86rem; letter-spacing: 0; text-align: center; padding: 0 0.75rem; }
+.wave-empty-label { color: #edc4d8; font-size: 0.875rem; letter-spacing: 0; text-align: center; padding: 0 0.75rem; }
 .wave .bar { flex: 1 1 0; background: color-mix(in srgb, #c77aa0 55%, transparent); border-radius: 1px; min-height: 4px; }
 .wave .bar.in { background: #ff99d3; }
 .trim-mark { position: absolute; top: 0; bottom: 0; width: 2px; background: #ffe6f4; }
@@ -260,7 +270,7 @@ input[type="range"]::-webkit-slider-thumb { transition: box-shadow 0.15s ease; }
 .slider .slider-number { width: 100%; min-width: 0; min-height: 40px; text-align: left; background: #370010; color: #ffe6f4; font-weight: 700; border: 1px solid color-mix(in srgb, #ff99d3 34%, transparent); border-radius: 2px; padding: 0 1.75rem 0 0.5rem; font: inherit; font-weight: 700; font-variant-numeric: tabular-nums; transition: border-color 0.14s ease, box-shadow 0.14s ease; }
 .slider .slider-number:hover { border-color: #ff99d3; }
 .slider .slider-number:focus-visible { border-color: #ff99d3; outline: 2px solid #ff99d3; outline-offset: 1px; }
-.slider-unit { position: absolute; right: 0.5rem; color: #edc4d8; font-size: 0.82rem; pointer-events: none; }
+.slider-unit { position: absolute; right: 0.5rem; color: #edc4d8; font-size: 0.875rem; pointer-events: none; }
 .shape-meter { display: block; width: 100%; height: 64px; max-width: none; margin-top: 0.5rem; color: #ff99d3; }
 .slider.bad .slider-number, .field-error { border-color: #ffb4b4; }
 .field-error { color: #ffb4b4; font-size: 0.9rem; font-weight: 700; }
@@ -318,12 +328,12 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px
 table { width: 100%; border-collapse: collapse; }
 caption { text-align: left; font-weight: 700; margin-bottom: 0.6rem; }
 th, td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid color-mix(in srgb, #ffe6f4 14%, transparent); vertical-align: top; }
-th { font-size: 0.88rem; letter-spacing: 0.02em; text-transform: none; color: #edc4d8; font-weight: 700; }
-.checked { color: #edc4d8; font-size: 0.88rem; margin: 0.6rem 0 0; }
+th { font-size: 0.875rem; letter-spacing: 0.02em; text-transform: none; color: #edc4d8; font-weight: 700; }
+.checked { color: #edc4d8; font-size: 0.875rem; margin: 0.6rem 0 0; }
 .band-figure { margin: 0; max-width: 920px; }
 .band-figure img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; filter: saturate(1.05); }
-.band-figure figcaption { margin-top: 0.5rem; color: #edc4d8; font-size: 0.88rem; }
-.figure-credit, .still-credit { margin: 0.25rem 0 0; color: #edc4d8; font-size: 0.78rem; opacity: 0.85; }
+.band-figure figcaption { margin-top: 0.5rem; color: #edc4d8; font-size: 0.875rem; }
+.figure-credit, .still-credit { margin: 0.25rem 0 0; color: #edc4d8; font-size: 0.75rem; opacity: 0.85; }
 .figure-credit a, .still-credit a { color: inherit; }
 .faq-band { padding-bottom: clamp(1.5rem, 3vw, 2.5rem); }
 .faq { border-bottom: 1px solid color-mix(in srgb, #ffe6f4 16%, transparent); }
@@ -353,12 +363,12 @@ th { font-size: 0.88rem; letter-spacing: 0.02em; text-transform: none; color: #e
   main { padding: 0 1rem 2rem; }
   .hero-band { padding-block: 0.45rem 0; }
   .hero-band h1 { font-size: clamp(1.7rem, 7.4vw, 2.2rem); }
-  .lede { font-size: 0.88rem; line-height: 1.42; margin-top: 0.45rem; }
+  .lede { font-size: 0.875rem; line-height: 1.42; margin-top: 0.45rem; }
   .cta-row { gap: 0.35rem 0.9rem; margin-top: 0.7rem; }
-  .cta-row .btn { min-height: 42px; font-size: 0.88rem; padding: 0.4rem 0.8rem; }
+  .cta-row .btn { min-height: 42px; font-size: 0.875rem; padding: 0.4rem 0.8rem; }
   .wave-strip { margin-top: 0.6rem; }
   .wave-strip svg { height: 44px; }
-  .wave-strip figcaption { font-size: 0.72rem; gap: 0.2rem; margin-top: 0.35rem; }
+  .wave-strip figcaption { font-size: 0.75rem; gap: 0.2rem; margin-top: 0.35rem; }
   .wave-strip .strip-note { display: none; }
   /* the legend rags when it wraps by flow; two columns keep the ×-scale aligned */
   .wave-strip .strip-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 0.28rem 0.9rem; }
@@ -390,14 +400,14 @@ th { font-size: 0.88rem; letter-spacing: 0.02em; text-transform: none; color: #e
   main .deck-load .drop { grid-template-columns: auto minmax(0, 1fr); justify-items: start; text-align: left; gap: 0.1rem 0.7rem; padding: 0.6rem 0.75rem 0.65rem; }
   main .deck-load .drop-icon { grid-row: 1 / span 2; width: 20px; height: 20px; align-self: center; }
   .drop-title { font-size: 0.95rem; }
-  .drop-note { font-size: 0.76rem; }
+  .drop-note { font-size: 0.75rem; }
   .drop-actions { grid-column: 2; justify-content: flex-start; margin-top: 0.4rem; gap: 0.4rem 0.6rem; }
-  .drop-actions .btn { min-height: 40px; font-size: 0.86rem; padding: 0.3rem 0.7rem; }
+  .drop-actions .btn { min-height: 40px; font-size: 0.875rem; padding: 0.3rem 0.7rem; }
   main .deck-load .tool-output { margin-top: 0; }
   /* the hint repeats what the drop zone already says; dropping it keeps the
      shaping controls one scroll shorter on a phone */
   main .deck-load .output-hint { display: none; }
-  .output-hint { font-size: 0.84rem; }
+  .output-hint { font-size: 0.875rem; }
   .wave.empty { height: 56px; }
   /* Before a track is loaded the waveform placeholder and the transport say
      nothing useful; hiding them on a phone brings the real controls up into
@@ -435,19 +445,19 @@ th { font-size: 0.88rem; letter-spacing: 0.02em; text-transform: none; color: #e
 .recipe-value { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.05; }
 .recipe-scale { height: 6px; margin-top: 0.2rem; background: #370010; border: 1px solid color-mix(in srgb, #ffe6f4 18%, transparent); }
 .recipe-scale span { display: block; height: 100%; background: #ff99d3; }
-.recipe-note { margin: 0.2rem 0 0; color: #edc4d8; font-size: 0.84rem; }
+.recipe-note { margin: 0.2rem 0 0; color: #edc4d8; font-size: 0.875rem; }
 
 /* Beat grid: the guide's own drawing — same beats at three speeds, tick
    positions computed from each preset's number. */
 .beat-figure { margin: 1.6rem 0 0; padding: 0 0 1.5rem; display: grid; gap: 1rem; border-bottom: 1px solid color-mix(in srgb, #ffe6f4 20%, transparent); }
 .beat-figure figcaption { display: grid; gap: 0.15rem; }
 .beat-caption { font-weight: 700; font-size: 1rem; }
-.beat-legend { color: #edc4d8; font-size: 0.86rem; max-width: 62ch; }
+.beat-legend { color: #edc4d8; font-size: 0.875rem; max-width: 62ch; }
 .beat-rows { display: grid; gap: 0.85rem; }
 .beat-row { display: grid; grid-template-columns: minmax(0, 13.5rem) 1fr; gap: 1.1rem; align-items: center; }
 .beat-label { display: grid; gap: 0.1rem; }
 .beat-label b { font-size: 0.95rem; font-weight: 700; }
-.beat-label span { color: #c77aa0; font-size: 0.79rem; font-variant-numeric: tabular-nums; }
+.beat-label span { color: #c77aa0; font-size: 0.75rem; font-variant-numeric: tabular-nums; }
 .beat-track { position: relative; height: 30px; background: #370010; border: 1px solid color-mix(in srgb, #ffe6f4 14%, transparent); }
 .beat-tick { position: absolute; top: 7px; bottom: 7px; width: 2px; margin-left: -1px; background: color-mix(in srgb, #ff99d3 62%, transparent); }
 .beat-tick.strong { top: 0; bottom: 0; width: 3px; margin-left: -1.5px; background: #ff99d3; }
@@ -480,7 +490,7 @@ main section.flow-band { padding: 1.8rem 0 0.6rem; }
 .flow-node { color: #ff99d3; }
 .flow-node svg { width: 2.2rem; height: 2.2rem; display: block; }
 .flow-title { font-weight: 700; font-size: 1.05rem; }
-.flow-note { color: #edc4d8; font-size: 0.88rem; }
+.flow-note { color: #edc4d8; font-size: 0.875rem; }
 .flow-link { position: absolute; top: 1.1rem; right: -0.9rem; width: 1.4rem; height: 1px; background: color-mix(in srgb, #ffe6f4 35%, transparent); }
 
 /* ---------- legal and contact documents ---------- */

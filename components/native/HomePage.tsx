@@ -33,7 +33,19 @@ export function HomePage({ content, config }: NativeRouteProps) {
         <h1>{content.h1}</h1>
         <p className="lede"><RichText value={content.heroText} /></p>
         <CtaRow content={content} onPrimary={openFile} onSecondary={playSample} />
-        <WaveStrip note="The shape you are making, in one line:" />
+        {/* The first console deck: the signature waveform sits in the same
+            panel frame as the tool's own decks, so the hero is the instrument
+            and not a decorative chart above it. */}
+        <section className="deck deck-signal" aria-label="The signal the tool is shaping">
+          <header className="deck-head">
+            <h2>Signal: classic slowed + reverb</h2>
+            <span className="signal-values">
+              <i className="live-dot" aria-hidden="true" />
+              0.80× · −2 st · 55% · +4 dB
+            </span>
+          </header>
+          <WaveStrip />
+        </section>
       </section>
 
       <div className="hero-grid">
