@@ -71,7 +71,7 @@ nav[data-node="nav"] .brand { display: flex; align-items: center; gap: 0.6rem; t
 nav[data-node="nav"] .brand-wordmark { font-size: 1.1rem; line-height: 1.15; }
 nav[data-node="nav"] .brand-logo { width: 2rem; height: 2rem; }
 nav[data-node="nav"] .nav-links { display: flex; gap: 0.35rem 1.15rem; flex-wrap: wrap; }
-nav[data-node="nav"] .nav-link { text-decoration: none; color: #ffe6f4; font-size: 0.95rem; padding: 0.4rem 0.05rem; border-bottom: 2px solid transparent; }
+nav[data-node="nav"] .nav-link { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: #ffe6f4; font-size: 0.95rem; padding: 0.4rem 0.05rem; border-bottom: 2px solid transparent; }
 nav[data-node="nav"] .nav-link:hover { color: #ff99d3; }
 nav[data-node="nav"] .nav-link[aria-current="page"] { border-bottom-color: #ff99d3; color: #ff99d3; }
 nav[data-node="nav"] .mobile-nav { display: none; }
@@ -96,7 +96,7 @@ footer[data-node="footer"] {
 .footer-groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
 .footer-group { display: flex; flex-direction: column; gap: 0.3rem; }
 .footer-group-title { font-weight: 700; text-transform: none; letter-spacing: 0; font-size: 0.92rem; color: #ff99d3; margin: 0 0 0.2rem; }
-.footer-group a { color: #ffe6f4 !important; text-decoration: none; min-height: 40px; display: flex; align-items: center; }
+.footer-group a { color: #ffe6f4 !important; text-decoration: none; min-height: 44px; display: flex; align-items: center; }
 .footer-group a:hover { color: #ff99d3 !important; }
 .footer-note { font-size: 0.92rem; max-width: 72ch; color: #edc4d8 !important; background: transparent; line-height: 1.5; margin-top: 1.6rem; }
 footer[data-node="footer"] .footer-group-title,
@@ -226,6 +226,13 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .drop-status.error { color: #ffb4b4; border-color: #ffb4b4; background: color-mix(in srgb, #ef4444 22%, #4d0519); }
 .drop-status.success { color: #ffe6f4; border-color: color-mix(in srgb, #22c55e 62%, transparent); background: color-mix(in srgb, #22c55e 12%, #4d0519); }
 @media (prefers-reduced-motion: reduce) { .drop-status.working .status-dot { animation: none; } }
+/* The loader card's status line and, while a preview plays, its own Stop and
+   position, so the card that says "playing" holds the control that stops it. */
+.drop-live { display: grid; gap: 0.5rem; }
+.card-transport { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.card-transport .transport-progress { flex: 1 1 8rem; min-width: 0; }
+.card-transport .btn { min-height: 40px; }
+.trim-error { margin: 0; font-size: 0.9rem; font-weight: 700; color: #ffb4b4; }
 .capability-actions .primary.busy { background: #ffc2e4; cursor: progress; }
 .studio-status.working { color: #ff99d3; border-color: #ff99d3; background: color-mix(in srgb, #ff99d3 14%, #4d0519); }
 .studio-status.working .status-dot { animation: status-pulse 1s ease-in-out infinite alternate; }

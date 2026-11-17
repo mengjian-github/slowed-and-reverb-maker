@@ -26,6 +26,7 @@ import {
   renderOffline,
   reverbError,
   speedError,
+  trimError,
   wireGraph,
   type ExportFormat,
   type GraphNodes,
@@ -121,6 +122,10 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
    *  the status line reports a finished result instead of the playing state. */
   const [previewDone, setPreviewDone] = useState(false);
   const [position, setPosition] = useState(0);
+  /** The length the running preview was started with, so the position and the
+   *  in-progress line stay honest even if the trim fields are edited while the
+   *  audio plays. */
+  const [playingSpan, setPlayingSpan] = useState(0);
   const [dragOver, setDragOver] = useState(false);
   /** True once the visitor has used the file control and come back with no
    *  file (an empty pick, a rejected format). It is a refusal, not an untouched
@@ -131,6 +136,14 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
    *  field): the visitor asked for their own track and did not get one, so the
    *  deck keeps the tool spec's no-file answer in front of them. */
   const emptyPickRef = useRef(false);
+  /** The decode of a file chosen but not finished yet, so a press made in the
+   *  same breath as the choice waits for the file instead of answering "no file
+   *  loaded" while the decode is still running. */
+  const pendingRef = useRef<{ promise: Promise<LoadedTrack> | null } | null>(null);
+  /** True when the last file chosen would not decode: a refusal the deck keeps
+   *  in front of the visitor rather than papering over with the built-in pad. */
+  const decodeFailedRef = useRef(false);
+  const decodeErrorRef = useRef("");
   const rootRef = useRef<HTMLDivElement>(null);
   /** True while the browser's file picker is open, so the deck shows that the
    *  press was heard even before a file comes back. */
@@ -140,9 +153,9 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   const pitchProblem = pitchError(pitch);
   const reverbProblem = reverbError(reverb);
   const bassProblem = bassError(bass);
-  const shapeProblem = speedProblem || pitchProblem || reverbProblem || bassProblem;
-
   const duration = track?.duration ?? 0;
+  const trimProblem = trimError(trimStart, trimEnd, duration);
+  const shapeProblem = speedProblem || pitchProblem || reverbProblem || bassProblem || trimProblem;
   const settings = useMemo(
     () => settingsFrom(preset, speed, pitch, reverb, bass, trimStart, trimEnd, duration),
     [preset, speed, pitch, reverb, bass, trimStart, trimEnd, duration],
@@ -165,11 +178,10 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       const context = contextRef.current;
       if (!context) return;
       const elapsed = (context.currentTime - startedAt.current) * (parseNumber(speed) ?? 1);
-      const span = Math.max(0, settings.trimEnd - settings.trimStart);
-      setPosition(Math.min(Math.max(0, elapsed), span || duration));
+      setPosition(Math.min(Math.max(0, elapsed), playingSpan || duration));
     }, 200);
     return () => window.clearInterval(timer);
-  }, [playing, speed, settings.trimEnd, settings.trimStart, duration]);
+  }, [playing, speed, playingSpan, duration]);
 
   useEffect(() => {
     const nodes = nodesRef.current;
@@ -212,7 +224,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   function showProblemField() {
     const root = rootRef.current;
     if (!root) return;
-    const hook = speedProblem ? "speed" : pitchProblem ? "pitch" : reverbProblem ? "reverb-pct" : bassProblem ? "bass-db" : "";
+    const hook = speedProblem ? "speed" : pitchProblem ? "pitch" : reverbProblem ? "reverb-pct" : bassProblem ? "bass-db" : trimProblem ? "trim-start" : "";
     if (!hook) return;
     const field = root.querySelector<HTMLInputElement>(`[data-tool-input="${hook}"]`);
     if (!field) return;
@@ -237,6 +249,46 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     setExportMessage("");
   }
 
+  /** Starts the decode of a chosen file and hands back the promise it settles
+   *  with, so a press that lands before the decode finishes can wait for it. */
+  function beginLoad(file: File): Promise<LoadedTrack> | null {
+    if (!isAcceptedFile(file)) {
+      setLoadState("error");
+      setLoadMessage("That format is not supported. Use MP3, WAV, M4A, OGG or FLAC.");
+      return null;
+    }
+    if (file.size > 80 * 1024 * 1024) {
+      setLoadState("error");
+      setLoadMessage("This file is over 80 MB. Trim it first, then try again.");
+      return null;
+    }
+    decodeFailedRef.current = false;
+    decodeErrorRef.current = "";
+    setDecoding(true);
+    setLoadState("working");
+    setLoadMessage("");
+    const entry: { promise: Promise<LoadedTrack> | null } = { promise: null };
+    entry.promise = (async () => {
+      try {
+        const decoded = await decodeFile(file);
+        remember(decoded);
+        return decoded;
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Could not decode this file. Try MP3, WAV, M4A, OGG or FLAC.";
+        decodeFailedRef.current = true;
+        decodeErrorRef.current = message;
+        setLoadState("error");
+        setLoadMessage(message);
+        throw error;
+      } finally {
+        setDecoding(false);
+        if (pendingRef.current === entry) pendingRef.current = null;
+      }
+    })();
+    pendingRef.current = entry;
+    return entry.promise;
+  }
+
   async function takeFile(file: File | null | undefined) {
     if (!file) {
       setLoadState("error");
@@ -245,27 +297,43 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       emptyPickRef.current = true;
       return;
     }
-    if (!isAcceptedFile(file)) {
-      setLoadState("error");
-      setLoadMessage("That format is not supported. Use MP3, WAV, M4A, OGG or FLAC.");
-      return;
-    }
-    if (file.size > 80 * 1024 * 1024) {
-      setLoadState("error");
-      setLoadMessage("This file is over 80 MB. Trim it first, then try again.");
-      return;
-    }
-    setDecoding(true);
-    setLoadState("working");
-    setLoadMessage("");
+    const promise = beginLoad(file);
+    if (!promise) return;
     try {
-      const decoded = await decodeFile(file);
-      remember(decoded);
-    } catch (error) {
-      setLoadState("error");
-      setLoadMessage(error instanceof Error ? error.message : "Could not decode this file. Try MP3, WAV, M4A, OGG or FLAC.");
-    } finally {
-      setDecoding(false);
+      await promise;
+    } catch {
+      /* the deck already shows the failure, with the reason */
+    }
+  }
+
+  /** The track a press should work on: the loaded one, a decode that is still
+   *  running, or a file that reached the input without a change event (some
+   *  browser automation fills the field that way). A press never runs past a
+   *  file the visitor has just chosen. */
+  async function resolveTrack(): Promise<LoadedTrack | null> {
+    const pending = pendingRef.current;
+    if (pending?.promise) {
+      try {
+        return await pending.promise;
+      } catch {
+        return null;
+      }
+    }
+    const input = fileRef.current;
+    const file = input?.files?.[0] ?? null;
+    if (!input || !file) return null;
+    try {
+      input.value = "";
+    } catch {
+      /* a read-only value is fine */
+    }
+    setPickOpen(false);
+    const promise = beginLoad(file);
+    if (!promise) return null;
+    try {
+      return await promise;
+    } catch {
+      return null;
     }
   }
 
@@ -302,6 +370,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     setTrack(sampleTrack());
     setNoFileChosen(false);
     emptyPickRef.current = false;
+    decodeFailedRef.current = false;
     setLoadState("success");
     setLoadMessage("Sample loaded — four seconds, ready to shape.");
     setExportState("idle");
@@ -384,15 +453,27 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     // finished state, even where the audio graph never reports the end.
     const rate = Math.max(0.05, live.speed * Math.pow(2, live.pitch / 12));
     const previewSpan = Math.max(0.05, live.trimEnd - live.trimStart);
+    setPlayingSpan(previewSpan);
     const seconds = Math.max(0.2, previewSpan / rate);
     if (previewTimer.current) window.clearTimeout(previewTimer.current);
     previewTimer.current = window.setTimeout(finish, Math.round((seconds + 0.45) * 1000));
   }
 
+  /** Stop from either transport: the shape deck's own Stop, or the Stop in the
+   *  loader card whose status line is the one that says a preview is playing. */
+  function stopPreview() {
+    const at = position;
+    stop();
+    setPosition(0);
+    setPreviewDone(true);
+    setShapeState("success");
+    setShapeNote(`Preview stopped at ${at.toFixed(1)} s. Press Play preview to hear it again, or Render to export these settings.`);
+  }
+
   /** Play preview / Apply shape. With no file chosen it loads the built-in pad
    *  as the loaded track first — visibly, in the loader deck — so the preview
    *  and the render that follows both work on the audio the visitor can see. */
-  function play() {
+  async function play() {
     setPreviewDone(false);
     if (shapeProblem) {
       setShapeState("error");
@@ -400,7 +481,17 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       showProblemField();
       return;
     }
-    if (!track) {
+    let source = track;
+    if (!source) source = await resolveTrack();
+    if (!source && decodeFailedRef.current) {
+      // A file the visitor chose that would not decode is a refusal, not an
+      // empty deck: its error stays on screen instead of the sample quietly
+      // taking the file's place.
+      setShapeState("error");
+      setShapeNote("");
+      return;
+    }
+    if (!source) {
       // The trim the visitor typed before a track was chosen is kept: the
       // sample is four seconds long, so a range inside it still applies (the
       // live settings are measured against the sample's own duration).
@@ -415,7 +506,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       setShapeNote("Playing the built-in sample with the settings above. Render now exports it; choose a file above to use your own track.");
       return;
     }
-    startPreview(track);
+    startPreview(source);
     setShapeNote("Playing the preview with the settings above.");
   }
 
@@ -427,12 +518,20 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       showProblemField();
       return;
     }
+    let source = track;
+    if (!source) source = await resolveTrack();
+    if (!source && decodeFailedRef.current) {
+      setExportState("error");
+      setExportMessage(decodeErrorRef.current || "That file could not be decoded. Choose another audio file, or try WAV.");
+      setRenderedSummary("");
+      return;
+    }
     // Render exports a track the visitor loaded. With none it answers the tool
     // spec's no-file error ("Load an audio file first", acceptance sample
     // `render-no-file`) and says where the sample can be loaded, so the press
     // never quietly exports audio the visitor did not choose. Only Play preview
     // falls back to the built-in sample.
-    if (!track) {
+    if (!source) {
       setExportState("error");
       setExportMessage("Load an audio file first: choose a file in Load a track, or press Try the sample there, then Render this deck again.");
       setRenderedSummary("");
@@ -440,7 +539,6 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       setDownloadUrl("");
       return;
     }
-    const source: LoadedTrack = track;
     await renderTrack(source);
   }
 
@@ -485,6 +583,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     setTrack(sample);
     setNoFileChosen(false);
     emptyPickRef.current = false;
+    decodeFailedRef.current = false;
     setLoadState("success");
     setLoadMessage("Loaded the built-in four-second sample, so the effect can be heard and exported without a file. Choose a file above to use your own track.");
     await renderTrack(sample);
@@ -522,7 +621,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     return { kind: "idle", text: "Nothing loaded yet: choose a file, or press Try the sample, then Render." };
   })();
 
-  const problemField = speedProblem ? "Speed" : pitchProblem ? "Pitch" : reverbProblem ? "Reverb" : bassProblem ? "Bass" : "";
+  const problemField = speedProblem ? "Speed" : pitchProblem ? "Pitch" : reverbProblem ? "Reverb" : bassProblem ? "Bass" : trimProblem ? "Trim start" : "";
 
   return (
     <div ref={rootRef} className="studio" data-instrument="slowed-reverb" id={`${idPrefix}-studio`} data-state={status.kind}>
@@ -594,16 +693,38 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         <div className="tool-output" data-tool-output>
           {/* The same status line the instrument answers with, mirrored under
               the drop zone: the one place a visitor looks after a press, so a
-              working, playing, finished or blocked press is visible here. */}
-          <p
-            className={`drop-status ${status.kind}`}
-            data-state={status.kind}
-            role={status.kind === "error" ? "alert" : "status"}
-            aria-live="polite"
-          >
-            <span className="status-dot" aria-hidden="true" />
-            <span>{status.text}</span>
-          </p>
+              working, playing, finished or blocked press is visible here. When
+              the line says a preview is playing it carries the Stop control and
+              the position; when it names a field, it carries the button that
+              brings that field into view. */}
+          <div className={`drop-live ${status.kind}`} data-state={status.kind}>
+            <p
+              className={`drop-status ${status.kind}`}
+              data-state={status.kind}
+              role={status.kind === "error" ? "alert" : "status"}
+              aria-live="polite"
+              aria-busy={playing || decoding || exportState === "working" ? "true" : undefined}
+            >
+              <span className="status-dot" aria-hidden="true" />
+              <span>{status.text}</span>
+            </p>
+            {playing ? (
+              <div className="card-transport" data-state="working">
+                <progress
+                  className="transport-progress"
+                  aria-label="Preview position"
+                  value={position}
+                  max={Math.max(0.1, playingSpan || (settings.trimEnd || duration || 4) - settings.trimStart)}
+                />
+                <button type="button" className="btn ghost" onClick={stopPreview} aria-label="Stop">Stop</button>
+              </div>
+            ) : null}
+            {problemField ? (
+              <button type="button" className="status-fix" onClick={showProblemField}>
+                Show the {problemField} field
+              </button>
+            ) : null}
+          </div>
           {status.kind === "error" ? null : track && loadState === "success" ? (
             <div className="chip-row">
               <span className="chip"><b>{track.name}</b></span>
@@ -642,17 +763,17 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
         />
 
         <div className="transport">
-          <button type="button" className="btn solid" onClick={play} aria-label="Play preview">
+          <button type="button" className="btn solid" onClick={() => { void play(); }} aria-label="Play preview">
             {playing ? "Restart" : "Play preview"}
           </button>
-          <button type="button" className="btn ghost" onClick={() => { const at = position; stop(); setPosition(0); setPreviewDone(true); setShapeState("success"); setShapeNote(`Preview stopped at ${at.toFixed(1)} s. Press Play preview to hear it again, or Render to export these settings.`); }} disabled={!playing} aria-label="Stop">Stop</button>
+          <button type="button" className="btn ghost" onClick={stopPreview} disabled={!playing} aria-label="Stop">Stop</button>
           <span className="transport-pos" aria-live="polite">{playing ? `${position.toFixed(1)} s` : track ? "Ready" : "Sample ready"}</span>
           {playing ? (
             <progress
               className="transport-progress"
               aria-label="Preview position"
               value={position}
-              max={Math.max(0.1, (settings.trimEnd || duration || 4) - settings.trimStart)}
+              max={Math.max(0.1, playingSpan || (settings.trimEnd || duration || 4) - settings.trimStart)}
             />
           ) : null}
         </div>
@@ -702,13 +823,14 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
             Reset trim
           </button>
         </div>
+        {trimProblem ? <p className="output-error trim-error" role="alert">{trimProblem}</p> : null}
 
         <div className="capability-actions">
           <button
             type="button"
             className={playing ? "primary busy" : "primary"}
             data-jtbd-action="slowed-reverb-console"
-            onClick={play}
+            onClick={() => { void play(); }}
             aria-label="Apply shape"
             aria-busy={playing ? "true" : undefined}
           >
@@ -730,7 +852,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
                   <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                 )}
                 {playing
-                  ? `Applying — preview playing, ${position.toFixed(1)} s of ${Math.max(0.1, settings.trimEnd - settings.trimStart).toFixed(1)} s`
+                  ? `Applying — preview playing, ${position.toFixed(1)} s of ${Math.max(0.1, playingSpan).toFixed(1)} s`
                   : "Applied — result ready to render"}
               </span>
               <p className="applied-line">
@@ -788,6 +910,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
             onClick={() => void render()}
             aria-label="Render"
             aria-busy={exportState === "working" ? "true" : undefined}
+            disabled={Boolean(shapeProblem)}
           >
             {exportState === "working" ? "Rendering…" : "Render"}
           </button>

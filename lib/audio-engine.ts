@@ -120,6 +120,24 @@ export function bassError(raw: string): string | null {
   return null;
 }
 
+/** A trim range has to stay inside the track and in order. A start typed past
+ *  the end (or past the track) used to be accepted, and the render then wrote a
+ *  clamped 0.05 s fragment instead of the section the visitor asked for, so the
+ *  range is checked before any press can start. With no track loaded the range
+ *  is measured against the four-second sample only once a length is known. */
+export function trimError(startRaw: string, endRaw: string, duration: number): string | null {
+  const start = parseNumber(startRaw);
+  const end = parseNumber(endRaw);
+  if (start === null) return "Enter a trim start in seconds";
+  if (start < 0) return "Trim start must be 0 s or later";
+  if (end !== null && end < 0) return "Trim end must be 0 s or later";
+  if (duration <= 0) return null;
+  if (start >= duration) return `Trim start must be before the end of the track (${duration.toFixed(1)} s)`;
+  const endValue = end === null || end === 0 ? duration : end;
+  if (endValue <= start) return "Trim end must be after trim start";
+  return null;
+}
+
 /** A four-second stereo pad, so the console is playable before a file is chosen. */
 export function makeSampleBuffer(): AudioBuffer {
   const sampleRate = 44100;
