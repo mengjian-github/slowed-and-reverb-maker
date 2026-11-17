@@ -49,6 +49,16 @@ const PRESET_OPTIONS: { value: PresetId; label: string }[] = [
   { value: "daycore", label: "Daycore" },
 ];
 
+/** The shape a press applied, in the words the readout and the status line
+ *  share, so "working" and "finished" can never say the same thing. */
+function describeSettings(settings: ShapeSettings): string {
+  const speed = Number.isFinite(settings.speed) ? settings.speed : 1;
+  const pitch = Number.isFinite(settings.pitch) ? settings.pitch : 0;
+  const reverb = Number.isFinite(settings.reverbPct) ? settings.reverbPct : 0;
+  const bass = Number.isFinite(settings.bassDb) ? settings.bassDb : 0;
+  return `${PRESET_LABEL[settings.preset]} · Speed ${speed}× · Pitch ${pitch} st · Reverb ${reverb}% · Bass ${bass} dB`;
+}
+
 function settingsFrom(preset: PresetId, speed: string, pitch: string, reverb: string, bass: string, trimStart: string, trimEnd: string, duration: number): ShapeSettings {
   const speedValue = parseNumber(speed) ?? 1;
   const pitchValue = parseNumber(pitch) ?? 0;
@@ -76,6 +86,11 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   const nodesRef = useRef<GraphNodes | null>(null);
   const sampleRef = useRef<AudioBuffer | null>(null);
   const startedAt = useRef(0);
+  /** The preview's own end-of-playback deadline. A browser with a suspended
+   *  context or no output device can start the graph and never fire the
+   *  source's ended event, which left the console saying "playing" after the
+   *  audio had run out; this deadline reports the finished result anyway. */
+  const previewTimer = useRef(0);
 
   const [track, setTrack] = useState<LoadedTrack | null>(null);
   const [loadState, setLoadState] = useState<ToolState>("idle");
@@ -135,6 +150,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
 
   useEffect(() => {
     return () => {
+      if (previewTimer.current) window.clearTimeout(previewTimer.current);
       nodesRef.current?.source.stop();
       void contextRef.current?.close();
       if (downloadUrl) URL.revokeObjectURL(downloadUrl);
@@ -175,6 +191,10 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
   }
 
   function stop() {
+    if (previewTimer.current) {
+      window.clearTimeout(previewTimer.current);
+      previewTimer.current = 0;
+    }
     const nodes = nodesRef.current;
     if (nodes) {
       // A deliberate stop is not the preview ending: drop the handler first so
@@ -341,24 +361,32 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
       return;
     }
     if (!nodes) return;
-    nodes.source.onended = () => {
-      if (nodesRef.current === nodes) {
-        nodesRef.current = null;
-        setPlaying(false);
-        setPosition(0);
-        setPreviewDone(true);
-        // The preview ran to its end: a finished result, not the working state
-        // it showed while it played.
-        setShapeState("success");
-        setShapeNote(`Preview finished at ${parseNumber(speed) ?? 1}×. Render below writes these settings to a WAV or MP3 file.`);
-      }
+    // What the visitor gets from this press, in the same words the readout
+    // uses: the completion line names the shape that was applied, so the
+    // finished state can never read like the working one.
+    const finishedNote = `Preview finished — ${describeSettings(live)}. Render below writes these settings to a WAV or MP3 file.`;
+    const finish = () => {
+      if (nodesRef.current !== nodes) return;
+      stop();
+      setPosition(0);
+      setPreviewDone(true);
+      setShapeState("success");
+      setShapeNote(finishedNote);
     };
+    nodes.source.onended = finish;
     nodesRef.current = nodes;
     startedAt.current = audio.currentTime;
     setPreviewDone(false);
     setPosition(0);
     setPlaying(true);
     setShapeState("success");
+    // Ended event first, deadline second: the preview always reaches its
+    // finished state, even where the audio graph never reports the end.
+    const rate = Math.max(0.05, live.speed * Math.pow(2, live.pitch / 12));
+    const previewSpan = Math.max(0.05, live.trimEnd - live.trimStart);
+    const seconds = Math.max(0.2, previewSpan / rate);
+    if (previewTimer.current) window.clearTimeout(previewTimer.current);
+    previewTimer.current = window.setTimeout(finish, Math.round((seconds + 0.45) * 1000));
   }
 
   /** Play preview / Apply shape. With no file chosen it loads the built-in pad
@@ -487,7 +515,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
     if (pickOpen) return { kind: "working", text: "File picker open — pick an audio file and it decodes in this tab." };
     if (decoding) return { kind: "working", text: "Decoding the file on this device…" };
     if (exportState === "working") return { kind: "working", text: `Rendering the edit offline… ${Math.round(progress * 100)}%.` };
-    if (playing) return { kind: "working", text: `Playing the preview at ${parseNumber(speed) ?? 1}×. Stop or shape it further.` };
+    if (playing) return { kind: "working", text: `Playing the preview at ${parseNumber(speed) ?? 1}× — ${PRESET_LABEL[preset]} applied. Press Stop when you have heard enough.` };
     if (exportState === "success") return { kind: "success", text: `Rendered: ${renderedSummary}. The download button is below.` };
     if (previewDone) return { kind: "success", text: shapeNote || "Preview finished — Render writes these settings to a file." };
     if (track) return { kind: "success", text: `${track.name} loaded (${formatSeconds(track.duration)}) — shape it, then Render.` };
@@ -583,7 +611,7 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
               <span className="chip">{formatSeconds(track.duration)}</span>
             </div>
           ) : null}
-          {status.kind === "error" ? null : !track && loadState !== "error" ? <p className="output-hint">Choose an audio file, or press Try the sample. Until a file is loaded, Play preview and Render work on the built-in four-second sample; choose a file to use your own track.</p> : null}
+          {status.kind === "error" ? null : !track && loadState !== "error" ? <p className="output-hint">Choose an audio file, or press Try the sample. Play preview works on the built-in four-second sample before a file is chosen; Render writes the sample only through Render the built-in sample below, and otherwise writes the file you loaded. Nothing is uploaded.</p> : null}
           {status.kind === "error" ? null : loadMessage && loadState === "success" ? <p className="output-note">{loadMessage}</p> : null}
         </div>
         {decoding ? <p className="stage-line"><progress value={0.4} max={1} /> Decoding on this device…</p> : null}
@@ -687,11 +715,29 @@ export function Studio({ defaultPreset = "classic", idPrefix }: StudioProps) {
             {playing ? "Playing preview…" : "Apply shape"}
           </button>
           <span className={`action-state ${shapeProblem && shapeState === "error" ? "error" : playing ? "working" : "idle"}`} role="status" aria-live="polite">
-            {shapeProblem && shapeState === "error" ? "Check the fields" : playing ? "Playing preview" : track ? "Ready to render" : "Sample ready"}
+            {shapeProblem && shapeState === "error" ? "Check the fields" : playing ? "Preview playing" : previewDone ? "Applied — ready to render" : track ? "Ready to render" : "Sample ready"}
           </span>
         </div>
         <div className="tool-output readout" data-tool-output data-motion="value-tick">
           {shapeProblem && shapeState === "error" ? <p className="output-error" role="alert">{shapeProblem}</p> : null}
+          {/* The result of the Apply shape press, left in the panel: while the
+              preview plays it is a live in-progress line, and once the preview
+              ends it is the finished result naming the shape that was applied. */}
+          {playing || previewDone ? (
+            <div className="applied" data-applied={playing ? "playing" : "done"} data-state={playing ? "working" : "success"}>
+              <span className="applied-badge">
+                {playing ? <span className="status-dot" aria-hidden="true" /> : (
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                )}
+                {playing
+                  ? `Applying — preview playing, ${position.toFixed(1)} s of ${Math.max(0.1, settings.trimEnd - settings.trimStart).toFixed(1)} s`
+                  : "Applied — result ready to render"}
+              </span>
+              <p className="applied-line">
+                {describeSettings(settings)} · {formatSeconds(projectedSeconds)} out · {track?.name ?? "built-in sample"}
+              </p>
+            </div>
+          ) : null}
           {shapeNote && !(shapeProblem && shapeState === "error") ? <p className="output-note" role="status">{shapeNote}</p> : null}
           {/* keyed on the preset so picking one replays the wave's entrance */}
           <ShapeMeter key={preset} speed={speedShown ?? 1} pitch={parseNumber(pitch) ?? 0} reverb={parseNumber(reverb) ?? 0} bass={parseNumber(bass) ?? 0} />

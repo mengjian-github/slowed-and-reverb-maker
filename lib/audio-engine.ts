@@ -162,25 +162,181 @@ export function peaksFromBuffer(buffer: AudioBuffer, bars = 160): number[] {
   return peaks.map((peak) => peak / loudest);
 }
 
-export function decodeFile(file: File): Promise<LoadedTrack> {
-  return file.arrayBuffer().then((bytes) => {
-    const context = new AudioContext();
-    return context.decodeAudioData(bytes.slice(0)).then(
-      (buffer) => {
-        void context.close();
-        return {
-          name: file.name,
-          format: formatFromName(file.name, file.type),
-          duration: buffer.duration,
-          buffer,
-          peaks: peaksFromBuffer(buffer),
-        };
-      },
-      () => {
-        void context.close();
-        throw new Error("Could not decode this file. Try MP3, WAV, M4A, OGG or FLAC.");
-      },
+/** How long one decode attempt may hang before the next one is tried. The
+ *  browser's decoder can sit forever on a file it neither accepts nor rejects
+ *  (a suspended output device, an unusual WAV chunk layout), leaving the deck
+ *  on "Decoding on this device…" with no way out. */
+const DECODE_TIMEOUT_MS = 5000;
+
+/** The rate decodeAudioData would hand back: the tab's own audio device rate,
+ *  44.1 kHz where no device can be opened. */
+function deviceSampleRate(): number {
+  if (typeof AudioContext === "undefined") return 44100;
+  try {
+    const probe = new AudioContext();
+    const rate = probe.sampleRate || 44100;
+    void probe.close();
+    return rate;
+  } catch {
+    return 44100;
+  }
+}
+
+function looksLikeWav(bytes: ArrayBuffer): boolean {
+  if (bytes.byteLength < 12) return false;
+  const view = new DataView(bytes);
+  const tag = (offset: number) => String.fromCharCode(
+    view.getUint8(offset), view.getUint8(offset + 1), view.getUint8(offset + 2), view.getUint8(offset + 3),
+  );
+  return tag(0) === "RIFF" && tag(8) === "WAVE";
+}
+
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error("decode timed out")), ms);
+    promise.then(
+      (value) => { clearTimeout(timer); resolve(value); },
+      (reason) => { clearTimeout(timer); reject(reason); },
     );
+  });
+}
+
+async function decodeWithAudioContext(bytes: ArrayBuffer): Promise<AudioBuffer> {
+  if (typeof AudioContext === "undefined") throw new Error("Web Audio is not available");
+  const context = new AudioContext();
+  try {
+    return await withTimeout(context.decodeAudioData(bytes.slice(0)), DECODE_TIMEOUT_MS);
+  } finally {
+    try { void context.close(); } catch { /* already closed */ }
+  }
+}
+
+/** A second pass through the browser's decoder that needs no audio output, so
+ *  a machine with no working device can still decode. */
+async function decodeWithOfflineContext(bytes: ArrayBuffer): Promise<AudioBuffer> {
+  if (typeof OfflineAudioContext === "undefined") throw new Error("Web Audio is not available");
+  const context = new OfflineAudioContext(1, 1, deviceSampleRate());
+  return withTimeout(context.decodeAudioData(bytes.slice(0)), DECODE_TIMEOUT_MS);
+}
+
+function readPcmSample(view: DataView, offset: number, bits: number, isFloat: boolean): number {
+  if (isFloat) return bits === 64 ? view.getFloat64(offset, true) : view.getFloat32(offset, true);
+  if (bits === 8) return (view.getUint8(offset) - 128) / 128;
+  if (bits === 16) return view.getInt16(offset, true) / 32768;
+  if (bits === 24) {
+    const low = view.getUint8(offset);
+    const mid = view.getUint8(offset + 1);
+    const high = view.getInt8(offset + 2);
+    return ((high << 16) | (mid << 8) | low) / 8388608;
+  }
+  if (bits === 32) return view.getInt32(offset, true) / 2147483648;
+  throw new Error("unsupported bit depth");
+}
+
+/** Last resort for an uncompressed WAV the browser's decoder will not settle
+ *  on: read the RIFF chunks here and build the AudioBuffer the tab needs.
+ *  Only PCM and float WAV go through this path; anything else still fails with
+ *  the file-format error, as it should. */
+function decodeWavPcm(bytes: ArrayBuffer): AudioBuffer {
+  const view = new DataView(bytes);
+  const tag = (offset: number) => String.fromCharCode(
+    view.getUint8(offset), view.getUint8(offset + 1), view.getUint8(offset + 2), view.getUint8(offset + 3),
+  );
+  if (bytes.byteLength < 44 || tag(0) !== "RIFF" || tag(8) !== "WAVE") throw new Error("not a WAV file");
+  let offset = 12;
+  let channels = 0;
+  let sampleRate = 0;
+  let bits = 0;
+  let isFloat = false;
+  let dataStart = -1;
+  let dataLength = 0;
+  while (offset + 8 <= bytes.byteLength) {
+    const id = tag(offset);
+    const size = view.getUint32(offset + 4, true);
+    const body = offset + 8;
+    if (id === "fmt " && body + 16 <= bytes.byteLength) {
+      let format = view.getUint16(body, true);
+      channels = view.getUint16(body + 2, true);
+      sampleRate = view.getUint32(body + 4, true);
+      bits = view.getUint16(body + 14, true);
+      // WAVE_FORMAT_EXTENSIBLE (0xFFFE) carries the real format in its
+      // sub-format GUID, whose first two bytes are the classic format tag.
+      if (format === 0xfffe && body + 26 <= bytes.byteLength) format = view.getUint16(body + 24, true);
+      isFloat = format === 3;
+      if (format !== 1 && format !== 3) throw new Error("not PCM WAV");
+    } else if (id === "data") {
+      dataStart = body;
+      // A zero or over-long declared length (streamed files) means "to EOF".
+      dataLength = size > 0 ? Math.min(size, bytes.byteLength - body) : bytes.byteLength - body;
+    }
+    if (fmtFound(channels, sampleRate, bits) && dataStart >= 0) break;
+    offset = body + size + (size % 2);
+  }
+  if (!channels || !sampleRate || !bits || dataStart < 0) throw new Error("incomplete WAV file");
+  const bytesPerSample = bits / 8;
+  if (!Number.isInteger(bytesPerSample) || bytesPerSample < 1) throw new Error("unsupported bit depth");
+  const frameBytes = channels * bytesPerSample;
+  const frames = Math.floor(dataLength / frameBytes);
+  if (frames < 1) throw new Error("the WAV file holds no audio");
+  // Resample to the rate the browser's own decoder would hand back, so a file
+  // decoded here behaves exactly like one decoded by decodeAudioData().
+  const targetRate = deviceSampleRate();
+  const outLength = Math.max(1, Math.round((frames * targetRate) / sampleRate));
+  const buffer = new AudioBuffer({ length: outLength, numberOfChannels: channels, sampleRate: targetRate });
+  const step = frames / outLength;
+  for (let channel = 0; channel < channels; channel += 1) {
+    const out = buffer.getChannelData(channel);
+    for (let i = 0; i < outLength; i += 1) {
+      const position = i * step;
+      const first = Math.min(frames - 1, Math.floor(position));
+      const second = Math.min(frames - 1, first + 1);
+      const mix = position - first;
+      const a = readPcmSample(view, dataStart + first * frameBytes + channel * bytesPerSample, bits, isFloat);
+      const b = readPcmSample(view, dataStart + second * frameBytes + channel * bytesPerSample, bits, isFloat);
+      out[i] = a + (b - a) * mix;
+    }
+  }
+  return buffer;
+}
+
+function fmtFound(channels: number, sampleRate: number, bits: number): boolean {
+  return channels > 0 && sampleRate > 0 && bits > 0;
+}
+
+async function decodeBytes(bytes: ArrayBuffer): Promise<AudioBuffer> {
+  // An uncompressed WAV is read here first: it is deterministic and instant, so
+  // a file the browser's decoder stalls on (no fallback, no error) still opens
+  // the moment it is chosen instead of holding the deck on "Decoding…". A WAV
+  // this parser does not handle (ADPCM, an odd chunk layout) falls through to
+  // the browser's decoders exactly as any other format does.
+  const attempts: (() => Promise<AudioBuffer>)[] = [
+    ...(looksLikeWav(bytes) ? [() => Promise.resolve().then(() => decodeWavPcm(bytes))] : []),
+    () => decodeWithAudioContext(bytes),
+    () => decodeWithOfflineContext(bytes),
+    () => Promise.resolve().then(() => decodeWavPcm(bytes)),
+  ];
+  for (const attempt of attempts) {
+    try {
+      const buffer = await attempt();
+      if (buffer) return buffer;
+    } catch {
+      // Try the next decoder: only when every one of them fails is the file
+      // reported as undecodable.
+    }
+  }
+  throw new Error("Could not decode this file. Try MP3, WAV, M4A, OGG or FLAC.");
+}
+
+export function decodeFile(file: File): Promise<LoadedTrack> {
+  return file.arrayBuffer().then(async (bytes) => {
+    const buffer = await decodeBytes(bytes);
+    return {
+      name: file.name,
+      format: formatFromName(file.name, file.type),
+      duration: buffer.duration,
+      buffer,
+      peaks: peaksFromBuffer(buffer),
+    };
   });
 }
 
