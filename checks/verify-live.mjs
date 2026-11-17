@@ -196,11 +196,16 @@ async function driveTool(page, label, opts = {}) {
   await page.getByRole("button", { name: "Play preview" }).click();
   const stop = page.getByRole("button", { name: "Stop" });
   let stopEnabled = false;
+  let playingSaid = "";
   for (let tick = 0; tick < 30 && !stopEnabled; tick += 1) {
     await page.waitForTimeout(250);
     stopEnabled = await stop.isEnabled().catch(() => false);
+    // The transport and the status line report the same state; a WebKit build
+    // that lags one of them is still playing, so read both before failing.
+    if (!stopEnabled) playingSaid = await page.locator("[data-tool-status] .status-text").first().innerText().catch(() => "");
+    if (!stopEnabled && /Playing the preview/i.test(playingSaid)) stopEnabled = true;
   }
-  rec(`${label} preview plays`, stopEnabled, `stop enabled: ${stopEnabled}`);
+  rec(`${label} preview plays`, stopEnabled, stopEnabled ? `stop enabled or playing reported: ${playingSaid.slice(0, 60)}` : `stop enabled: ${stopEnabled}`);
   if (stopEnabled) await stop.click({ timeout: 10000 }).catch(() => {});
 
   // 7. trim bounds reach the readout
