@@ -213,9 +213,12 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .studio { display: grid; gap: 1rem; margin: 0; }
 /* The instrument's one status line: the same place answers idle, working,
    error and done, so a press is never silent. */
-.studio-status { display: flex; align-items: center; gap: 0.6rem; margin: 0; padding: 0.6rem 0.85rem; border: 1px solid color-mix(in srgb, #ffe6f4 26%, transparent); border-radius: 6px; background: #4d0519; color: #edc4d8; font-size: 0.95rem; font-weight: 600; }
+.studio-status { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 0; padding: 0.6rem 0.85rem; border: 1px solid color-mix(in srgb, #ffe6f4 26%, transparent); border-radius: 6px; background: #4d0519; color: #edc4d8; font-size: 0.95rem; font-weight: 600; }
 .studio-status .status-dot { flex: none; width: 0.62rem; height: 0.62rem; border-radius: 50%; background: currentColor; }
 .studio-status .status-text { min-width: 0; }
+.status-fix { margin-left: auto; flex: none; border: 1px solid currentColor; border-radius: 2px; background: transparent; color: inherit; font: inherit; font-size: 0.85rem; font-weight: 700; padding: 0.25rem 0.6rem; min-height: 32px; cursor: pointer; }
+.status-fix:hover { background: color-mix(in srgb, currentColor 18%, transparent); }
+.status-fix:focus-visible { outline: 2px solid #ff99d3; outline-offset: 2px; }
 .drop-status { display: flex; align-items: baseline; gap: 0.55rem; margin: 0; padding: 0.5rem 0.7rem; border: 1px solid color-mix(in srgb, #ffe6f4 22%, transparent); border-radius: 6px; background: color-mix(in srgb, #ffe6f4 6%, transparent); color: #edc4d8; font-size: 0.92rem; font-weight: 600; }
 .drop-status .status-dot { flex: none; align-self: center; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: currentColor; }
 .drop-status.working { color: #ffd6ec; border-color: #ff99d3; background: color-mix(in srgb, #ff99d3 16%, #4d0519); }
@@ -257,7 +260,8 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .chip-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 .chip { border: 1px solid color-mix(in srgb, #ffe6f4 26%, transparent); padding: 0.28rem 0.5rem; font-size: 0.875rem; }
 .chip b { font-weight: 700; }
-.output-error { margin: 0; color: #ffb4b4; font-weight: 700; }
+.output-error { margin: 0; color: #ffb4b4; font-weight: 700; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+.sample-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .output-hint, .output-note { margin: 0; color: #edc4d8; font-size: 0.94rem; }
 .stage-line { display: flex; align-items: center; gap: 0.6rem; margin: 0; font-size: 0.9rem; }
 .stage-line progress { width: 8rem; accent-color: #ff99d3; }
