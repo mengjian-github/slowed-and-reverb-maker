@@ -240,6 +240,17 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem 2rem; }
 .action-state { font-size: 0.9rem; font-weight: 700; color: #edc4d8; }
 .action-state.working { color: #ff99d3; }
 .action-state.error { color: #ffb4b4; }
+/* The applied shape, left in the console after the press: a live line while the
+   preview plays and a finished result once it ends, so the two states never
+   read the same. */
+.applied { display: grid; gap: 0.3rem; margin: 0; padding: 0.6rem 0.75rem; border: 1px solid color-mix(in srgb, #22c55e 62%, transparent); border-left-width: 3px; border-radius: 6px; background: color-mix(in srgb, #22c55e 12%, #4d0519); }
+.applied[data-state="working"] { border-color: #ff99d3; background: color-mix(in srgb, #ff99d3 12%, #4d0519); }
+.applied-badge { display: flex; align-items: center; gap: 0.45rem; font-size: 0.86rem; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; color: #ffe6f4; }
+.applied[data-state="working"] .applied-badge { color: #ffd6ec; }
+.applied-badge svg { width: 1rem; height: 1rem; flex: none; }
+.applied-badge .status-dot { flex: none; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: currentColor; animation: status-pulse 1s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) { .applied-badge .status-dot { animation: none; } }
+.applied-line { margin: 0; font-size: 0.9rem; color: #edc4d8; font-variant-numeric: tabular-nums; }
 .deck { border: 1px solid color-mix(in srgb, #ffe6f4 26%, transparent); background: #4d0519; border-radius: 8px; padding: 1.2rem 1.35rem 1.4rem; display: grid; gap: 1.05rem; animation: rise-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .deck:nth-child(2) { animation-delay: 0.07s; }
 .deck:nth-child(3) { animation-delay: 0.14s; }
